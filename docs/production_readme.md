@@ -2,10 +2,12 @@ HyperLearn is a card and deck-based learning platform inspired by BrainScape.
 It's built on a Ruby on Rails backend utilizing a PostgreSQL database with a React/Redux framework on the frontend.
 
 <h2>Features</h2>
-- User signup and login
-- Create, use, and delete decks
-- Add tags to subjects and decks
-- Search for subjects/decks by their tags
+<ul>
+<li>User signup and login</li>
+<li>Create, use, and delete decks</li>
+<li>Add tags to subjects and decks</li>
+<li>Search for subjects/decks by their tags</li>
+</ul>
 
 <h2>Implementation</h2>
 
@@ -44,6 +46,8 @@ Decks will be stored in a table with columns for name, and subject_id to link th
 Cards will have columns storing a deck_id to reference their parent deck, and will be linked to users through Scores which store an integer for the actual score and ids of both users and cards.
 
 Tags will be associated with various subjects and decks by a 'Taggings' join table. Tags themselves will only contain a string for the actual Tag name, and will have a has_many relationship with Taggings to link them to their associated components.
+
+Search will be implemented with a search feature that will send AJAX requests for each change undergone by the search bar, searching for tags that match the term. Upon submission of the search form, subjects and decks matching the tag will be returned.
 
 <h3> Timeline </h3>
 Phase I: Build models/controllers and their API responses (jBuilder), seed DB and handle frontend auth input (2 days)

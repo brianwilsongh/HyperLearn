@@ -50,8 +50,12 @@ Tags will be associated with various subjects and decks by a 'Taggings' join tab
 Search will be implemented with a search feature that will send AJAX requests for each change undergone by the search bar, searching for tags that match the term. Upon submission of the search form, subjects and decks matching the tag will be returned.
 
 <h3> Timeline </h3>
-Phase I: Build models/controllers and their API responses (jBuilder), seed DB and handle frontend auth input (2 days)
-Phase II: Create landing page, along with AJAX actions that update store with appropriate info (2 days)
-Phase III: Build study interface, allowing user to submit scores on cards, updating the statistical display (2 days)
-Phase IV: Make pages/modals to create, edit subjects and decks (2 days)
-Phase V: Create search functionality to search for subjects/decks by keyword/tag, work on CSS styling (1 day)
+<li>Phase I: Build models/controllers and their API responses (jBuilder), seed DB and handle frontend auth input (2 days)</li>
+
+<li>Phase II: Create landing page, along with AJAX actions that update store with appropriate info (2 days)</li>
+
+<li>Phase III: Build study interface, allowing user to submit scores on cards, updating the statistical display (2 days)</li>
+
+<li>Phase IV: Make pages/modals to create, edit subjects and decks (2 days)</li>
+
+<li>Phase V: Create search functionality to search for subjects/decks by keyword/tag, work on CSS styling (1 day)</li>

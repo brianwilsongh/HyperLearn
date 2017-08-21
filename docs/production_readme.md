@@ -13,7 +13,7 @@ It's built on a Ruby on Rails backend utilizing a PostgreSQL database with a Rea
 
 The user will begin on the landing page, which will restrict the user from accessing any of the study materials until the user has logged in. Login/Signup inputs will appear to the user through a modal, overlaying the main page. The forms in the model will trigger an AJAX request that will trigger an action updating the store with current_user after finishing.
 
-![Alt text](/wireframes/FrontPage.png)
+<img src="/wireframes/FrontPage.png" />
 
 <h3> Subjects/Decks </h3>
 
@@ -21,19 +21,19 @@ Once the session cookie matches a user in the database, the user will be redirec
 
 Clicking on a subject will trigger an AJAX call that will fetch the decks that belong to that subject. DeckItemComponent will be rendered after the call is returned. Subjects can be deleted/edited through a modal that will appear if the user clicks on an edit button for the subject.
 
-![Alt text](/wireframes/LoggedInInterface.png)
+<img src="/wireframes/LoggedInInterface.png" />
 
 <h3> Using Decks </h3>
 
 Users that click the study button next to any given deck will be redirected to '/learn/:deck_id' which will render the following page.
 
-![Alt text](/wireframes/DeckStudyInterface.png)
+<img src="/wireframes/DeckStudyInterface.png" />
 
 Statistics are generating through a relational database table of scores, which store both a user_id and a card_id. The card itself will show question/answer through a boolean switch that will live in the CardInterfaceComponent's state.
 
 Clicking on an icon next to decks back on the main interface will brings users to '/edit/:deck_id' which will render the following components to easily edit a deck and add tags.
 
-![Alt text](/wireframes/EditDeck.png)
+<img src="/wireframes/EditDeck.png" />
 
 <h3> Database </h3>
 

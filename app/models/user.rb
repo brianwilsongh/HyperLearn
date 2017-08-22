@@ -20,19 +20,23 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   def password=(password)
+    #set password to ivar and store the hashed digest
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
 
   def is_password?(password)
+    #check if password matches by creating BCrypt::Password obj and checking against input
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def ensure_session_token
+    #ensure that session validation goes through
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
 
   def regen_session_token
+    #gen new session token, save user, return to store in cookie
     self.session_token = SecureRandom.urlsafe_base64(16)
     self.save
     self.session_token
@@ -40,6 +44,7 @@ class User < ActiveRecord::Base
 
 
   def self.find_by_credentials(username, password)
+    #find user by username, if password matches hashed original return user else nil
     user = User.find_by(username: username)
     if user && user.is_password?(password)
       return user

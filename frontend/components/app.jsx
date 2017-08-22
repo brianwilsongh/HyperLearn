@@ -4,6 +4,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import NavBar from './nav_bar';
 import LoginForm from './session/login_form';
 import SignupForm from './session/signup_form';
+import AuthRoute from '../utils/route_utils';
 
 export const App = ({store}) => {
   return (
@@ -11,8 +12,8 @@ export const App = ({store}) => {
       <HashRouter>
         <div className="AppDiv">
           <Route path="/" component={NavBar} />
-          <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/signup" component={SignupForm} />
+          <AuthRoute exact path="/login" component={LoginForm} />
+          <AuthRoute exact path="/signup" component={SignupForm} />
         </div>
       </HashRouter>
     </Provider>

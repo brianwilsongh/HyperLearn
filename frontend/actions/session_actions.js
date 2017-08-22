@@ -5,7 +5,6 @@ export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
 
 export const login = (user) => dispatch => {
-  debugger;
   return APIUtils.login(user)
     .then(theUser => dispatch(receiveCurrentUser(theUser)),
   error => dispatch(receiveErrors(error)));

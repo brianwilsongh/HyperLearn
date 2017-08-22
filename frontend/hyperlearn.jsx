@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app.jsx';
-import { login, logout, signup } from './actions/session_actions';
 import generateStore from './store/store';
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  const store = generateStore();
+  let store;
+  if (window.current_user) {
+    const preloadedState = { session: {current_user: window.current_user}};
+    store = generateStore(preloadedState);
+    delete window.current_user;
+    // debugger
+  } else {
+    store = generateStore();
+  }
   window.store = store;
-  window.login = login;
-  window.logout = logout;
-  window.signup = signup;
   const root = document.getElementById('root');
   ReactDOM.render(<App store={store} />, root);
 });

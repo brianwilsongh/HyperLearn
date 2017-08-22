@@ -1,21 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import UserPanel from './user_panel';
+import UserPanel from './session/user_panel';
 
 class NavBar extends React.Component {
 
 
   render(){
-    return(
-      <div className="Navigation">
-        <Link to="/">
-          <img src="/app/assets/images/placeholder_logo.png" width="20" height="20" />
-        </Link>
+    if (this.props.currentUser){
+      return(
+        <div className="Navigation">
+          <Link to="/">home
+          </Link>
 
-        <UserPanel />
-      </div>
-    );
+          <UserPanel />
+        </div>
+      );
+    } else {
+      return (
+        <div className="Navigation">
+          <Link to="/">home
+          </Link>
+
+          <div className="Session">
+            <Link to="/login">Log In</Link>
+            <Link to="/signup">Sign Up</Link>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.current_user,
+  };
+};
+
+export default connect(mapStateToProps)(NavBar);

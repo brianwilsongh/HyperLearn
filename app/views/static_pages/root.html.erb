@@ -1,1 +1,9 @@
-<div id="root"></div>
+<script type="text/javascript">
+  <% if logged_in? %>
+    console.log("entered the logged in section")
+    <% puts "WE ARE LOGGED IN" %>
+    window.current_user = <%= render('/api/users/user.json.jbuilder', user: current_user).html_safe %>
+  <% end %>
+  console.log("current user is now: ", window.current_user);
+</script>
+<div id='root'> </div>

@@ -15,5 +15,14 @@
  */
 
 .Navigation {
-  background: yellow;
+  background: #ced5e0;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Navigation > a {
+  text-decoration: none;
+  font-family: sans-serif;
+  
 }

@@ -24,5 +24,10 @@
 .Navigation > a {
   text-decoration: none;
   font-family: sans-serif;
-  
+}
+
+.Navigation > div > a {
+  padding: 10px;
+  text-decoration: none;
+  font-family: sans-serif;
 }

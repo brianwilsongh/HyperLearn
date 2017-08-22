@@ -8,5 +8,6 @@
 
 User.destroy_all
 
+User.create(username: "guest", password: "password")
 User.create(username: "master", password: "password");
 User.create(username: "alistair", password: "hunter12");

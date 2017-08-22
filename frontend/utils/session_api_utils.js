@@ -16,6 +16,19 @@ export const login = (user) => {
   });
 };
 
+export const loginDemo = (user) => {
+  return $.ajax({
+    method: "POST",
+    url: "/api/sessions",
+    data: {
+      user: {
+        username: "guest",
+        password: "password",
+      }
+    }
+  });
+};
+
 export const logout = () => {
   return $.ajax({
     method: "DELETE",

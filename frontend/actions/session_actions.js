@@ -10,6 +10,12 @@ export const login = (user) => dispatch => {
   error => dispatch(receiveErrors(error)));
 };
 
+export const loginDemo = () => dispatch => {
+  return APIUtils.loginDemo()
+    .then(theUser => dispatch(receiveCurrentUser(theUser)),
+  error => dispatch(receiveErrors(error)));
+};
+
 export const signup = (user) => dispatch => {
   return APIUtils.signup(user)
     .then(theUser => dispatch(receiveCurrentUser(theUser)),

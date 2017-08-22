@@ -12,6 +12,7 @@ name(string)
 <h4>Decks</h4>
 
 subject_id(integer)
+user_id(integer)
 name(string)
 
 <h4>Cards</h4>

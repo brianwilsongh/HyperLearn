@@ -21,8 +21,9 @@ Session
 
 Subjects
 <ul>
-<li>GET /api/subjects (takes user id to retrieve)</li>
+<li>GET /api/subjects (get subjects by current_user's id)</li>
 <li>GET /api/subjects/:id (returns subject)</li>
+<li>POST /api/subjects (create subject) </li>
 <li>PATCH /api/subjects/:id (takes subject, returns subject)</li>
 <li>DELETE /api/subjects/:id (takes nothing, returns nothing)</li>
 </ul>
@@ -31,6 +32,7 @@ Decks
 <ul>
 <li>GET /api/decks/:id (returns deck)</li>
 <li>GET /api/decks/ (takes subject id, returns decks matching id)</li>
+<li>Post /api/decks (creates subject) </li>
 <li>PATCH /api/decks/:id (takes deck, returns updated deck)</li>
 <li>DELETE /api/decks/:id (takes nothing, returns nothing)</li>
 </ul>
@@ -38,5 +40,7 @@ Decks
 Cards
 <ul>
 <li>GET /api/cards/:id (returns the card)</li>
+<li>POST /api/cards (add new card) </li>
 <li>PATCH /api/cards/:id (takes card, returned edited card)</li>
+<li>DELETE /api/cards/:id (takes nothing, return nothing)</li>
 </ul>

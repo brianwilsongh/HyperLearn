@@ -3,7 +3,7 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:username],
     params[:user][:password])
     if @user
-      render json: {}
+      render 'api/users/show'
     else
       render json: @user.errors.full_messages
     end

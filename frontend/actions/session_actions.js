@@ -1,45 +1,37 @@
-import * as SessionApi from '../utils/session_api_utils';
+import * as APIUtils from "../utils/session_api_utils";
 
-export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-export const DELETE_CURRENT_USER = "DELETE_CURRENT_USER";
-export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
-export const signup = (user) => (dispatch) => {
-  return SessionApi.signup(user)
-  .then((currentUser) => dispatch(receieveCurrentUser(currentUser)),
-(errors) => dispatch(receieveErrors(errors)));
-};
 
-export const login = (user) => (dispatch) => {
+export const login = (user) => dispatch => {
   debugger;
-  return SessionApi.login(user)
-  .then((currentUser) => dispatch(receieveCurrentUser(currentUser)),
-(errors) => dispatch(receieveErrors(errors)));
+  return APIUtils.login(user)
+    .then(theUser => dispatch(receiveCurrentUser(theUser)),
+  error => dispatch(receiveErrors(error)));
 };
 
-export const logout = () => (dispatch) => {
-  return SessionApi.logout()
-  .then(() => dispatch(deleteCurrentUser()),
-(errors) => dispatch(receieveErrors(errors)));
+export const signup = (user) => dispatch => {
+  return APIUtils.signup(user)
+    .then(theUser => dispatch(receiveCurrentUser(theUser)),
+  error => dispatch(receiveErrors(error)));
 };
 
-export const receieveCurrentUser = (currentUser) => {
-  debugger;
-  return ({
+export const logout = () => dispatch => {
+  return APIUtils.logout()
+    .then(emptyObj => dispatch(receiveCurrentUser(null)),
+  error => dispatch(receiveErrors(error)));
+};
+
+export const receiveCurrentUser = (user) => {
+  return {
     type: RECEIVE_CURRENT_USER,
-    data: currentUser
-  });
+    user
+  };
 };
-
-export const deleteCurrentUser = () => {
-  return ({
-    type: RECEIVE_CURRENT_USER
-  });
-};
-
-export const receieveErrors = (errors) => {
-  return ({
+export const receiveErrors = (error) => {
+  return {
     type: RECEIVE_ERRORS,
-    data: errors
-  });
+    error
+  };
 };

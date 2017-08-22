@@ -1,17 +1,17 @@
-import * as SessionActions from '../actions/session_actions';
+import * as SActions from "../actions/session_actions";
 
 const defaultState = {
   currentUser: null,
-  errors: [],
+  errors: []
 };
 
-export const sessionReducer = (state=defaultState, action) => {
+export const sessionReducer = (state = defaultState, action) => {
   Object.freeze(state);
-  switch(action.type){
-    case SessionActions.RECEIVE_CURRENT_USER:
-      return {currentUser: action.data, errors: []};
-    case SessionActions.RECEIVE_ERRORS:
-      return {currentUser: null, errors: action.data};
+  switch (action.type) {
+    case SActions.RECEIVE_CURRENT_USER:
+      return { current_user: action.user, errors: []};
+    case SActions.RECEIVE_ERRORS:
+      return { current_user: null, errors: action.errors };
     default:
       return state;
   }

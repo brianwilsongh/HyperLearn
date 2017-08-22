@@ -11,6 +11,7 @@ export const signup = (user) => (dispatch) => {
 };
 
 export const login = (user) => (dispatch) => {
+  debugger;
   return SessionApi.login(user)
   .then((currentUser) => dispatch(receieveCurrentUser(currentUser)),
 (errors) => dispatch(receieveErrors(errors)));
@@ -23,6 +24,7 @@ export const logout = () => (dispatch) => {
 };
 
 export const receieveCurrentUser = (currentUser) => {
+  debugger;
   return ({
     type: RECEIVE_CURRENT_USER,
     data: currentUser

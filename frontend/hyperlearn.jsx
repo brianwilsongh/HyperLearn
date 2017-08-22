@@ -12,5 +12,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
   window.logout = logout;
   window.signup = signup;
   const root = document.getElementById('root');
-  ReactDOM.render(<App />, root);
+  ReactDOM.render(<App store={store} />, root);
 });

@@ -1,12 +1,17 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { Route, HashRouter } from 'react-router-dom';
 import NavBar from './nav_bar';
 
-export const App = () => {
+export const App = ({store}) => {
   return (
-    <div className="AppDiv">
-      <NavBar />
-    </div>
+    <Provider store={store}>
+      <HashRouter>
+        <div className="AppDiv">
+          <Route path="/" component={NavBar} />
+        </div>
+      </HashRouter>
+    </Provider>
   );
 };
 

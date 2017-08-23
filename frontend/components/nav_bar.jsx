@@ -21,7 +21,8 @@ class NavBar extends React.Component {
     if (this.props.currentUser){
       return(
         <div className="Navigation">
-          <Link to="/">home
+          <Link to="/">
+            <img src="/assets/placeholder_logo.png"/>
           </Link>
 
           <UserPanel />
@@ -30,7 +31,8 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="Navigation">
-          <Link to="/">home
+          <Link to="/">
+            <img src="/assets/placeholder_logo.png"/>
           </Link>
 
           <div className="Session">

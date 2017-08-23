@@ -15,11 +15,11 @@
  */
 
  a {
-   color: #04202C;
+   color: #C9D1C8;
  }
 
  a:hover {
-   color: #304040;
+   color: #5B7065;
  }
 
  h4 {
@@ -33,7 +33,8 @@
  }
 
 .Navigation {
-  background: #ced5e0;
+  color: #C9D1C8;
+  background: #304040;
   padding: 15px;
   display: flex;
   justify-content: space-between;
@@ -75,6 +76,10 @@
   background: #04202C;
   color: #FFFFFF;
   margin: 10%;
+  border: 0;
+  padding: 3%;
+  cursor: pointer;
+  font-size: 15px;
 }
 
 #overlay {
@@ -89,9 +94,8 @@
 }
 
 #overlay div {
-     width:300px;
+     width:360px;
      margin: 5% auto;
-     opacity: ;
      background-color: red;
      text-align:center;
 }

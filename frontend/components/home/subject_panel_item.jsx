@@ -13,7 +13,6 @@ class SubjectPanelItem extends React.Component {
 
 
   render(){
-    debugger;
     return(
       <div>
         { this.props.subject.title }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signup } from '../../actions/session_actions';
+import { signup, clearErrors } from '../../actions/session_actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
@@ -23,7 +23,9 @@ class SignupForm extends React.Component {
 
   handleFormSubmit(e){
     e.preventDefault();
-    this.props.sendSignupRequest(this.state).then(this.props.history.push("/home"));
+    this.props.sendSignupRequest(this.state)
+    .then(this.props.currentUser ? this.props.history.push("/home") :
+   console.log("INVALID CREDENTIALS"));
 
   }
 
@@ -37,13 +39,22 @@ class SignupForm extends React.Component {
 
 
   render(){
+
+    let errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
+
     return (
     <div id="overlay">
       <div className="sessionForm">
         <form onSubmit={this.handleFormSubmit} >
-          <Link to="/" className="boxclose">
+          <Link to="/" className="boxclose" onClick={this.props.clearErrors}>
             x
           </Link>
+
+          <p className="errorBlock">{ this.props.errors ? <p>
+              {errors}
+            </p> : null}</p>
+
+
           <h4>Username:</h4>
           <input onChange={this.handleInputChange("username")} placeholder="Username" />
           <h4>Password:</h4>
@@ -56,10 +67,18 @@ class SignupForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    sendSignupRequest: (user) => dispatch(signup(user))
+    current_user: state.session.current_user,
+    errors: state.session.errors,
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(SignupForm));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendSignupRequest: (user) => dispatch(signup(user)),
+    clearErrors: () => dispatch(clearErrors()),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignupForm));

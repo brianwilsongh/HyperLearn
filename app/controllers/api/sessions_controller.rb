@@ -6,12 +6,16 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render 'api/users/show'
     else
-      render json: @user.errors.full_messages
+      render json: ["Invalid username/password combination"], status: 401
     end
   end
 
   def destroy
-    logout
-    render json: {}
+    @user = current_user
+    if @user
+      logout
+    else
+      render json: ["Nobody signed in"]
+    end
   end
 end

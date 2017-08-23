@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { login, clearErrors } from '../../actions/session_actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
@@ -22,7 +22,9 @@ class LoginForm extends React.Component {
 
   handleFormSubmit(e){
     e.preventDefault();
-    this.props.sendLoginRequest(this.state).then(this.props.history.push("/home"));
+    this.props.sendLoginRequest(this.state)
+    .then(this.props.currentUser ? this.props.history.push("/home") :
+    console.log("INVALID LOGIN"));
   }
 
   handleInputChange(key){
@@ -35,13 +37,21 @@ class LoginForm extends React.Component {
 
 
   render(){
+
+    let errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
+
     return (
     <div id="overlay">
       <div className="sessionForm">
         <form onSubmit={this.handleFormSubmit} >
-          <Link to="/" className="boxclose">
+          <Link to="/" className="boxclose" onClick={this.props.clearErrors}>
             x
           </Link>
+
+          <p className="errorBlock">{ this.props.errors ? <p>
+              {this.props.errors}
+            </p> : null}</p>
+
           <h4>Username:</h4>
           <input onChange={this.handleInputChange("username")} placeholder="Username" />
           <h4>Password:</h4>
@@ -55,10 +65,18 @@ class LoginForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    sendLoginRequest: (user) => dispatch(login(user))
+    current_user: state.session.current_user,
+    errors: state.session.errors,
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(LoginForm));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendLoginRequest: (user) => dispatch(login(user)),
+    clearErrors: () => dispatch(clearErrors()),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));

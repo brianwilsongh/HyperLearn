@@ -51,6 +51,11 @@
    position: absolute;
  }
 
+ .errorBlock {
+   color: red;
+   margin: 15px;
+ }
+
  #splash {
    width: 50%;
    height: 50%;

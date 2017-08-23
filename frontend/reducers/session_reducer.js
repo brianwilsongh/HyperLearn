@@ -11,7 +11,7 @@ export const sessionReducer = (state = defaultState, action) => {
     case SActions.RECEIVE_CURRENT_USER:
       return { current_user: action.user, errors: []};
     case SActions.RECEIVE_ERRORS:
-      return { current_user: null, errors: action.data };
+      return { current_user: null, errors: action.data.responseJSON };
     default:
       return state;
   }

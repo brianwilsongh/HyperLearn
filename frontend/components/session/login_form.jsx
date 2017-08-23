@@ -49,13 +49,13 @@ class LoginForm extends React.Component {
           </Link>
 
           <p className="errorBlock">{ this.props.errors ? <p>
-              {this.props.errors}
+              {errors}
             </p> : null}</p>
 
           <h4>Username:</h4>
           <input onChange={this.handleInputChange("username")} placeholder="Username" />
           <h4>Password:</h4>
-          <input onChange={this.handleInputChange("password")} placeholder="Password" />
+          <input type="password" onChange={this.handleInputChange("password")} placeholder="Password" />
           <input type="submit" value="Log In" />
         </form>
 

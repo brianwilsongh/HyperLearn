@@ -14,7 +14,7 @@ class SubjectPanelItem extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="homeSubjectItem">
         { this.props.subject.title }
       </div>
     );

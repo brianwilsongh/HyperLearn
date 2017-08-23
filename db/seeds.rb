@@ -25,11 +25,17 @@ conjuration = Subject.create(title: "Conjuration", user_id: john.id)
 destruction = Subject.create(title: "Destruction", user_id: chell.id)
 mysticism = Subject.create(title: "Mysticism", user_id: alistair.id)
 alchemy = Subject.create(title: "Alchemy", user_id: ming.id)
+alteration = Subject.create(title: "Alteration", user_id: john.id)
+illusion = Subject.create(title: "Illusion", user_id: john.id)
+blade = Subject.create(title: "Blade", user_id: john.id)
+block = Subject.create(title: "Block", user_id: john.id)
+sneak = Subject.create(title: "Sneak", user_id: john.id)
+acrobatics = Subject.create(title: "Acrobatics", user_id: john.id)
 
 Deck.destroy_all
 
 20.times do
-  Deck.create(title: Faker::ElderScrolls.region, user_id: john.id, subject_id: Subject.all.sample)
+  Deck.create(title: Faker::ElderScrolls.region, user_id: john.id, subject_id: Subject.all.sample.id)
 end
 
 Card.destroy_all
@@ -37,5 +43,5 @@ Card.destroy_all
 60.times do
   Card.create(question: Faker::GameOfThrones.character,
   answer: Faker::GameOfThrones.house,
-  deck_id: Deck.all.sample)
+  deck_id: Deck.all.sample.id)
 end

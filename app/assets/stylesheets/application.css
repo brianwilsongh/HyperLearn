@@ -71,7 +71,7 @@
   align-content: center;
   box-sizing: border-box;
   width: 100%;
-  height: 46px;
+  height: 50px;
   padding-top: 10px;
 }
 
@@ -104,65 +104,4 @@
   max-width: 70px;
   margin-right: 5%;
   height: auto;
-}
-
-.sessionForm {
-}
-
-.sessionForm > form {
-  background: #304040;
-  color: white;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-}
-
-.sessionForm > form > input {
-  width: 62%;
-  margin: 15px;
-}
-
-.sessionForm > form > input[type=submit] {
-  background: #04202C;
-  color: #FFFFFF;
-  margin: 10%;
-  border: 0;
-  padding: 3%;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-a.boxclose{
-  float:right;
-  margin-top:-30px;
-  margin-right:-100%;
-  cursor:pointer;
-  color: #fff;
-  border: 2px solid #AEAEAE;
-  border-radius: 30px;
-  background: #000000;
-  font-size: 20px;
-  text-decoration: none;
-  display: inline-block;
-  line-height: 0px;
-  padding: 11px 6px;
-}
-
-#overlay {
-     position: absolute;
-     background: rgba(0, 0, 0, 0.8);
-     left: 0px;
-     top: 0px;
-     width:100%;
-     height:100%;
-     text-align:center;
-     z-index: 1;
-}
-
-#overlay div {
-     width:360px;
-     margin: 5% auto;
 }

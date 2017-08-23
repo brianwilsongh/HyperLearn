@@ -19,7 +19,13 @@ class User < ActiveRecord::Base
 
   has_many :subjects,
   primary_key: :id,
+  foreign_key: :user_id,
   class_name: :Subject
+
+  has_many :decks,
+  primary_key: :id,
+  foreign_key: :user_id,
+  class_name: :Deck
 
   attr_reader :password
 

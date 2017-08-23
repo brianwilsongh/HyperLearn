@@ -12,9 +12,9 @@ class UserPanel extends React.Component {
 
   render(){
     return(
-      <div>
-        Hello {this.props.currentUser.username}
-        <button onClick={this.props.logoutFromPanel}>Log Out</button>
+      <div className="Session">
+        Hello, {this.props.currentUser.username}!
+        <Link to="/" onClick={this.props.logoutFromPanel}>Log Out</Link>
       </div>
     );
   }

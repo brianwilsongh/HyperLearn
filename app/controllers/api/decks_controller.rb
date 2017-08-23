@@ -12,6 +12,7 @@ class Api::DecksController < ApplicationController
       render :create
     else
       render json: @deck.errors.full_messages, status: 422
+    end 
   end
 
   def destroy

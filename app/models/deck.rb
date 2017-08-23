@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: decks
+#
+#  id         :integer          not null, primary key
+#  title      :string           not null
+#  user_id    :integer          not null
+#  subject_id :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Deck < ActiveRecord::Base
   validates :title, :user_id, :subject_id, presence: true
 

@@ -2,14 +2,15 @@ import React from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const AuthRoute = ({component: SessionForm, path, loggedIn}) => {
+const SplashRoute = ({component: SessionForm, path, loggedIn}) => {
   return (
     <Route
       path={ path }
-      render={ props => !loggedIn ? <SessionForm { ...props } /> : <Redirect to="/" /> }
+      render={ props => !loggedIn ? <SessionForm { ...props } /> : <Redirect to="/home" /> }
     />
   );
 };
+
 
 const mapStateToProps = (state) => {
   return {
@@ -17,4 +18,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(AuthRoute));
+export default withRouter(connect(mapStateToProps)(SplashRoute));

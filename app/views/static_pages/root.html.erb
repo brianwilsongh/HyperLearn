@@ -3,5 +3,6 @@
     window.current_user = <%= render('/api/users/user.json.jbuilder', user: current_user).html_safe %>
   <% end %>
   window.logoPath = "<%= image_path('hyperlearn_logo.png') %>"
+  window.splash = "<%= image_path('splash.jpg') %>"
 </script>
 <div id='root'> </div>

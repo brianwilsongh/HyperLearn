@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../actions/session_actions';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
 
@@ -22,8 +22,7 @@ class LoginForm extends React.Component {
 
   handleFormSubmit(e){
     e.preventDefault();
-    this.props.sendLoginRequest(this.state);
-
+    this.props.sendLoginRequest(this.state).then(this.props.history.push("/home"));
   }
 
   handleInputChange(key){
@@ -62,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default withRouter(connect(null, mapDispatchToProps)(LoginForm));

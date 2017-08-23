@@ -30,6 +30,30 @@
    background: #C9D1C8;
    color: #04202C;
    font-family: sans-serif;
+   left: 0px;
+   top: 0px;
+   width:100%;
+   height:100%;
+
+ }
+
+ #appDiv {
+ }
+
+ .primaryComponent {
+   margin-top: 25px;
+   margin-bottom: 25px;
+   margin-left: 10px;
+   margin-right: 10px;
+ }
+
+ .primaryComponent > h1 {
+   position: absolute;
+ }
+
+ #splash {
+   width: 50%;
+   height: 50%;
  }
 
 .Navigation {
@@ -40,10 +64,10 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  position: absolute;
   box-sizing: border-box;
   width: 100%;
-  height: 46px
+  height: 46px;
+  padding-top: 10px;
 }
 
 .Navigation > a {
@@ -58,6 +82,7 @@
 .Session {
   padding-right: 20px;
   padding-left: 20px;
+  font-size: 90%
 }
 .Session > a {
   padding-right: 10px;
@@ -71,7 +96,7 @@
 }
 
 #mainLogo {
-  max-width: 76px;
+  max-width: 70px;
   margin-right: 5%;
   height: auto;
 }
@@ -87,11 +112,12 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 20px;
 }
 
 .sessionForm > form > input {
   width: 62%;
-  margin: 0px;
+  margin: 15px;
 }
 
 .sessionForm > form > input[type=submit] {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../../actions/session_actions';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
 
@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
 
   handleFormSubmit(e){
     e.preventDefault();
-    this.props.sendSignupRequest(this.state);
+    this.props.sendSignupRequest(this.state).then(this.props.history.push("/home"));
 
   }
 
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SignupForm);
+export default withRouter(connect(null, mapDispatchToProps)(SignupForm));

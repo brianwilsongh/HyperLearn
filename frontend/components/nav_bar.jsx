@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import UserPanel from './session/user_panel';
 import { loginDemo } from '../actions/session_actions';
 
@@ -14,7 +14,7 @@ class NavBar extends React.Component {
 
   handleDemoLogin(e){
     e.preventDefault();
-    this.props.loginDemo();
+    this.props.loginDemo().then(this.props.history.push("/home"));
   }
 
   render(){
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

@@ -35,23 +35,37 @@
 .Navigation {
   color: #C9D1C8;
   background: #304040;
-  padding: 15px;
   display: flex;
+  flex-flow: row;
   justify-content: space-between;
+  align-items: center;
+  align-content: center;
   position: absolute;
   box-sizing: border-box;
   width: 100%;
+  height: 14%;
 }
 
 .Navigation > a {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  text-decoration: none;
+}
+
+
+.Session > a {
+  margin: 10px;
   text-decoration: none;
   font-family: sans-serif;
 }
 
-.Navigation > div > a {
-  padding: 10px;
-  text-decoration: none;
-  font-family: sans-serif;
+#mainLogo {
+  max-width: 20%;
+  margin-right: 5%;
+  height: auto;
 }
 
 .sessionForm {

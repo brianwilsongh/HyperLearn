@@ -22,7 +22,8 @@ class NavBar extends React.Component {
       return(
         <div className="Navigation">
           <Link to="/">
-            <img src="/assets/placeholder_logo.png"/>
+            <img id="mainLogo" src={window.logoPath}/>
+            HyperLearn
           </Link>
 
           <UserPanel />
@@ -32,7 +33,8 @@ class NavBar extends React.Component {
       return (
         <div className="Navigation">
           <Link to="/">
-            <img src="/assets/placeholder_logo.png"/>
+            <img id="mainLogo" src={window.logoPath}/>
+            HyperLearn
           </Link>
 
           <div className="Session">

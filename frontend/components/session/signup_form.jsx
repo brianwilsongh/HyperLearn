@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../../actions/session_actions';
+import { Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
 
@@ -40,6 +41,9 @@ class SignupForm extends React.Component {
     <div id="overlay">
       <div className="sessionForm">
         <form onSubmit={this.handleFormSubmit} >
+          <Link to="/" className="boxclose">
+            x
+          </Link>
           <h4>Username:</h4>
           <input onChange={this.handleInputChange("username")} placeholder="Username" />
           <h4>Password:</h4>

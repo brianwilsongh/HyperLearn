@@ -34,7 +34,7 @@
 
 .Navigation {
   color: #C9D1C8;
-  background: #304040;
+  background: #04202C;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -63,7 +63,7 @@
 }
 
 #mainLogo {
-  max-width: 20%;
+  max-width: 23%;
   margin-right: 5%;
   height: auto;
 }
@@ -96,6 +96,22 @@
   font-size: 15px;
 }
 
+a.boxclose{
+  float:right;
+  margin-top:-30px;
+  margin-right:-100%;
+  cursor:pointer;
+  color: #fff;
+  border: 2px solid #AEAEAE;
+  border-radius: 30px;
+  background: #000000;
+  font-size: 20px;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 0px;
+  padding: 11px 7px;
+}
+
 #overlay {
      position: absolute;
      background: rgba(0, 0, 0, 0.8);
@@ -110,6 +126,4 @@
 #overlay div {
      width:360px;
      margin: 5% auto;
-     background-color: red;
-     text-align:center;
 }

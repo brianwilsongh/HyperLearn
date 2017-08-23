@@ -21,7 +21,7 @@ class NavBar extends React.Component {
     if (this.props.currentUser){
       return(
         <div className="Navigation">
-          <Link to="/">
+          <Link to="/home">
             <img id="mainLogo" src={window.logoPath}/>
             HyperLearn
           </Link>

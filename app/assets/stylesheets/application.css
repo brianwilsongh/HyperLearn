@@ -14,11 +14,32 @@
  *= require_self
  */
 
+ a {
+   color: #04202C;
+ }
+
+ a:hover {
+   color: #304040;
+ }
+
+ h4 {
+   font-style: normal;
+ }
+
+ #root {
+   background: #C9D1C8;
+   color: #04202C;
+   font-family: sans-serif;
+ }
+
 .Navigation {
   background: #ced5e0;
   padding: 15px;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .Navigation > a {
@@ -30,4 +51,47 @@
   padding: 10px;
   text-decoration: none;
   font-family: sans-serif;
+}
+
+.sessionForm {
+}
+
+.sessionForm > form {
+  background: #304040;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.sessionForm > form > input {
+  width: 62%;
+  margin: 0px;
+}
+
+.sessionForm > form > input[type=submit] {
+  background: #04202C;
+  color: #FFFFFF;
+  margin: 10%;
+}
+
+#overlay {
+     position: absolute;
+     background: rgba(0, 0, 0, 0.8);
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1;
+}
+
+#overlay div {
+     width:300px;
+     margin: 5% auto;
+     opacity: ;
+     background-color: red;
+     text-align:center;
 }

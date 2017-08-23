@@ -37,11 +37,17 @@ class SignupForm extends React.Component {
 
   render(){
     return (
-    <form onSubmit={this.handleFormSubmit} >
-      <input onChange={this.handleInputChange("username")} placeholder="Username" />
-      <input onChange={this.handleInputChange("password")} placeholder="Password" />
-      <input type="submit" value="Sign Up" />
-    </form>
+    <div id="overlay">
+      <div className="sessionForm">
+        <form onSubmit={this.handleFormSubmit} >
+          <h4>Username:</h4>
+          <input onChange={this.handleInputChange("username")} placeholder="Username" />
+          <h4>Password:</h4>
+          <input onChange={this.handleInputChange("password")} placeholder="Password" />
+          <input type="submit" value="Sign Up" />
+        </form>
+      </div>
+    </div>
   );
   }
 }

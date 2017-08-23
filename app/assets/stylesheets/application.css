@@ -43,7 +43,7 @@
   position: absolute;
   box-sizing: border-box;
   width: 100%;
-  height: 56px
+  height: 48px
 }
 
 .Navigation > a {
@@ -63,7 +63,7 @@
 }
 
 #mainLogo {
-  max-width: 80px;
+  max-width: 76px;
   margin-right: 5%;
   height: auto;
 }

@@ -11,6 +11,12 @@ export const getSubjects = () => dispatch => {
     error => dispatch(receiveErrors(error)));
 };
 
+export const createSubject = (newSubject) => dispatch => {
+  return APIUtils.createSubject(newSubject)
+    .then(subjects => dispatch(receiveSubjects(subjects)),
+    error => dispatch(receiveErrors(error)));
+};
+
 export const editSubject = (editedSubject) => dispatch => {
   return APIUtils.editSubject(editedSubject)
     .then(subjects => dispatch(receiveSubjects(subjects)),

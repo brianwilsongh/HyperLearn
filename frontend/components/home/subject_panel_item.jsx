@@ -40,7 +40,8 @@ class SubjectPanelItem extends React.Component {
         <br />
         {editButton}
         <br />
-        { this.props.subject.card_count }
+        cards: { this.props.subject.card_count }
+        <br />
       </div>
     );
   }

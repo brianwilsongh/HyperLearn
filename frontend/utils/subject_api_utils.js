@@ -5,6 +5,14 @@ export const getSubjects = (user) => {
   });
 };
 
+export const createSubject = (newSubject) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/subjects/`,
+    data: {subject: newSubject}
+  });
+};
+
 export const editSubject = (editedSubject) => {
   return $.ajax({
     method: "PATCH",

@@ -79,7 +79,7 @@ class SubjectModify extends React.Component {
           placeholder="Title"
           value={this.state.title} />
           <input type="submit" value="Edit" />
-          <button onClick={this.handleDeleteClick}>Delete</button>
+          <button onClick={this.handleDeleteClick}>Destroy</button>
         </form>
 
       </div>

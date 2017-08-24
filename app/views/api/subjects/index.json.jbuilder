@@ -1,4 +1,4 @@
-subject_array = @subjects.to_a.sort_by{|e| e.title}
+subject_array = @subjects.to_a.sort_by{|e| e.title.downcase}
 
 json.set! :alphabetical do
   json.array! subject_array do |subject|

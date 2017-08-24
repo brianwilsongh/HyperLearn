@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getSubjects } from '../../actions/deck_actions';
 import DeckPanelItem from './deck_panel_item';
 
@@ -11,9 +12,6 @@ class DeckPanel extends React.Component {
 
   }
 
-  componentDidMount(){
-    //fetch idx items here
-  }
 
 
   render(){
@@ -24,9 +22,15 @@ class DeckPanel extends React.Component {
     } else {
       retrievedDecks = [];
     }
-    const deckDisplay = retrievedDecks.map((el, idx) => {
+
+    var deckDisplay = retrievedDecks.map((el, idx) => {
       return (<DeckPanelItem key={idx} deck={el} />);
     });
+
+    var newDeckLink = null;
+    if (this.props.currentSubject){
+      newDeckLink = <Link to="/home/deck/new">New Deck</Link>;
+    }
 
 
     return(
@@ -35,6 +39,8 @@ class DeckPanel extends React.Component {
           <h1> { this.props.currentSubject.title }</h1>
         </div>
         Decks:
+        <br />
+          { newDeckLink }
         <br />
         { deckDisplay }
       </div>

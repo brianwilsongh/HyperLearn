@@ -5,3 +5,26 @@ export const getDecks = (subject) => {
     data: subject,
   });
 };
+
+export const createDeck = (newDeck) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/decks/`,
+    data: {deck: newDeck}
+  });
+};
+
+export const editDeck = (editedDeck) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `/api/decks/${editedDeck.id}`,
+    data: {deck: editedDeck}
+  });
+};
+
+export const deleteDeck = (id) => {
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/decks/${id}`,
+  });
+};

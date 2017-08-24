@@ -6,9 +6,10 @@ class Api::SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.new(create_params)
+    @subject = Subject.new(subject_params)
     if @subject.save
-      render :create
+      @subjects = current_user.all_subjects
+      render :index
     else
       render json: @subject.errors.full_messages, status: 422
     end

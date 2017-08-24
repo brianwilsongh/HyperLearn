@@ -10,6 +10,13 @@ export const getDecks = (subject) => dispatch => {
     error => dispatch(receiveErrors(error)));
 };
 
+export const createDeck = (deck) => dispatch => {
+  return APIUtils.createDeck(deck)
+    .then(decks => dispatch(receiveDecks(decks)),
+    error => dispatch(receiveErrors(error)));
+};
+
+
 export const receiveDecks = (decks) => {
   return {
     type: RECEIVE_DECKS,

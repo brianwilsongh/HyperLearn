@@ -3,7 +3,10 @@ import { Provider } from 'react-redux';
 import { Route, HashRouter, Redirect, Switch } from 'react-router-dom';
 import LoginForm from './session/login_form';
 import SignupForm from './session/signup_form';
-import SubjectModify from './edit/subject_modify';
+
+import SubjectModify from './subject/subject_modify';
+import SubjectNew from './subject/subject_new';
+import DeckNew from './deck/deck_new';
 
 import AuthRoute from '../utils/auth_route';
 import ProtectedRoute from '../utils/protected_route';
@@ -23,7 +26,9 @@ export const App = ({store}) => {
           <SplashRoute path="/" exact component={Splash} />
           <AuthRoute path="/login" component={LoginForm} />
           <AuthRoute path="/signup" component={SignupForm} />
+          <ProtectedRoute path="/home/subject/new" component={SubjectNew} />
           <ProtectedRoute path="/home/subject/modify/:id" component={SubjectModify} />
+          <ProtectedRoute path="/home/deck/new" component={DeckNew} />
           <ProtectedRoute path="/home" component={HomePage} />
         </div>
       </HashRouter>

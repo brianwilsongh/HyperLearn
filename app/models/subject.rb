@@ -22,6 +22,12 @@ class Subject < ActiveRecord::Base
   foreign_key: :subject_id,
   class_name: :Deck
 
+  has_many :cards,
+  through: :decks,
+  source: :cards
+
+  #TODO: put the scoring here
+
   has_many :follows,
   primary_key: :id,
   foreign_key: :subject_id,

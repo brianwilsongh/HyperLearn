@@ -1,6 +1,7 @@
 import * as APIUtils from "../utils/subject_api_utils";
 
 export const RECEIVE_SUBJECTS = 'RECEIVE_SUBJECTS';
+export const RECEIVE_CURRENT_SUBJECT = 'RECEIVE_CURRENT_SUBJECT';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
 
@@ -22,5 +23,12 @@ export const receiveErrors = (errors) => {
   return {
     type: RECEIVE_ERRORS,
     data: errors
+  };
+};
+
+export const receiveCurrentSubject = (subject) => {
+  return {
+    type: RECEIVE_CURRENT_SUBJECT,
+    data: subject,
   };
 };

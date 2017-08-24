@@ -12,15 +12,15 @@ class DeckPanelItem extends React.Component {
 
   handleClick(e){
     e.preventDefault();
-    this.props.sendCurrentSubject(this.props.subject);
+    console.log("just clicked on deck");
   }
 
 
 
   render(){
     return(
-      <div className="homeSubjectItem" onClick={this.handleClick}>
-        { this.props.subject.title }
+      <div className="homeDeckItem" onClick={this.handleClick}>
+        { this.props.deck.title }
       </div>
     );
   }
@@ -29,7 +29,7 @@ class DeckPanelItem extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject))
+
   };
 };
 

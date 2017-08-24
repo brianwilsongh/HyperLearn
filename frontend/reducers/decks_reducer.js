@@ -1,7 +1,7 @@
 import * as DActions from "../actions/deck_actions";
 
 const defaultState = {
-  list: [],
+  sorted: [],
   current: {},
   errors: []
 };

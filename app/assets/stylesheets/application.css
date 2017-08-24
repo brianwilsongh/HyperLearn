@@ -61,6 +61,13 @@
    height: 50%;
  }
 
+ .homepagePanels {
+   display: flex;
+   flex-direction: row;
+   width: 62%;
+   background: orange;
+ }
+
 .Navigation {
   color: #C9D1C8;
   background: #04202C;

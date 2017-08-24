@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSubjects } from '../../actions/subject_actions';
-import DeckPanelItem from './subject_panel_item';
+import { getSubjects } from '../../actions/deck_actions';
+import DeckPanelItem from './deck_panel_item';
 
 
 class DeckPanel extends React.Component {
@@ -13,26 +13,24 @@ class DeckPanel extends React.Component {
 
   componentDidMount(){
     //fetch idx items here
-
-    this.props.fetchDecksFromSubject();
   }
 
 
   render(){
 
-    var retrieved;
-    if (this.props.subjects.length > 0){
-    retrieved = this.props.subjects;
+    var retrievedDecks;
+    if (this.props.decks.length > 0){
+    retrievedDecks = this.props.decks;
     } else {
-      retrieved = [];
+      retrievedDecks = [];
     }
-    const deckDisplay = retrieved.map((el, idx) => {
-      return (<DeckPanelItem key={idx} subject={el} />);
+    const deckDisplay = retrievedDecks.map((el, idx) => {
+      return (<DeckPanelItem key={idx} deck={el} />);
     });
 
     return(
-      <div>
-        Subjects:
+      <div className="deckPanel">
+        Decks:
         <br />
         { deckDisplay }
       </div>
@@ -43,8 +41,8 @@ class DeckPanel extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.session.current_user,
-    currentSubject: state.subjects.current,
+    currentSubject: state.decks.current,
+    decks: state.decks.sorted,
   };
 };
 

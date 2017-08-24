@@ -19,18 +19,18 @@ class SubjectPanel extends React.Component {
 
   render(){
 
-    var retrieved;
+    var retrievedSubjects;
     if (this.props.subjects.length > 0){
-    retrieved = this.props.subjects;
+    retrievedSubjects = this.props.subjects;
     } else {
-      retrieved = [];
+      retrievedSubjects = [];
     }
-    const subjectDisplay = retrieved.map((el, idx) => {
+    const subjectDisplay = retrievedSubjects.map((el, idx) => {
       return (<SubjectPanelItem key={idx} subject={el} />);
     });
 
     return(
-      <div>
+      <div className="subjectPanel" >
         Subjects:
         <br />
         { subjectDisplay }

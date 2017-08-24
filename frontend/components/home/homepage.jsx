@@ -1,5 +1,6 @@
 import React from 'react';
 import SubjectPanel from './subject_panel';
+import DeckPanel from './deck_panel';
 
 
 class HomePage extends React.Component {
@@ -11,8 +12,9 @@ class HomePage extends React.Component {
   render(){
     return(
       <div className="primaryComponent">
-        <div>
+        <div className="homepagePanels">
           <SubjectPanel />
+          <DeckPanel />
         </div>
       </div>
     );

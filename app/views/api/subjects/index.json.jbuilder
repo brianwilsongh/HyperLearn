@@ -1,7 +1,9 @@
-json.set! :subjects do
-    @subjects.each do |subject|
-      json.set! subject.id do
-        json.extract! subject, :title, :user_id
-      end
+subject_array = @subjects.to_a.sort_by{|e| e.title}
+puts "#{subject_array.length} is length of subj array!"
+
+json.set! :alphabetical do
+  json.array! subject_array do |subject|
+    json.extract! subject, :title, :user_id
+    json.made_by_current_user (current_user.id == subject.user_id)
   end
 end

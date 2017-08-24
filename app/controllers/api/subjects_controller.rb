@@ -1,7 +1,8 @@
 class Api::SubjectsController < ApplicationController
 
   def index
-    @subjects = Subject.where(user_id: current_user.id)
+    @user = current_user
+    @subjects = @user.all_subjects
     render :index
   end
 

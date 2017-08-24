@@ -1,8 +1,7 @@
 class Api::SubjectsController < ApplicationController
 
   def index
-    @user = current_user
-    @subjects = @user.all_subjects
+    @subjects = current_user.all_subjects
     render :index
   end
 
@@ -15,13 +14,25 @@ class Api::SubjectsController < ApplicationController
     end
   end
 
+  def update
+    @subject = Subject.find(params[:id])
+    if @subject.update_attributes(subject_params)
+      @subjects = current_user.all_subjects
+      render :index
+    else
+      render json: @subject.errors.full_messages, status: 406
+    end
+  end
+
   def destroy
     @subject = Subject.find(params[:id])
     @subject.destroy
+    @subjects = current_user.all_subjects
+    render :index
   end
 
   private
-  def create_params
+  def subject_params
     params.require(:subject).permit(:title, :user_id)
   end
 

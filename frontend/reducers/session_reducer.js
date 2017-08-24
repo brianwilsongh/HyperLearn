@@ -2,7 +2,7 @@ import * as SActions from "../actions/session_actions";
 
 const defaultState = {
   currentUser: null,
-  errors: []
+  errors: [],
 };
 
 export const sessionReducer = (state = defaultState, action) => {

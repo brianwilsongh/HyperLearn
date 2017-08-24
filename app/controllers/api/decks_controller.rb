@@ -7,7 +7,8 @@ class Api::DecksController < ApplicationController
   end
 
   def create
-    @deck = Deck.new(create_params)
+    @deck = Deck.new(deck_params)
+    @deck.user_id = current_user.id
     if @deck.save
       render :create
     else
@@ -18,6 +19,10 @@ class Api::DecksController < ApplicationController
   def destroy
     @deck = Deck.find(params[:id])
     @deck.destroy
+  end
+
+  def deck_params
+    params.require(:deck).permit(:title, :subject_id)
   end
 
 

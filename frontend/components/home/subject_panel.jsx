@@ -35,8 +35,10 @@ class SubjectPanel extends React.Component {
     }
 
     if (!this.objEmpty(this.props.currentSubject)
-      && this.props.currentDecks.length === 0){
+      && this.props.currentDecks.length === 0
+      && this.props.currentSubject.card_count > 0){
       this.props.retrieveDecksOfSubject(this.props.currentSubject);
+      debugger;
     }
   }
 

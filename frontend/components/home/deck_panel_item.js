@@ -10,6 +10,7 @@ class DeckPanelItem extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleModifyRedirect = this.handleModifyRedirect.bind(this);
+    this.handleBuildRedirect = this.handleBuildRedirect.bind(this);
   }
 
   handleClick(e){
@@ -22,6 +23,11 @@ class DeckPanelItem extends React.Component {
     this.props.history.push(`/home/deck/modify/${this.props.deck.id}`);
   }
 
+  handleBuildRedirect(e){
+    e.stopPropagation();
+    this.props.history.push(`/build/${this.props.deck.id}`);
+  }
+
 
   render(){
     return(
@@ -29,6 +35,7 @@ class DeckPanelItem extends React.Component {
         { this.props.deck.title }
         <br />
         <button onClick={this.handleModifyRedirect}>Modify</button>
+        <button onClick={this.handleBuildRedirect}>Build</button>
         cards: { this.props.deck.card_count }
       </div>
     );

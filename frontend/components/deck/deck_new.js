@@ -20,7 +20,6 @@ class DeckNew extends React.Component {
 
   handleCreateClick(e){
     e.preventDefault(); //needed?
-    debugger;
     this.props.createDeck(this.state).then(this.props.history.push("/home"));
   }
 

@@ -1,4 +1,4 @@
-deck_array = @decks.to_a.sort_by{|e| e.created_at}
+deck_array = @decks.to_a.sort_by{|e| e.created_at}.reverse
 
 json.set! :sort_recent do
   json.array! deck_array do |deck|

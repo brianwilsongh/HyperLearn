@@ -1,7 +1,7 @@
 class Api::DecksController < ApplicationController
 
   def index
-    @subject = Subject.find(params[:subject_id])
+    @subject = Subject.find(params[:id])
     @decks = @subject.decks
     render :index
   end
@@ -20,7 +20,5 @@ class Api::DecksController < ApplicationController
     @deck.destroy
   end
 
-  def create_params
-    params.require(:deck).permit(:title, :user_id)
-  end
+
 end

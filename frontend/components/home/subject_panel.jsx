@@ -41,7 +41,6 @@ class SubjectPanel extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     currentUser: state.session.current_user,
     subjects: state.subjects.sorted,

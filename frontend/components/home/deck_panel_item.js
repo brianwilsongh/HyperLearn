@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveCurrentSubject } from '../../actions/subject_actions';
-import { getDecks } from '../../actions/deck_actions';
+import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
 
 
-class SubjectPanelItem extends React.Component {
+class DeckPanelItem extends React.Component {
 
   constructor(props){
     super(props);
@@ -14,7 +13,6 @@ class SubjectPanelItem extends React.Component {
   handleClick(e){
     e.preventDefault();
     this.props.sendCurrentSubject(this.props.subject);
-    this.props.retrieveDecksOfSubject(this.props.subject);
   }
 
 
@@ -31,10 +29,9 @@ class SubjectPanelItem extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject)),
-    retrieveDecksOfSubject: (subject) => dispatch(getDecks(subject))
+    sendCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject))
   };
 };
 
 
-export default connect(null, mapDispatchToProps)(SubjectPanelItem);
+export default connect(null, mapDispatchToProps)(DeckPanelItem);

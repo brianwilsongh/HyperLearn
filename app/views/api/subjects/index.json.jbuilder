@@ -1,5 +1,4 @@
 subject_array = @subjects.to_a.sort_by{|e| e.title}
-puts "#{subject_array.length} is length of subj array!"
 
 json.set! :alphabetical do
   json.array! subject_array do |subject|

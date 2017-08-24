@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getSubjects } from '../../actions/subject_actions';
-import SubjectPanelItem from './subject_panel_item';
+import DeckPanelItem from './subject_panel_item';
 
 
-class SubjectPanel extends React.Component {
+class DeckPanel extends React.Component {
 
   constructor(props){
     super(props);
@@ -13,7 +13,8 @@ class SubjectPanel extends React.Component {
 
   componentDidMount(){
     //fetch idx items here
-    this.props.fetchSubjects();
+
+    this.props.fetchDecksFromSubject();
   }
 
 
@@ -25,15 +26,15 @@ class SubjectPanel extends React.Component {
     } else {
       retrieved = [];
     }
-    const subjectDisplay = retrieved.map((el, idx) => {
-      return (<SubjectPanelItem key={idx} subject={el} />);
+    const deckDisplay = retrieved.map((el, idx) => {
+      return (<DeckPanelItem key={idx} subject={el} />);
     });
 
     return(
       <div>
         Subjects:
         <br />
-        { subjectDisplay }
+        { deckDisplay }
       </div>
     );
   }
@@ -41,17 +42,11 @@ class SubjectPanel extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     currentUser: state.session.current_user,
-    subjects: state.subjects.sorted,
+    currentSubject: state.subjects.current,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSubjects: () => dispatch(getSubjects())
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubjectPanel);
+export default connect(mapStateToProps)(DeckPanel);

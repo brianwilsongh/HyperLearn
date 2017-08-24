@@ -22,12 +22,25 @@ class User < ActiveRecord::Base
   foreign_key: :user_id,
   class_name: :Subject
 
-  has_many :decks,
+  has_many :fans,
+  through: :subjects,
+  source: :followers
+
+  has_many :follows,
   primary_key: :id,
   foreign_key: :user_id,
-  class_name: :Deck
+  class_name: :Follow
+
+  has_many :followed_subjects,
+  through: :follows,
+  source: :subject
+
 
   attr_reader :password
+
+  def all_subjects
+    self.subjects + self.followed_subjects
+  end
 
   def password=(password)
     #set password to ivar and store the hashed digest

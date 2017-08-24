@@ -32,6 +32,12 @@ block = Subject.create(title: "Block", user_id: john.id)
 sneak = Subject.create(title: "Sneak", user_id: john.id)
 acrobatics = Subject.create(title: "Acrobatics", user_id: john.id)
 
+Follow.destroy_all
+
+User.all.each do |user|
+  Follow.create(user_id: user.id, subject_id: Subject.all.sample.id)
+end
+
 Deck.destroy_all
 
 20.times do

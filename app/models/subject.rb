@@ -22,5 +22,14 @@ class Subject < ActiveRecord::Base
   foreign_key: :subject_id,
   class_name: :Deck
 
+  has_many :follows,
+  primary_key: :id,
+  foreign_key: :subject_id,
+  class_name: :Follow
+
+  has_many :followers,
+  through: :follows,
+  source: :user
+
 
 end

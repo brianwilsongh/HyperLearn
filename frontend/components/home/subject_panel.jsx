@@ -36,7 +36,6 @@ class SubjectPanel extends React.Component {
 
     if (!this.objEmpty(this.props.currentSubject)
       && this.props.currentDecks.length === 0){
-      debugger;
       this.props.retrieveDecksOfSubject(this.props.currentSubject);
     }
   }

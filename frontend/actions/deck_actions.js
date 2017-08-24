@@ -16,6 +16,18 @@ export const createDeck = (deck) => dispatch => {
     error => dispatch(receiveErrors(error)));
 };
 
+export const editDeck = (editedDeck) => dispatch => {
+  return APIUtils.editDeck(editedDeck)
+    .then(decks => dispatch(receiveDecks(decks)),
+    error => dispatch(receiveErrors(error)));
+};
+
+export const deleteDeck = (id) => dispatch => {
+  return APIUtils.deleteDeck(id)
+    .then(decks => dispatch(receiveDecks(decks)),
+    error => dispatch(receiveErrors(error)));
+};
+
 
 export const receiveDecks = (decks) => {
   return {

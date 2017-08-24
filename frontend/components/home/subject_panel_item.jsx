@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { receiveCurrentSubject } from '../../actions/subject_actions';
 import { getDecks } from '../../actions/deck_actions';
 

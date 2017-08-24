@@ -7,6 +7,7 @@ import SignupForm from './session/signup_form';
 import SubjectModify from './subject/subject_modify';
 import SubjectNew from './subject/subject_new';
 import DeckNew from './deck/deck_new';
+import DeckModify from './deck/deck_modify';
 
 import AuthRoute from '../utils/auth_route';
 import ProtectedRoute from '../utils/protected_route';
@@ -29,6 +30,7 @@ export const App = ({store}) => {
           <ProtectedRoute path="/home/subject/new" component={SubjectNew} />
           <ProtectedRoute path="/home/subject/modify/:id" component={SubjectModify} />
           <ProtectedRoute path="/home/deck/new" component={DeckNew} />
+          <ProtectedRoute path="/home/deck/modify/:id" component={DeckModify} />
           <ProtectedRoute path="/home" component={HomePage} />
         </div>
       </HashRouter>

@@ -28,8 +28,12 @@ class DeckPanel extends React.Component {
       return (<DeckPanelItem key={idx} deck={el} />);
     });
 
+
     return(
       <div className="deckPanel">
+        <div className="deckPanelDisplaySubject">
+          <h1> { this.props.currentSubject.title }</h1>
+        </div>
         Decks:
         <br />
         { deckDisplay }
@@ -41,7 +45,7 @@ class DeckPanel extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentSubject: state.decks.current,
+    currentSubject: state.subjects.current,
     decks: state.decks.sorted,
   };
 };

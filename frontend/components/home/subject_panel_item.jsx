@@ -20,9 +20,16 @@ class SubjectPanelItem extends React.Component {
 
 
   render(){
+
+    var editButton = (this.props.subject.made_by_current_user) ? "Edit" : "";
+
     return(
       <div className="homeSubjectItem" onClick={this.handleClick}>
         { this.props.subject.title }
+        <br />
+        {editButton}
+        <br />
+        { this.props.subject.card_count }
       </div>
     );
   }

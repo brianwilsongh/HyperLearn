@@ -21,6 +21,8 @@ class DeckPanelItem extends React.Component {
     return(
       <div className="homeDeckItem" onClick={this.handleClick}>
         { this.props.deck.title }
+        <br />
+        cards: { this.props.deck.card_count }
       </div>
     );
   }

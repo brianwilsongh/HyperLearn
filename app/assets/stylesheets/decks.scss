@@ -13,3 +13,16 @@
   display: inline-block;
   width: 62%
 }
+
+.deckPanelDisplaySubject {
+  margin: 5%;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deckPanelDisplaySubject > h1 {
+  margin: 5%;
+  color: white;
+}

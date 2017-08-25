@@ -18,6 +18,19 @@ class CardForm extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(null);
+  }
+
+  method(){
+    console.log("ready for action!");
+  }
+
+
   handleInputChange(key){
     return (e) => {
       this.setState({
@@ -31,6 +44,7 @@ class CardForm extends React.Component {
     this.props.deleteCard(this.state.id);
 
   }
+
 
 
   render (){

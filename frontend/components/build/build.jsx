@@ -14,6 +14,9 @@ class Build extends React.Component {
     this.deck_id = this.props.location.pathname
     .split("/")[this.props.location.pathname.split("/").length - 1];
 
+    this.trigger = this.trigger.bind(this);
+    this.takeReference = this.takeReference.bind(this);
+    this.childComponentsEdit = [];
   }
 
   componentDidMount(){
@@ -36,15 +39,27 @@ class Build extends React.Component {
     }
   }
 
+  trigger(){
+    debugger;
+  }
+
+  takeReference(){
+    return (child) => {
+      debugger;
+      this.childComponentsEdit.push(child);
+    };
+  }
+
 
   render(){
     var deckDisplay = !this.props.currentDeck ? "unknown"
     : <h1>{this.props.currentDeck.title}</h1>;
 
     var forms;
-    if (!this.objEmpty(this.props.cards)){
-      forms = Object.keys(this.props.cards).map((key, idx) => {
-        return (<CardForm key={idx} card={this.props.cards[key]} />);
+    var currentCards = this.props.cards;
+    if (!this.objEmpty(currentCards)){
+      forms = Object.keys(currentCards).map((key, idx) => {
+        return (<CardForm key={idx} card={currentCards[key]} onRef={ref => (this.childComponentsEdit = ref)} />);
       });
     } else {
       forms = <p>Loading...</p>;
@@ -52,6 +67,7 @@ class Build extends React.Component {
 
     return(
       <div className="primaryComponent">
+        <button onClick={this.trigger}>TRIGGER</button>
         <div className="deckPanelDisplaySubject">
           { deckDisplay }
         </div>

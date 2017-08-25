@@ -21,7 +21,7 @@ class Api::SubjectsController < ApplicationController
       @subjects = current_user.all_subjects
       render :index
     else
-      render json: @subject.errors.full_messages, status: 406
+      render json: @subject.errors.full_messages, status: 422
     end
   end
 

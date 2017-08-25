@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editSubject, deleteSubject } from '../../actions/subject_actions';
+import { editSubject, deleteSubject, receiveSubjectErrors } from '../../actions/subject_actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class SubjectModify extends React.Component {
@@ -36,7 +36,12 @@ class SubjectModify extends React.Component {
 
   handleEditClick(e){
     e.preventDefault();
-    this.props.editSubject(this.state).then(this.props.history.push("/home"));
+    this.props.editSubject(this.state)
+      .then((response) => {
+      this.props.clearErrors();
+      this.props.history.push("/home");
+      }
+    );
   }
 
   handleDeleteClick(e){
@@ -92,7 +97,7 @@ const mapStateToProps = (state) => {
   return {
     current_user: state.session.current_user,
     subjects: state.subjects.sorted,
-    errors: state.session.errors,
+    errors: state.subjects.errors,
   };
 };
 
@@ -100,6 +105,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     editSubject: (subject) => dispatch(editSubject(subject)),
     deleteSubject: (subject) => dispatch(deleteSubject(subject)),
+    clearErrors: (subject) => dispatch(receiveSubjectErrors({responseJSON: []}))
   };
 };
 

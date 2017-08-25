@@ -16,7 +16,7 @@ import SplashRoute from '../utils/splash_route';
 import NavBar from './nav_bar';
 import Splash from './splash';
 import HomePage from './home/homepage';
-import Build from './build/Build';
+import Build from './build/build';
 
 export const App = ({store}) => {
 

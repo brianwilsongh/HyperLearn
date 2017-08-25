@@ -30,6 +30,10 @@ class CardForm extends React.Component {
     console.log("ready for action!");
   }
 
+  updateCardInStore(){
+    console.log("Hello");
+  }
+
 
   handleInputChange(key){
     return (e) => {

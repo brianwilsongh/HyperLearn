@@ -15,7 +15,6 @@ class Build extends React.Component {
     .split("/")[this.props.location.pathname.split("/").length - 1];
 
     this.trigger = this.trigger.bind(this);
-    this.takeReference = this.takeReference.bind(this);
     this.childComponentsEdit = [];
   }
 
@@ -43,13 +42,6 @@ class Build extends React.Component {
     debugger;
   }
 
-  takeReference(){
-    return (child) => {
-      debugger;
-      this.childComponentsEdit.push(child);
-    };
-  }
-
 
   render(){
     var deckDisplay = !this.props.currentDeck ? "unknown"
@@ -59,7 +51,7 @@ class Build extends React.Component {
     var currentCards = this.props.cards;
     if (!this.objEmpty(currentCards)){
       forms = Object.keys(currentCards).map((key, idx) => {
-        return (<CardForm key={idx} card={currentCards[key]} onRef={ref => (this.childComponentsEdit = ref)} />);
+        return (<CardForm key={idx} card={currentCards[key]} onRef={ref => (this.childComponentsEdit.push(ref))} />);
       });
     } else {
       forms = <p>Loading...</p>;

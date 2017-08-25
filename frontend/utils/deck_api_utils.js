@@ -6,6 +6,13 @@ export const getDecks = (subject) => {
   });
 };
 
+export const getCurrentDeck = (id) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/decks/${id}`,
+  });
+};
+
 export const createDeck = (newDeck) => {
   return $.ajax({
     method: "POST",

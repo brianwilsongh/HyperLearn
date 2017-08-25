@@ -6,6 +6,12 @@ class Api::DecksController < ApplicationController
     render :index
   end
 
+  def show
+    @deck = Deck.find(params[:id])
+    @cards = @deck.cards
+    render :show
+  end
+
   def create
     @deck = Deck.new(deck_params)
     @deck.user_id = current_user.id

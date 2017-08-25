@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
+import { receiveCurrentDeck } from '../../actions/deck_actions';
 
 
 class DeckPanelItem extends React.Component {
@@ -43,11 +43,5 @@ class DeckPanelItem extends React.Component {
 
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
 
-  };
-};
-
-
-export default withRouter(connect(null, mapDispatchToProps)(DeckPanelItem));
+export default withRouter(DeckPanelItem);

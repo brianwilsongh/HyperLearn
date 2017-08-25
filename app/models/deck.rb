@@ -11,7 +11,8 @@
 #
 
 class Deck < ActiveRecord::Base
-  validates :title, :user_id, :subject_id, presence: true
+  validates :user_id, :subject_id, presence: true
+  validates :title, presence: true, uniqueness: {scope: :subject_id}
 
   belongs_to :author,
   primary_key: :id,

@@ -8,29 +8,26 @@
 
 User.destroy_all
 
-john = User.create(username: "guest", password: "password")
-jane = User.create(username: "master", password: "password");
-alistair = User.create(username: "alistair", password: "hunter12");
-david = User.create(username: "david", password: "hunter13");
-ming = User.create(username: "ming", password: "hunter14");
-debbie = User.create(username: "debbie", password: "hunter15");
-phoeboe = User.create(username: "phoeboe", password: "hunter16");
-chell = User.create(username: "chell", password: "hunter17");
-tormund = User.create(username: "tormund", password: "wildling");
+guest = User.create(username: "guest", password: "password",
+f_name: "John", l_name: "Doe")
+5.times do |iteration|
+  User.create(username: (Faker::GameOfThrones.house + iteration.to_s),
+  password: (Faker::GameOfThrones.character + "password"),
+  f_name: Faker::Name.first_name,
+  l_name: Faker::Name.last_name )
+end
 
 Subject.destroy_all
 
+3.times do
+  Subject.create(title: Faker::GameOfThrones.city,
+  user_id: guest.id)
+end
 
-conjuration = Subject.create(title: "Conjuration", user_id: john.id)
-destruction = Subject.create(title: "Destruction", user_id: chell.id)
-mysticism = Subject.create(title: "Mysticism", user_id: alistair.id)
-alchemy = Subject.create(title: "Alchemy", user_id: ming.id)
-alteration = Subject.create(title: "Alteration", user_id: john.id)
-illusion = Subject.create(title: "Illusion", user_id: john.id)
-blade = Subject.create(title: "Blade", user_id: john.id)
-block = Subject.create(title: "Block", user_id: john.id)
-sneak = Subject.create(title: "Sneak", user_id: john.id)
-acrobatics = Subject.create(title: "Acrobatics", user_id: john.id)
+30.times do
+  Subject.create(title: Faker::GameOfThrones.city,
+  user_id: User.all.sample.id)
+end
 
 Follow.destroy_all
 
@@ -38,16 +35,22 @@ User.all.each do |user|
   Follow.create(user_id: user.id, subject_id: Subject.all.sample.id)
 end
 
+8.times do
+  Follow.create(user_id: guest.id, subject_id: Subject.all.sample.id)
+end
+
 Deck.destroy_all
 
-20.times do
-  Deck.create(title: Faker::ElderScrolls.region, user_id: john.id, subject_id: Subject.all.sample.id)
+100.times do
+  Deck.create(title: Faker::GameOfThrones.character,
+    user_id: User.all.sample.id,
+    subject_id: Subject.all.sample.id)
 end
 
 Card.destroy_all
 
-60.times do
-  Card.create(question: Faker::GameOfThrones.character,
-  answer: Faker::GameOfThrones.house,
+400.times do
+  Card.create(question: Faker::Lovecraft.deity,
+  answer: Faker::Lovecraft.word,
   deck_id: Deck.all.sample.id)
 end

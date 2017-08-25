@@ -11,8 +11,8 @@ export const decksReducer = (state = defaultState, action) => {
   switch (action.type) {
     case DActions.RECEIVE_DECKS:
       return Object.assign({}, state, {sorted: action.data.sort_recent});
-    case DActions.RECEIVE_ERRORS:
-      return Object.assign({}, state, {errors: action.data});
+    case DActions.RECEIVE_DECK_ERRORS:
+      return Object.assign({}, state, {errors: action.data.responseJSON});
     default:
       return state;
   }

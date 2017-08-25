@@ -11,7 +11,7 @@
 
 class Subject < ActiveRecord::Base
   validates :user_id, presence: true
-  validates :title, presence: true, uniqueness: {scope: :user_id}
+  validates :title, presence: true, uniqueness: {scope: :user_id}, length: {minimum: 1}
 
   belongs_to :author,
   primary_key: :id,

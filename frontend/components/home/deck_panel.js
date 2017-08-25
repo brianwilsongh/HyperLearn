@@ -16,6 +16,9 @@ class DeckPanel extends React.Component {
 
   render(){
 
+    var subjectDisplay = !this.props.currentSubject ? "k"
+    : <h1>{this.props.currentSubject.title}</h1>;
+
     var retrievedDecks;
     if (this.props.decks.length > 0){
     retrievedDecks = this.props.decks;
@@ -32,11 +35,10 @@ class DeckPanel extends React.Component {
       newDeckLink = <Link to="/home/deck/new">New Deck</Link>;
     }
 
-
     return(
       <div className="deckPanel">
         <div className="deckPanelDisplaySubject">
-          <h1> { this.props.currentSubject.title }</h1>
+          { subjectDisplay }
         </div>
         Decks:
         <br />

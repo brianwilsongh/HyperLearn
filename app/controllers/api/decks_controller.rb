@@ -24,7 +24,8 @@ class Api::DecksController < ApplicationController
       @decks = Subject.find(@deck.subject_id).decks
       render :index
     else
-      render json: @subject.errors.full_messages, status: 406
+      puts @deck.errors.full_messages.to_s
+      render json: @deck.errors.full_messages, status: 422
     end
   end
 
@@ -36,7 +37,7 @@ class Api::DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:title, :subject_id)
+    params.require(:deck).permit(:title, :subject_id, :user_id, :id)
   end
 
 

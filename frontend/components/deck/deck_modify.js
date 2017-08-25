@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editDeck, deleteDeck } from '../../actions/deck_actions';
+import { editDeck, deleteDeck, receiveDeckErrors } from '../../actions/deck_actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class DeckModify extends React.Component {
@@ -36,7 +36,12 @@ class DeckModify extends React.Component {
 
   handleEditClick(e){
     e.preventDefault();
-    this.props.editDeck(this.state).then(this.props.history.push("/home"));
+    this.props.editDeck(this.state)
+      .then((response) => {
+      this.props.clearErrors();
+      this.props.history.push("/home");
+      }
+    );
   }
 
   handleDeleteClick(e){
@@ -93,7 +98,7 @@ const mapStateToProps = (state) => {
     current_user: state.session.current_user,
     current_subject: state.subjects.current,
     decks: state.decks.sorted,
-    errors: state.session.errors,
+    errors: state.decks.errors,
   };
 };
 
@@ -101,6 +106,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     editDeck: (deck) => dispatch(editDeck(deck)),
     deleteDeck: (deck) => dispatch(deleteDeck(deck)),
+    clearErrors: () => dispatch(receiveDeckErrors({responseJSON: []}))
   };
 };
 

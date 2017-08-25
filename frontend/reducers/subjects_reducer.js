@@ -13,7 +13,7 @@ export const subjectsReducer = (state = defaultState, action) => {
       // sorted store the idx array, alphabetical while current is obj
       return Object.assign({}, state, {sorted: action.data.alphabetical});
     case SActions.RECEIVE_ERRORS:
-      return Object.assign({}, state, {errors: action.data});
+      return Object.assign({}, state, {errors: action.data.responseJSON});
     case SActions.RECEIVE_CURRENT_SUBJECT:
       return Object.assign({}, state, {current: action.data});
     default:

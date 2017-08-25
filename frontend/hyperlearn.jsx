@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   } else {
     store = generateStore();
   }
-  window.store = store;
+  window.state = store.getState();
   const root = document.getElementById('root');
   ReactDOM.render(<App store={store} />, root);
 });

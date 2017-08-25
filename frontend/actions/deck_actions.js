@@ -1,31 +1,31 @@
 import * as APIUtils from "../utils/deck_api_utils";
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
-export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+export const RECEIVE_DECK_ERRORS = 'RECEIVE_DECK_ERRORS';
 
 
 export const getDecks = (subject) => dispatch => {
   return APIUtils.getDecks(subject)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveErrors(error)));
+    error => dispatch(receiveDeckErrors(error)));
 };
 
 export const createDeck = (deck) => dispatch => {
   return APIUtils.createDeck(deck)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveErrors(error)));
+    error => dispatch(receiveDeckErrors(error)));
 };
 
 export const editDeck = (editedDeck) => dispatch => {
   return APIUtils.editDeck(editedDeck)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveErrors(error)));
+    error => dispatch(receiveDeckErrors(error)));
 };
 
 export const deleteDeck = (id) => dispatch => {
   return APIUtils.deleteDeck(id)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveErrors(error)));
+    error => dispatch(receiveDeckErrors(error)));
 };
 
 
@@ -37,9 +37,9 @@ export const receiveDecks = (decks) => {
 };
 
 
-export const receiveErrors = (errors) => {
+export const receiveDeckErrors = (errors) => {
   return {
-    type: RECEIVE_ERRORS,
+    type: RECEIVE_DECK_ERRORS,
     data: errors
   };
 };

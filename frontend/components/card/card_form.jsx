@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPendingCardMod } from '../../actions/deck_actions';
-import { Link, withRouter } from 'react-router-dom';
+import { addCardEdit } from '../../actions/card_actions';
 
 class CardForm extends React.Component {
 
@@ -15,6 +14,7 @@ class CardForm extends React.Component {
       subject_id: this.props.current_subject.id,
     };
 
+    this.addEditedCard = this.addEditedCard.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
@@ -30,8 +30,8 @@ class CardForm extends React.Component {
     console.log("ready for action!");
   }
 
-  updateCardInStore(){
-    console.log("Hello");
+  addEditedCard(){
+    this.props.addThisCard(this.state);
   }
 
 
@@ -91,8 +91,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPendingCardMod: (card) => dispatch((addPendingCardMod)),
+    addThisCard: (card) => dispatch(addCardEdit(card)),
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardForm));
+export default connect(mapStateToProps, mapDispatchToProps)(CardForm);

@@ -3,6 +3,7 @@ import * as APIUtils from "../utils/card_api_utils";
 export const RECEIVE_CARDS = 'RECEIVE_CARDS';
 export const RECEIVE_CURRENT_CARD = 'RECEIVE_CURRENT_CARD';
 export const RECEIVE_CARD_ERRORS = 'RECEIVE_CARD_ERRORS';
+export const ADD_CARD_EDIT = 'ENQUEUE_CARD_EDIT';
 
 
 export const getCards = (deck) => dispatch => {
@@ -37,10 +38,16 @@ export const receiveCards = (cards) => {
   };
 };
 
-
 export const receiveCardErrors = (errors) => {
   return {
     type: RECEIVE_CARD_ERRORS,
     data: errors
+  };
+};
+
+export const addCardEdit = (editedCard) => {
+  return {
+    type: ADD_CARD_EDIT,
+    data: editedCard,
   };
 };

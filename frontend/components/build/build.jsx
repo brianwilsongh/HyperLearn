@@ -14,7 +14,7 @@ class Build extends React.Component {
     this.deck_id = this.props.location.pathname
     .split("/")[this.props.location.pathname.split("/").length - 1];
 
-    this.trigger = this.trigger.bind(this);
+    this.triggerSubmissionEdit = this.triggerSubmissionEdit.bind(this);
     this.childComponentsEdit = [];
   }
 
@@ -38,7 +38,11 @@ class Build extends React.Component {
     }
   }
 
-  trigger(){
+  triggerSubmissionEdit(){
+    this.childComponentsEdit.forEach((child, idx) => {
+      child.addEditedCard();
+    });
+    console.log("SEND THE AJAX");
     debugger;
   }
 
@@ -59,7 +63,7 @@ class Build extends React.Component {
 
     return(
       <div className="primaryComponent">
-        <button onClick={this.trigger}>TRIGGER</button>
+        <button onClick={this.triggerSubmissionEdit}>TRIGGER</button>
         <div className="deckPanelDisplaySubject">
           { deckDisplay }
         </div>

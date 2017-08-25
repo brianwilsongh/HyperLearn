@@ -1,8 +1,9 @@
 class Api::CardsController < ApplicationController
 
   def index
-    @deck = Deck.find(params[:deck_id])
+    @deck = Deck.find(params[:id].to_i)
     @cards = @deck.cards
+    render :index
   end
 
   def create

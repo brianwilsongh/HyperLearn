@@ -15,7 +15,8 @@
 }
 
 .deckPanelDisplaySubject {
-  margin: 5%;
+  margin: 10px;
+  max-height: 80px;
   background: black;
   display: flex;
   flex-direction: column;
@@ -23,6 +24,6 @@
 }
 
 .deckPanelDisplaySubject > h1 {
-  margin: 5%;
+  margin: 10px;
   color: white;
 }

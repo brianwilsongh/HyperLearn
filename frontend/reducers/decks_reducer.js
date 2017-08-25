@@ -3,7 +3,8 @@ import * as DActions from "../actions/deck_actions";
 const defaultState = {
   sorted: [],
   current: {},
-  errors: []
+  errors: [],
+  pending_card_mods: {},
 };
 
 export const decksReducer = (state = defaultState, action) => {

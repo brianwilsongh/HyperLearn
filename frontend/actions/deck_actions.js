@@ -14,25 +14,25 @@ export const getDecks = (subject) => dispatch => {
 export const getCurrentDeck = (id) => dispatch => {
   return APIUtils.getCurrentDeck(id)
     .then(deck => dispatch(receiveCurrentDeck(deck)),
-    error => dispatch(receiveDeckErrors(error)));
+    errors => dispatch(receiveDeckErrors(errors)));
 };
 
 export const createDeck = (deck) => dispatch => {
   return APIUtils.createDeck(deck)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveDeckErrors(error)));
+    errors => dispatch(receiveDeckErrors(errors)));
 };
 
 export const editDeck = (editedDeck) => dispatch => {
   return APIUtils.editDeck(editedDeck)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveDeckErrors(error)));
+    errors => dispatch(receiveDeckErrors(errors)));
 };
 
 export const deleteDeck = (id) => dispatch => {
   return APIUtils.deleteDeck(id)
     .then(decks => dispatch(receiveDecks(decks)),
-    error => dispatch(receiveDeckErrors(error)));
+    errors => dispatch(receiveDeckErrors(errors)));
 };
 
 

@@ -16,7 +16,7 @@ class DeckPanel extends React.Component {
 
   render(){
 
-    var subjectDisplay = !this.props.currentSubject ? "k"
+    var subjectDisplay = !this.props.currentSubject ? "unknown"
     : <h1>{this.props.currentSubject.title}</h1>;
 
     var retrievedDecks;

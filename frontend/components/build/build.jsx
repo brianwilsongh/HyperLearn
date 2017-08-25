@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getCurrentDeck } from '../../actions/deck_actions';
+import { getCards } from '../../actions/card_actions';
 import CardForm from '../card/card_form';
 
 
@@ -27,11 +28,23 @@ class Build extends React.Component {
     return false;
   }
 
+  componentDidUpdate(){
+    if (!this.objEmpty(this.props.currentDeck)
+      && this.objEmpty(this.props.cards)
+      && this.props.currentDeck.card_count > 0){
+      this.props.retrieveCardsOfDeck(this.props.currentDeck);
+    }
+  }
+
+
   render(){
+    var deckDisplay = !this.props.currentDeck ? "unknown"
+    : <h1>{this.props.currentDeck.title}</h1>;
+
     var forms;
-    if (!this.objEmpty(this.props.current_deck)){
-      forms = this.props.cards.map((card, idx) => {
-        return (<CardForm key={idx} card={card} />);
+    if (!this.objEmpty(this.props.cards)){
+      forms = Object.keys(this.props.cards).map((key, idx) => {
+        return (<CardForm key={idx} card={this.props.cards[key]} />);
       });
     } else {
       forms = <p>Loading...</p>;
@@ -39,6 +52,9 @@ class Build extends React.Component {
 
     return(
       <div className="primaryComponent">
+        <div className="deckPanelDisplaySubject">
+          { deckDisplay }
+        </div>
           { forms }
       </div>
     );
@@ -48,14 +64,15 @@ class Build extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    current_deck: state.decks.current,
-    cards: state.decks.current.cards,
+    currentDeck: state.decks.current,
+    cards: state.cards.store,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setCurrentDeck: (deck) => dispatch(getCurrentDeck(deck)),
+    setCurrentDeck: (id) => dispatch(getCurrentDeck(id)),
+    retrieveCardsOfDeck: (deck) => dispatch(getCards(deck)),
   };
 };
 

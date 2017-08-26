@@ -52,12 +52,22 @@ class CardForm extends React.Component {
 
 
   render (){
+
+    let errors;
+    if (this.props.cardStore[this.state.id]){
+      let thisCard = this.props.cardStore[this.state.id];
+       if (thisCard.errors[0]){
+         errors = thisCard.errors
+        .map((err, idx) => (<li key={idx}> { err } </li>));
+      }
+    }
+
     return (
       <div className="cardFormContainer">
         <div className="cardForm">
           <form onSubmit={this.handleEditClick} >
 
-            <p className="errorBlock">{ }</p>
+            <p className="errorBlock">{ errors }</p>
 
             <br />
             <h4>Question:</h4>
@@ -85,7 +95,8 @@ const mapStateToProps = (state) => {
     current_user: state.session.current_user,
     current_deck: state.decks.current,
     decks: state.decks.sorted,
-    errors: state.decks.errors,
+    cardStore: state.cards.store,
+
   };
 };
 

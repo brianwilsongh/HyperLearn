@@ -26,11 +26,12 @@ class Api::CardsController < ApplicationController
       this_card = Card.find(val[:id].to_i)
       attributes = {question: val[:question], answer: val[:answer], question_img_url: "touched"}
       if this_card.update_attributes(attributes)
+        @all_errors[this_card.id] = ["None"]
         @cards << this_card
         puts "Successful update on card #{this_card.id}"
       else
         @all_errors[this_card.id] = this_card.errors.full_messages
-        debugger;
+        @cards << this_card
       end
     end
 

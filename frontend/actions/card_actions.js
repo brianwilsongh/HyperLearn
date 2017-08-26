@@ -4,6 +4,7 @@ export const RECEIVE_CARDS = 'RECEIVE_CARDS';
 export const RECEIVE_CURRENT_CARD = 'RECEIVE_CURRENT_CARD';
 export const RECEIVE_CARD_ERRORS = 'RECEIVE_CARD_ERRORS';
 export const ADD_CARD_EDIT = 'ENQUEUE_CARD_EDIT';
+export const WIPE_CARD_STATE = 'WIPE_CARD_STATE';
 
 
 export const getCards = (deck) => dispatch => {
@@ -49,5 +50,11 @@ export const addCardEdit = (editedCard) => {
   return {
     type: ADD_CARD_EDIT,
     data: editedCard,
+  };
+};
+
+export const wipeCardState = () => {
+  return {
+    type: WIPE_CARD_STATE,
   };
 };

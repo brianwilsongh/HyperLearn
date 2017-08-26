@@ -25,6 +25,10 @@ export const cardsReducer = (state = defaultState, action) => {
       return _.merge({}, state,
         { editStore: { [action.data.id]: action.data} });
 
+    case CActions.WIPE_CARD_STATE:
+      //editStore will hold all edits with id as key and obj as value
+      return _.merge({}, defaultState);
+
     case CActions.RECEIVE_CURRENT_CARD:
       return Object.assign({}, state,
         {current: action.data, editStore: {}});

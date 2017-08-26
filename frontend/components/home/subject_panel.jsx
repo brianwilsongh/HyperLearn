@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
 import { getDecks } from '../../actions/deck_actions';
+import { wipeCardState } from '../../actions/card_actions';
 import SubjectPanelItem from './subject_panel_item';
 
 
@@ -10,13 +11,13 @@ class SubjectPanel extends React.Component {
 
   constructor(props){
     super(props);
-
   }
 
   componentDidMount(){
     //fetch idx items here
     this.props.fetchSubjects();
-    //set current subject to first in the array
+    //reset the state of cards, as we could be returning from build or study
+    this.props.clearCardData();
   }
 
   objEmpty(obj){
@@ -81,6 +82,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchSubjects: () => dispatch(getSubjects()),
     setCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject)),
     retrieveDecksOfSubject: (subject) => dispatch(getDecks(subject)),
+    clearCardData: () => dispatch(wipeCardState()),
   };
 };
 

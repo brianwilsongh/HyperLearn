@@ -52,7 +52,9 @@ class Build extends React.Component {
 
   triggerSubmissionEdit(){
     this.childComponentsEdit.forEach((child, idx) => {
-      child.addEditedCard();
+      if (child){
+        child.addEditedCard();
+      }
     });
   }
 

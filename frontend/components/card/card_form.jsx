@@ -57,8 +57,14 @@ class CardForm extends React.Component {
     if (this.props.cardStore[this.state.id]){
       let thisCard = this.props.cardStore[this.state.id];
        if (thisCard.errors[0]){
-         errors = thisCard.errors
-        .map((err, idx) => (<li key={idx}> { err } </li>));
+         errors = thisCard.errors[0]
+          .map((err, idx) => {
+            if (err === "None"){
+              return (<li className="cardNonErrorItem" key={idx}> Saved! </li>);
+            } else {
+              return (<li key={idx}> { err } </li>);
+            }
+          });
       }
     }
 
@@ -67,9 +73,9 @@ class CardForm extends React.Component {
         <div className="cardForm">
           <form onSubmit={this.handleEditClick} >
 
-            <p className="errorBlock">{ errors }</p>
-
             <br />
+            <div>{ errors ? <p className="errorBlock">{ errors }</p> : null}</div>
+
             <h4>Question:</h4>
             <input onChange={this.handleInputChange("question")}
             placeholder="What is the question?"

@@ -18,8 +18,8 @@ export const createCard = (card) => dispatch => {
     errors => dispatch(receiveCardErrors(errors)));
 };
 
-export const editCards = (editedCardArray) => dispatch => {
-  return APIUtils.editCards(editedCardArray)
+export const editCards = (editedCards) => dispatch => {
+  return APIUtils.editCards(editedCards)
     .then(cards => dispatch(receiveCards(cards)),
     errors => dispatch(receiveCardErrors(errors)));
 };

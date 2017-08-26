@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getCurrentDeck } from '../../actions/deck_actions';
-import { getCards } from '../../actions/card_actions';
+import { getCards, editCards } from '../../actions/card_actions';
 import CardForm from '../card/card_form';
 
 
@@ -43,14 +43,17 @@ class Build extends React.Component {
         this.props.retrieveCardsOfDeck(this.props.currentDeck);
       }
     }
+
+    if (!this.objEmpty(this.props.editStore)){
+      this.props.sendEditCards(this.props.editStore);
+    }
+
   }
 
   triggerSubmissionEdit(){
     this.childComponentsEdit.forEach((child, idx) => {
       child.addEditedCard();
     });
-    console.log("SEND THE AJAX");
-    debugger;
   }
 
 
@@ -85,6 +88,7 @@ const mapStateToProps = (state) => {
   return {
     currentDeck: state.decks.current,
     cards: state.cards.store,
+    editStore: state.cards.editStore,
   };
 };
 
@@ -92,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCurrentDeck: (id) => dispatch(getCurrentDeck(id)),
     retrieveCardsOfDeck: (deck) => dispatch(getCards(deck)),
+    sendEditCards: (cards) => dispatch(editCards(cards)),
   };
 };
 

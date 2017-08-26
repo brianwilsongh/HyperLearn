@@ -11,7 +11,7 @@ class CardForm extends React.Component {
       id: this.props.card.id,
       question: this.props.card.question,
       answer: this.props.card.answer,
-      subject_id: this.props.current_subject.id,
+      deck_id: this.props.current_deck.id,
     };
 
     this.addEditedCard = this.addEditedCard.bind(this);
@@ -83,7 +83,7 @@ class CardForm extends React.Component {
 const mapStateToProps = (state) => {
   return {
     current_user: state.session.current_user,
-    current_subject: state.subjects.current,
+    current_deck: state.decks.current,
     decks: state.decks.sorted,
     errors: state.decks.errors,
   };

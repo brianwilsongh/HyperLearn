@@ -14,11 +14,12 @@ export const createCard = (newCard) => {
   });
 };
 
-export const editCards = (editedCardArray) => {
+export const editCards = (editedCards) => {
+  var firstId = Object.keys(editedCards)[0];
   return $.ajax({
     method: "PATCH",
-    url: `/api/decks/1337`,
-    data: {card: editedCardArray}
+    url: `/api/cards/${firstId}`,
+    data: {card: editedCards}
   });
 };
 

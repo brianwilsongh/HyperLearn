@@ -5,7 +5,7 @@ const defaultState = {
   current: {},
   store: {},
   errors: [],
-  editQueue: {},
+  editStore: {},
 };
 
 export const cardsReducer = (state = defaultState, action) => {
@@ -13,21 +13,21 @@ export const cardsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case CActions.RECEIVE_CARDS:
       return Object.assign({}, state,
-        {store: action.data.store, editQueue: {}});
+        {store: action.data.store, editStore: {}});
 
     case CActions.RECEIVE_CARD_ERRORS:
       //this will have to receive an array which we'll nest/merge into store
       return Object.assign({}, state,
-        {errors: action.data.responseJSON, editQueue: {}});
+        {errors: action.data.responseJSON, editStore: {}});
 
     case CActions.ADD_CARD_EDIT:
-      //editQueue will hold all edits with id as key and obj as value
+      //editStore will hold all edits with id as key and obj as value
       return _.merge({}, state,
-        { editQueue: { [action.data.id]: action.data} });
+        { editStore: { [action.data.id]: action.data} });
 
     case CActions.RECEIVE_CURRENT_CARD:
       return Object.assign({}, state,
-        {current: action.data, editQueue: {}});
+        {current: action.data, editStore: {}});
 
     default:
       return state;

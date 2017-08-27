@@ -1,4 +1,5 @@
-import * as APIUtils from "../utils/deck_api_utils";
+import * as APIUtils from '../utils/deck_api_utils';
+import { getCards } from './card_actions';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const RECEIVE_CURRENT_DECK = 'RECEIVE_CURRENT_DECK';
@@ -12,7 +13,6 @@ export const getDecks = (subject) => dispatch => {
 };
 
 export const getCurrentDeck = (id) => dispatch => {
-  debugger;
   return APIUtils.getCurrentDeck(id)
     .then(deck => dispatch(receiveCurrentDeck(deck)),
     errors => dispatch(receiveDeckErrors(errors)));

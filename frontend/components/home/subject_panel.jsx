@@ -18,6 +18,12 @@ class SubjectPanel extends React.Component {
     this.props.fetchSubjects();
     //reset the state of cards, as we could be returning from build or study
     this.props.clearCardData();
+    console.log("Subject panel mounted");
+    //if there already is a current subject with decks, refresh decks
+    if (!this.objEmpty(this.props.currentSubject)
+      && this.props.currentSubject.deck_count > 0){
+      this.props.retrieveDecksOfSubject(this.props.currentSubject);
+    }
   }
 
   objEmpty(obj){

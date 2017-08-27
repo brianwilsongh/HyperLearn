@@ -30,25 +30,18 @@ class Build extends React.Component {
     return false;
   }
 
-  componentDidUpdate(){
-    if (!this.objEmpty(this.props.currentDeck)
-      && this.objEmpty(this.props.cards)
-      && this.props.currentDeck.card_count > 0){
-      this.props.retrieveCardsOfDeck(this.props.currentDeck);
-    } else if (!this.objEmpty(this.props.cards)){
-      //PREVENT UNNECESSARY NETWORK REQUEST
-      //this is pretty wordy, maybe refactor one day
-      if (this.props.currentDeck.id !==
-        parseInt(this.props.cards[Object.keys(this.props.cards)[0]].deck_id)){
-        this.props.retrieveCardsOfDeck(this.props.currentDeck);
-      }
-    }
-
-    if (!this.objEmpty(this.props.editStore)){
-      this.props.sendEditCards(this.props.editStore);
-    }
-
+  componentDidUpdate(prevProps, prevState){
+  if (!this.objEmpty(this.props.currentDeck)
+    && this.objEmpty(this.props.cards)
+    && this.props.currentDeck.card_count > 0){
+    this.props.retrieveCardsOfDeck(this.props.currentDeck);
   }
+
+  if (!this.objEmpty(this.props.editStore)){
+    this.props.sendEditCards(this.props.editStore);
+  }
+
+}
 
   triggerSubmissionEdit(){
     this.childComponentsEdit.forEach((child, idx) => {

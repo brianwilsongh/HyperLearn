@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCurrentDeck } from '../../actions/deck_actions';
+import { getCurrentDeck, getDecks } from '../../actions/deck_actions';
 import { addCardEdit, deleteCard } from '../../actions/card_actions';
 
 class CardForm extends React.Component {
@@ -12,7 +12,7 @@ class CardForm extends React.Component {
       id: this.props.card.id,
       question: this.props.card.question,
       answer: this.props.card.answer,
-      deck_id: this.props.current_deck.id,
+      deck_id: this.props.currentDeck.id,
     };
 
     this.addEditedCard = this.addEditedCard.bind(this);
@@ -26,10 +26,6 @@ class CardForm extends React.Component {
 
   componentWillUnmount() {
     this.props.onRef(null);
-  }
-
-  method(){
-    console.log("ready for action!");
   }
 
   addEditedCard(){
@@ -47,15 +43,15 @@ class CardForm extends React.Component {
 
   handleDeleteClick(e){
     e.preventDefault();
-    this.props.destroyCard(this.state.id);
-    this.props.setCurrentDeck(this.props.current_deck.id);
+    this.props.destroyCard(this.state).then(this.props.setCurrentDeck(this.state.deck_id));
+    this.forceUpdate();
     //destroy card, update current deck in case it was last
   }
 
 
 
   render (){
-
+    console.log(`render from form with state(id, q): ${this.state.id}, ${this.state.question}`);
     let errors;
     if (this.props.cardStore[this.state.id]){
       let thisCard = this.props.cardStore[this.state.id];
@@ -101,8 +97,8 @@ class CardForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    current_user: state.session.current_user,
-    current_deck: state.decks.current,
+    currentDeck: state.decks.current,
+    currentSubject: state.subjects.current,
     decks: state.decks.sorted,
     cardStore: state.cards.store,
 
@@ -113,7 +109,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setCurrentDeck: (id) => dispatch(getCurrentDeck(id)),
     addThisCard: (card) => dispatch(addCardEdit(card)),
-    destroyCard: (id) => dispatch(deleteCard(id))
+    destroyCard: (card) => dispatch(deleteCard(card)),
   };
 };
 

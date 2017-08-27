@@ -30,12 +30,21 @@ class DeckPanelItem extends React.Component {
 
 
   render(){
+    var buttons;
+    if (this.props.deck.user_id === this.props.currentUser.id){
+      buttons = (
+        <div>
+        <button onClick={this.handleModifyRedirect}>Modify</button>
+        <button onClick={this.handleBuildRedirect}>Build</button>
+        </div>
+      );
+    }
+
     return(
       <div className="homeDeckItem" onClick={this.handleClick}>
         { this.props.deck.title }
         <br />
-        <button onClick={this.handleModifyRedirect}>Modify</button>
-        <button onClick={this.handleBuildRedirect}>Build</button>
+        { buttons }
         cards: { this.props.deck.card_count }
       </div>
     );
@@ -43,5 +52,11 @@ class DeckPanelItem extends React.Component {
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.current_user,
+  };
+};
 
-export default withRouter(DeckPanelItem);
+
+export default withRouter(connect(mapStateToProps)(DeckPanelItem));

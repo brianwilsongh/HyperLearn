@@ -1,4 +1,5 @@
-import * as APIUtils from "../utils/card_api_utils";
+import * as APIUtils from '../utils/card_api_utils';
+import { receiveCurrentDeck } from './deck_actions';
 
 export const RECEIVE_CARDS = 'RECEIVE_CARDS';
 export const RECEIVE_CURRENT_CARD = 'RECEIVE_CURRENT_CARD';
@@ -32,10 +33,14 @@ export const editCards = (editedCards) => dispatch => {
     errors => dispatch(receiveCardErrors(errors)));
 };
 
-export const deleteCard = (id) => dispatch => {
-  return APIUtils.deleteCard(id)
-    .then(cards => dispatch(receiveCards(cards)),
-    errors => dispatch(receiveCardErrors(errors)));
+export const deleteCard = (card) => dispatch => {
+  return APIUtils.deleteCard(card.id)
+    .then((currentDeck) => {
+      dispatch(wipeCardState());
+      dispatch(receiveCurrentDeck(currentDeck));
+    },
+      errors => dispatch(receiveCardErrors(errors))
+    );
 };
 
 

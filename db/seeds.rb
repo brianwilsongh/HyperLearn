@@ -42,14 +42,15 @@ end
 Deck.destroy_all
 
 100.times do
+  random_subject = Subject.all.sample
   Deck.create(title: Faker::GameOfThrones.character,
-    user_id: User.all.sample.id,
-    subject_id: Subject.all.sample.id)
+    subject_id: random_subject.id,
+    user_id: random_subject.user_id)
 end
 
 Card.destroy_all
 
-400.times do
+500.times do
   Card.create(question: Faker::Lovecraft.deity,
   answer: Faker::Lovecraft.word,
   deck_id: Deck.all.sample.id)

@@ -39,11 +39,12 @@ class Api::CardsController < ApplicationController
   end
 
   def destroy
-    @all_errors = {}
     @card = Card.find(params[:id])
-    @cards = Deck.find(@card.deck_id).cards
     @card.destroy
-    render :index
+    # @cards = Deck.find(@card.deck_id).cards
+    @deck = Deck.find(@card.deck_id)
+    @cards = @deck.cards
+    render "/api/decks/show.json.jbuilder"
   end
 
   private

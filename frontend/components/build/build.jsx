@@ -35,6 +35,8 @@ class Build extends React.Component {
     && this.objEmpty(this.props.cards)
     && this.props.currentDeck.card_count > 0){
     this.props.retrieveCardsOfDeck(this.props.currentDeck);
+    debugger;
+    this.childComponentsEdit = [];
   }
 
   if (!this.objEmpty(this.props.editStore)){
@@ -47,7 +49,6 @@ class Build extends React.Component {
     this.childComponentsEdit.forEach((child, idx) => {
       if (child){
         if (this.props.cards[child.state.id]){
-          debugger;
           child.addEditedCard();
         }
       }
@@ -65,7 +66,17 @@ class Build extends React.Component {
 
     if (!this.objEmpty(currentCards)){
       forms = Object.keys(currentCards).map((key, idx) => {
-        return (<CardForm key={idx} card={currentCards[key]} onRef={ref => (this.childComponentsEdit.push(ref))} />);
+        return (
+          <CardForm key={idx} card={currentCards[key]}
+            onRef={ref => {
+                if (ref){
+                  if (!this.childComponentsEdit.includes(ref)){
+                    this.childComponentsEdit.push(ref);
+                  }
+                }
+              }
+            } />
+        );
       });
     } else {
       forms = <p>Deck is empty...</p>;

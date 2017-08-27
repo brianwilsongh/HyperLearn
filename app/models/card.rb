@@ -16,7 +16,12 @@ class Card < ApplicationRecord
   validates :deck_id, :question, :answer, presence: true
 
   belongs_to :deck,
-  primary_key: :id,
-  foreign_key: :deck_id,
-  class_name: :Deck
+    primary_key: :id,
+    foreign_key: :deck_id,
+    class_name: :Deck
+
+  has_many :ratings,
+    primary_key: :id,
+    foreign_key: :card_id,
+    class_name: :Rating
 end

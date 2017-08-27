@@ -68,3 +68,14 @@ Card.destroy_all
   answer: Faker::Lovecraft.word,
   deck_id: Deck.all.sample.id)
 end
+
+Rating.destroy_all
+
+User.all.each do |user|
+  all_subjects = user.all_subjects
+  all_subjects.each do |subject|
+    subject.cards.each do |card|
+      Rating.create(rating: (1 + (rand * 5).floor), user_id: user.id, card_id: card.id)
+    end
+  end
+end

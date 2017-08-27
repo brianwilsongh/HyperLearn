@@ -27,6 +27,10 @@ class Subject < ActiveRecord::Base
     through: :decks,
     source: :cards
 
+  has_many :ratings,
+    through: :cards,
+    source: :ratings
+
   has_many :categorizations,
     primary_key: :id,
     foreign_key: :subject_id,

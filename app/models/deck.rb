@@ -15,18 +15,22 @@ class Deck < ActiveRecord::Base
   validates :title, presence: true, uniqueness: {scope: :subject_id}, length: {minimum: 1}
 
   belongs_to :author,
-  primary_key: :id,
-  foreign_key: :user_id,
-  class_name: :User
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :User
 
   belongs_to :subject,
-  primary_key: :id,
-  foreign_key: :subject_id,
-  class_name: :Subject
+    primary_key: :id,
+    foreign_key: :subject_id,
+    class_name: :Subject
 
   has_many :cards,
-  primary_key: :id,
-  foreign_key: :deck_id,
-  class_name: :Card
+    primary_key: :id,
+    foreign_key: :deck_id,
+    class_name: :Card
+
+  has_many :ratings,
+    through: :cards, 
+    source: :ratings
 
 end

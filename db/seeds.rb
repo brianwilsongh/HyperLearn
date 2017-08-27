@@ -19,6 +19,7 @@ end
 
 Subject.destroy_all
 
+#at least 3 for guest
 3.times do
   Subject.create(title: Faker::GameOfThrones.city,
   user_id: guest.id)
@@ -27,6 +28,18 @@ end
 30.times do
   Subject.create(title: Faker::GameOfThrones.city,
   user_id: User.all.sample.id)
+end
+
+Category.destroy_all
+
+10.times do
+  Category.create(name: Faker::Color.color_name)
+end
+
+Categorization.destroy_all
+
+30.times do
+  Categorization.create(subject_id: Subject.all.sample.id, category_id: Category.all.sample.id)
 end
 
 Follow.destroy_all
@@ -50,7 +63,7 @@ end
 
 Card.destroy_all
 
-500.times do
+600.times do
   Card.create(question: Faker::Lovecraft.deity,
   answer: Faker::Lovecraft.word,
   deck_id: Deck.all.sample.id)

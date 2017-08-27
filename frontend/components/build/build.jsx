@@ -35,7 +35,6 @@ class Build extends React.Component {
     && this.objEmpty(this.props.cards)
     && this.props.currentDeck.card_count > 0){
     this.props.retrieveCardsOfDeck(this.props.currentDeck);
-    debugger;
     this.childComponentsEdit = [];
   }
 
@@ -70,9 +69,7 @@ class Build extends React.Component {
           <CardForm key={idx} card={currentCards[key]}
             onRef={ref => {
                 if (ref){
-                  if (!this.childComponentsEdit.includes(ref)){
-                    this.childComponentsEdit.push(ref);
-                  }
+                  this.childComponentsEdit.push(ref);
                 }
               }
             } />

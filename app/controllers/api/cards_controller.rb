@@ -38,9 +38,12 @@ class Api::CardsController < ApplicationController
     render :index
   end
 
-  def delete
+  def destroy
+    @all_errors = {}
     @card = Card.find(params[:id])
+    @cards = Deck.find(@card.deck_id).cards
     @card.destroy
+    render :index
   end
 
   private

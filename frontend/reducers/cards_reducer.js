@@ -12,6 +12,10 @@ export const cardsReducer = (state = defaultState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case CActions.RECEIVE_CARDS:
+      if (!action.data.store){
+        return Object.assign({}, state,
+          {store: {}, editStore: {}});
+      }
       return Object.assign({}, state,
         {store: action.data.store, editStore: {}});
 

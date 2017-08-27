@@ -65,12 +65,13 @@ class Build extends React.Component {
 
     var forms;
     var currentCards = this.props.cards;
+
     if (!this.objEmpty(currentCards)){
       forms = Object.keys(currentCards).map((key, idx) => {
         return (<CardForm key={idx} card={currentCards[key]} onRef={ref => (this.childComponentsEdit.push(ref))} />);
       });
     } else {
-      forms = <p>Loading...</p>;
+      forms = <p>Deck is empty...</p>;
     }
 
     return(

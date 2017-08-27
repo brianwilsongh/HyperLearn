@@ -23,9 +23,9 @@ export const editCards = (editedCards) => {
   });
 };
 
-export const deleteDeck = (id) => {
+export const deleteCard = (id) => {
   return $.ajax({
     method: "DELETE",
-    url: `/api/decks/${id}`,
+    url: `/api/cards/${id}`,
   });
 };

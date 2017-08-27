@@ -12,6 +12,7 @@ export const getDecks = (subject) => dispatch => {
 };
 
 export const getCurrentDeck = (id) => dispatch => {
+  debugger;
   return APIUtils.getCurrentDeck(id)
     .then(deck => dispatch(receiveCurrentDeck(deck)),
     errors => dispatch(receiveDeckErrors(errors)));

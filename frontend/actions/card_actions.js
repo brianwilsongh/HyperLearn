@@ -2,8 +2,15 @@ import * as APIUtils from "../utils/card_api_utils";
 
 export const RECEIVE_CARDS = 'RECEIVE_CARDS';
 export const RECEIVE_CURRENT_CARD = 'RECEIVE_CURRENT_CARD';
+export const DELETE_CARD = 'DELETE_CARD';
+
+//should be individualized based on location
 export const RECEIVE_CARD_ERRORS = 'RECEIVE_CARD_ERRORS';
+
+//called for each form in edit page to build big patch req
 export const ADD_CARD_EDIT = 'ENQUEUE_CARD_EDIT';
+
+//called in subject panel after edit cards or study
 export const WIPE_CARD_STATE = 'WIPE_CARD_STATE';
 
 

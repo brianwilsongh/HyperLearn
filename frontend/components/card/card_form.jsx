@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCardEdit } from '../../actions/card_actions';
+import { getCurrentDeck } from '../../actions/deck_actions';
+import { addCardEdit, deleteCard } from '../../actions/card_actions';
 
 class CardForm extends React.Component {
 
@@ -16,6 +17,7 @@ class CardForm extends React.Component {
 
     this.addEditedCard = this.addEditedCard.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   componentDidMount() {
@@ -45,8 +47,9 @@ class CardForm extends React.Component {
 
   handleDeleteClick(e){
     e.preventDefault();
-    this.props.deleteCard(this.state.id);
-
+    this.props.destroyCard(this.state.id);
+    this.props.setCurrentDeck(this.props.current_deck.id);
+    //destroy card, update current deck in case it was last
   }
 
 
@@ -108,7 +111,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setCurrentDeck: (id) => dispatch(getCurrentDeck(id)),
     addThisCard: (card) => dispatch(addCardEdit(card)),
+    destroyCard: (id) => dispatch(deleteCard(id))
   };
 };
 

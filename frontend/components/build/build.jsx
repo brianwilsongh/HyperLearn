@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { getCurrentDeck } from '../../actions/deck_actions';
 import { getCards, editCards } from '../../actions/card_actions';
 import CardForm from '../card/card_form';
@@ -46,9 +46,13 @@ class Build extends React.Component {
   triggerSubmissionEdit(){
     this.childComponentsEdit.forEach((child, idx) => {
       if (child){
-        child.addEditedCard();
+        if (this.props.cards[child.state.id]){
+          debugger;
+          child.addEditedCard();
+        }
       }
-    });
+    }, this);
+    //foreach can take context as second argument
   }
 
 
@@ -69,10 +73,13 @@ class Build extends React.Component {
 
     return(
       <div className="primaryComponent">
-        <button onClick={this.triggerSubmissionEdit}>TRIGGER</button>
+        <button onClick={this.triggerSubmissionEdit}>UPDATE</button>
         <div className="deckPanelDisplaySubject">
           { deckDisplay }
         </div>
+        <Link to={`/build/new/${this.props.currentDeck.id}`}>
+          <button>NEW CARD</button>
+        </Link>
           { forms }
       </div>
     );

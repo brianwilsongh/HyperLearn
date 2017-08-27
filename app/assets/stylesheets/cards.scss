@@ -3,8 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.cardFormContainer {
+.cardForm {
   display: flex;
   flex-direction: row;
-
+  margin: 1%;
+  padding: 2%;
+  border: 1px solid grey;
 }

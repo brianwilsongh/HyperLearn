@@ -9,7 +9,7 @@ export const getCards = (deck) => {
 export const createCard = (newCard) => {
   return $.ajax({
     method: "POST",
-    url: `/api/decks/`,
+    url: `/api/cards/`,
     data: {card: newCard}
   });
 };

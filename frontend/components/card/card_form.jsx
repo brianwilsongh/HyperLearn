@@ -51,7 +51,6 @@ class CardForm extends React.Component {
 
 
   render (){
-    console.log(`render from form with state(id, q): ${this.state.id}, ${this.state.question}`);
     let errors;
     if (this.props.cardStore[this.state.id]){
       let thisCard = this.props.cardStore[this.state.id];
@@ -69,8 +68,7 @@ class CardForm extends React.Component {
 
     return (
       <div className="cardFormContainer">
-        <div className="cardForm">
-          <form onSubmit={this.handleEditClick} >
+          <form className="cardForm" onSubmit={this.handleEditClick} >
 
             <br />
             <div>{ errors ? <p className="errorBlock">{ errors }</p> : null}</div>
@@ -88,7 +86,6 @@ class CardForm extends React.Component {
             <button onClick={this.handleDeleteClick}>Destroy</button>
           </form>
 
-        </div>
       </div>
     );
   }

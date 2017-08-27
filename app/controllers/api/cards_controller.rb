@@ -10,8 +10,11 @@ class Api::CardsController < ApplicationController
 
   def create
     @card = Card.new(create_params)
+    @all_errors = {}
     if @card.save
-      render :show
+      @deck = Deck.find(@card.deck_id)
+      @cards = @deck.cards
+      render :index
     else
       render json: @card.errors.full_messages, status: 422
     end
@@ -25,13 +28,11 @@ class Api::CardsController < ApplicationController
     @cards_edit.each do |k, val|
       this_card = Card.find(val[:id].to_i)
       attributes = {question: val[:question], answer: val[:answer], question_img_url: "touched"}
+      @cards << this_card
       if this_card.update_attributes(attributes)
         @all_errors[this_card.id] = ["None"]
-        @cards << this_card
-        puts "Successful update on card #{this_card.id}"
       else
         @all_errors[this_card.id] = this_card.errors.full_messages
-        @cards << this_card
       end
     end
 

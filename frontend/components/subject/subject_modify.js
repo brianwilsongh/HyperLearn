@@ -13,25 +13,29 @@ class SubjectModify extends React.Component {
       title: "",
       id: this.props.location.pathname.split("/")[this.props.location.pathname.split("/").length - 1],
       user_id: this.props.current_user.id,
+      category_id: "",
     };
 
     this.originalTitle = null;
-
+    this.currentCategory = null;
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
 
   componentWillMount(){
-    var thisSubject = "undefined!";
+    var thisSubjectTitle = "Undefined!";
+    var thisSubjectCategory = "None";
     var thisId = parseInt(this.state.id);
     this.props.subjects.forEach((subject) => {
       if (subject.id === thisId){
-        thisSubject = subject.title;
+        thisSubjectTitle = subject.title;
+        thisSubjectCategory = subject.category;
       }
     });
-    this.state.title = thisSubject;
+    this.state.title = thisSubjectTitle;
     this.originalTitle = this.state.title;
+    this.currentCategory = thisSubjectCategory;
   }
 
   handleEditClick(e){
@@ -66,6 +70,13 @@ class SubjectModify extends React.Component {
       errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
     }
 
+    let categories;
+    if (this.props.categories.length > 0){
+      categories = this.props.categories.map((category, idx) =>
+      (<option key={idx} value={`${category.id}`} >{category.name} </option>));
+    }
+
+    debugger;
     return (
     <div id="overlay">
       <div className="sessionForm">
@@ -83,6 +94,11 @@ class SubjectModify extends React.Component {
           <input onChange={this.handleInputChange("title")}
           placeholder="Title"
           value={this.state.title} />
+
+        <h4>Current Category: {this.currentCategory.name}</h4>
+        <select onChange={this.handleInputChange("category_id")}>
+            {categories}
+          </select>
           <input type="submit" value="Edit" />
           <button onClick={this.handleDeleteClick}>Destroy</button>
         </form>
@@ -98,6 +114,7 @@ const mapStateToProps = (state) => {
     current_user: state.session.current_user,
     subjects: state.subjects.sorted,
     errors: state.subjects.errors,
+    categories: state.subjects.categories,
   };
 };
 

@@ -17,15 +17,16 @@ class Api::SubjectsController < ApplicationController
   end
 
   def update
-    fixed_params = subject_params.except(:category_id)
-    debugger;
-    oldCategorization = Categorization.where(subject_id: params[:id], category_id: params[:category_id])
-    @categorization = Categorization.new(category_id: params[:category_id], subject_id: params[:id])
+    oldCategorization = Categorization.where(subject_id: params[:id], category_id: params[:subject][:category_id])[0]
+    oldCategorization.destroy
+    @categorization = Categorization.new(category_id: params[:subject][:category_id], subject_id: params[:id])
     unless @categorization.save
-      render json ["Categorization failed"], status: 422
+      render json: ["Categorization failed"], status: 422
+      return;
     end
 
     @subject = Subject.find(params[:id])
+    fixed_params = subject_params.except(:category_id)
     if @subject.update_attributes(fixed_params)
       @subjects = current_user.all_subjects
       render :index
@@ -43,7 +44,7 @@ class Api::SubjectsController < ApplicationController
 
   private
   def subject_params
-    params.require(:subject).permit(:title, :user_id, :category_id, :id)
+    params.require(:subject).permit(:title, :user_id, :id, :category_id)
   end
 
 end

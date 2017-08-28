@@ -13,11 +13,10 @@ class SubjectModify extends React.Component {
       title: "",
       id: this.props.location.pathname.split("/")[this.props.location.pathname.split("/").length - 1],
       user_id: this.props.current_user.id,
-      category_id: "",
+      category_id: null,
     };
 
     this.originalTitle = null;
-    this.currentCategory = null;
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
@@ -25,7 +24,7 @@ class SubjectModify extends React.Component {
 
   componentWillMount(){
     var thisSubjectTitle = "Undefined!";
-    var thisSubjectCategory = "None";
+    var thisSubjectCategory = null;
     var thisId = parseInt(this.state.id);
     this.props.subjects.forEach((subject) => {
       if (subject.id === thisId){
@@ -34,8 +33,9 @@ class SubjectModify extends React.Component {
       }
     });
     this.state.title = thisSubjectTitle;
+    //setup title and category id by pulling it out of the store, no ajax needed
     this.originalTitle = this.state.title;
-    this.currentCategory = thisSubjectCategory;
+    this.state.category_id = thisSubjectCategory ? thisSubjectCategory.id : null;
   }
 
   handleEditClick(e){
@@ -73,10 +73,9 @@ class SubjectModify extends React.Component {
     let categories;
     if (this.props.categories.length > 0){
       categories = this.props.categories.map((category, idx) =>
-      (<option key={idx} value={`${category.id}`} >{category.name} </option>));
+      (<option key={idx} value={category.id} >{category.name} </option>));
     }
 
-    debugger;
     return (
     <div id="overlay">
       <div className="sessionForm">
@@ -95,8 +94,7 @@ class SubjectModify extends React.Component {
           placeholder="Title"
           value={this.state.title} />
 
-        <h4>Current Category: {this.currentCategory.name}</h4>
-        <select onChange={this.handleInputChange("category_id")}>
+        <select onChange={this.handleInputChange("category_id")} value={this.state.category_id}>
             {categories}
           </select>
           <input type="submit" value="Edit" />

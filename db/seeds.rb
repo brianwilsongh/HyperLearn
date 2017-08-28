@@ -25,20 +25,20 @@ Subject.destroy_all
   user_id: guest.id)
 end
 
-30.times do
+60.times do
   Subject.create(title: Faker::GameOfThrones.city,
   user_id: User.all.sample.id)
 end
 
 Category.destroy_all
 
-10.times do
+15.times do
   Category.create(name: Faker::Color.color_name)
 end
 
 Categorization.destroy_all
 
-50.times do
+100.times do
   Categorization.create(subject_id: Subject.all.sample.id, category_id: Category.all.sample.id)
 end
 
@@ -48,7 +48,7 @@ User.all.each do |user|
   Follow.create(user_id: user.id, subject_id: Subject.all.sample.id)
 end
 
-6.times do
+7.times do
   Follow.create(user_id: guest.id, subject_id: Subject.all.sample.id)
 end
 
@@ -63,7 +63,7 @@ end
 
 Card.destroy_all
 
-750.times do
+700.times do
   Card.create(question: Faker::Lovecraft.deity,
   answer: Faker::Lovecraft.word,
   deck_id: Deck.all.sample.id)

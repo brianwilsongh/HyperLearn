@@ -1,5 +1,6 @@
 import * as APIUtils from '../utils/deck_api_utils';
 import { getCards } from './card_actions';
+import { getSubjects } from './subject_actions';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const RECEIVE_CURRENT_DECK = 'RECEIVE_CURRENT_DECK';
@@ -34,6 +35,13 @@ export const deleteDeck = (id) => dispatch => {
   return APIUtils.deleteDeck(id)
     .then(decks => dispatch(receiveDecks(decks)),
     errors => dispatch(receiveDeckErrors(errors)));
+};
+
+export const wipeRatingsFromDeck = (deckId) => dispatch => {
+  return APIUtils.wipeRatingsFromDeck(deckId)
+    .then(deck => dispatch(receiveCurrentDeck(deck)),
+    errors => dispatch(receiveDeckErrors(errors)))
+    .then(() => dispatch(getSubjects()));
 };
 
 

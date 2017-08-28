@@ -24,6 +24,14 @@ class Api::DecksController < ApplicationController
     end
   end
 
+  def edit
+    #used to reset deck
+    @deck = Deck.find(params[:id])
+    @deck.reset_ratings
+    @decks = Subject.find(@deck.subject_id).decks
+    render :show
+  end
+
   def update
     @deck = Deck.find(params[:id])
     if @deck.update_attributes(deck_params)

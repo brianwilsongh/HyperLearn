@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { receiveCurrentDeck } from '../../actions/deck_actions';
+import { receiveCurrentDeck, wipeRatingsFromDeck } from '../../actions/deck_actions';
 
 
 class DeckPanelItem extends React.Component {
@@ -11,6 +11,7 @@ class DeckPanelItem extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleModifyRedirect = this.handleModifyRedirect.bind(this);
     this.handleBuildRedirect = this.handleBuildRedirect.bind(this);
+    this.handleResetDeck = this.handleResetDeck.bind(this);
   }
 
   handleClick(e){
@@ -28,6 +29,12 @@ class DeckPanelItem extends React.Component {
     this.props.history.push(`/build/${this.props.deck.id}`);
   }
 
+  handleResetDeck(e){
+    e.stopPropagation();
+    //wipe ratings will trigger recevie current deck to update current deck and store
+    this.props.wipeRatings(this.props.deck.id);
+  }
+
 
   render(){
     var buttons;
@@ -36,6 +43,7 @@ class DeckPanelItem extends React.Component {
         <div>
         <button onClick={this.handleModifyRedirect}>Modify</button>
         <button onClick={this.handleBuildRedirect}>Build</button>
+        <button onClick={this.handleResetDeck}>Reset</button>
         </div>
       );
     }
@@ -46,6 +54,8 @@ class DeckPanelItem extends React.Component {
         <br />
         { buttons }
         cards: { this.props.deck.card_count }
+        <br />
+        mastery: { this.props.deck.mastery }%
       </div>
     );
   }
@@ -58,5 +68,11 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    wipeRatings: (id) => dispatch(wipeRatingsFromDeck(id)),
+  };
+};
 
-export default withRouter(connect(mapStateToProps)(DeckPanelItem));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DeckPanelItem));

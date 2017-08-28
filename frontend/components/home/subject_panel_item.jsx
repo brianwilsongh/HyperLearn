@@ -42,6 +42,8 @@ class SubjectPanelItem extends React.Component {
         <br />
         cards: { this.props.subject.card_count }
         <br />
+        mastery: { this.props.subject.mastery }%
+        <br />
       </div>
     );
   }

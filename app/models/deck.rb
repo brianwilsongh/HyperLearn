@@ -30,7 +30,15 @@ class Deck < ActiveRecord::Base
     class_name: :Card
 
   has_many :ratings,
-    through: :cards, 
+    through: :cards,
     source: :ratings
+
+
+  def reset_ratings
+    self.ratings.each do |rating|
+      rating.rating = 0
+      rating.save
+    end
+  end
 
 end

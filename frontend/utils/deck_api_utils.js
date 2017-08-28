@@ -35,3 +35,10 @@ export const deleteDeck = (id) => {
     url: `/api/decks/${id}`,
   });
 };
+
+export const wipeRatingsFromDeck = (deckId) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/decks/${deckId}/edit`,
+  });
+};

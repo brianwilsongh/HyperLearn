@@ -14,12 +14,32 @@
  *= require_self
  */
 
+ /*darkbg #252422 */
+ /*greybg #C6C0B8 */
+ /*eggshell #F3F2EE */
+ /*bluecottage #2E4668 */
+ /*bluecottagelighter #485f7e */
+ /*highlight #F6A90A */
+
+ button {
+   background: #2E4668;
+   color: #F3F2EE;
+   border: none;
+   margin: 3px;
+ }
+
+ button:hover {
+   background: #485f7e;
+ }
+
  a {
    color: #C9D1C8;
+   text-decoration: none;
+
  }
 
  a:hover {
-   color: #5B7065;
+   color: #F6A90A;
  }
 
  h4 {
@@ -27,7 +47,7 @@
  }
 
  #root {
-   background: #C9D1C8;
+   background: #FFFFFF;
    color: #04202C;
    font-family: sans-serif;
    left: 0px;
@@ -89,8 +109,8 @@
  }
 
 .navigation {
-  color: #C9D1C8;
-  background: #04202C;
+  color: #F3F2EE;
+  background: #252422;
   display: flex;
   flex-flow: row;
   align-items: flex-end;
@@ -98,10 +118,7 @@
   width: 100%;
   height: 45px;
   padding-bottom: 5px;
-}
-
-.navigation > a {
-  text-decoration: none;
+  border-bottom: 3px solid #F6A90A;
 }
 
 #mainLogo {

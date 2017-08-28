@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { getSubjects } from '../../actions/deck_actions';
 import DeckPanelItem from './deck_panel_item';
 
@@ -10,8 +10,13 @@ class DeckPanel extends React.Component {
   constructor(props){
     super(props);
 
+    this.handleNewRedirect = this.handleNewRedirect.bind(this);
   }
 
+  handleNewRedirect(e){
+    e.stopPropagation();
+    this.props.history.push(`/home/deck/new/`);
+  }
 
 
   render(){
@@ -30,19 +35,19 @@ class DeckPanel extends React.Component {
       return (<DeckPanelItem key={idx} deck={el} />);
     });
 
-    var newDeckLink = null;
+    var createNewDeck = null;
     if (this.props.currentSubject){
-      newDeckLink = <Link to="/home/deck/new">New Deck</Link>;
+      createNewDeck = <button onClick={this.handleNewRedirect}>New Deck</button>;
     }
 
     return(
       <div className="deckPanel">
-        <div className="deckPanelDisplaySubject">
+        <div className="deckPanelDisplayDeck">
           { subjectDisplay }
         </div>
         Decks:
         <br />
-          { newDeckLink }
+          { createNewDeck }
         <br />
         { deckDisplay }
       </div>
@@ -59,4 +64,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps)(DeckPanel);
+export default withRouter(connect(mapStateToProps)(DeckPanel));

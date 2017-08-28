@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
 import { getDecks } from '../../actions/deck_actions';
 import { wipeCardState } from '../../actions/card_actions';
@@ -11,6 +11,8 @@ class SubjectPanel extends React.Component {
 
   constructor(props){
     super(props);
+
+    this.handleNewRedirect = this.handleNewRedirect.bind(this);
   }
 
   componentDidMount(){
@@ -18,7 +20,6 @@ class SubjectPanel extends React.Component {
     this.props.fetchSubjects();
     //reset the state of cards, as we could be returning from build or study
     this.props.clearCardData();
-    console.log("Subject panel mounted");
     //if there already is a current subject with decks, refresh decks
     if (!this.objEmpty(this.props.currentSubject)
       && this.props.currentSubject.deck_count > 0){
@@ -48,6 +49,11 @@ class SubjectPanel extends React.Component {
     }
   }
 
+  handleNewRedirect(e){
+    e.stopPropagation();
+    this.props.history.push(`/home/subject/new/`);
+  }
+
 
   render(){
 
@@ -65,7 +71,7 @@ class SubjectPanel extends React.Component {
       <div className="subjectPanel" >
         Subjects:
         <br />
-        <Link to="/home/subject/new">New Subject</Link>
+        <button onClick={this.handleNewRedirect}>New Subject</button>
         <br />
         { subjectDisplay }
       </div>
@@ -92,4 +98,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubjectPanel);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SubjectPanel));

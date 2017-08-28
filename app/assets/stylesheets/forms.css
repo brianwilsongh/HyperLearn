@@ -2,7 +2,7 @@
 }
 
 .sessionForm > form {
-  background: #304040;
+  background: #252422;
   color: white;
   display: flex;
   flex-flow: column;
@@ -18,13 +18,18 @@
 }
 
 .sessionForm > form > input[type=submit] {
-  background: #04202C;
-  color: #FFFFFF;
+  background: #2E4668;
+  color: #F3F2EE;
+  border: none;
   margin: 10%;
   border: 0;
   padding: 3%;
   cursor: pointer;
   font-size: 15px;
+}
+
+.sessionForm > form > input[type=submit]:hover {
+  background: #485f7e;
 }
 
 a.boxclose{

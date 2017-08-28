@@ -3,15 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .homeSubjectItem {
-  width: 38%;
-  margin: 30px;
-  background: grey;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  background: #F3F2EE;
+  border-bottom: 1px solid #FFFFFF;
   cursor: pointer;
+}
+
+.homeSubjectItem:hover {
+  background: #FFFFFF;
 }
 
 
 .subjectPanel {
   width: 38%;
+  padding: 3%;
+  background: #F3F2EE;
 }
 
 .browsePanel {
@@ -21,6 +30,6 @@
   flex-wrap: wrap;
 }
 
-.browsePanel > div{
-  margin: 3%
+.browsePanel > div {
+  margin: 3%;
 }

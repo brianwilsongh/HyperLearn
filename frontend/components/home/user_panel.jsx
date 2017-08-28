@@ -37,18 +37,21 @@ class UserPanel extends React.Component {
     if (this.props.currentUser.fans){
       if (this.props.currentUser.fans.length > 0){
         fans = this.props.currentUser.fans.map((fan, idx) =>
-        (<p> { fan.username }</p>));
+        (<p> { fan.f_name + fan.l_name + `(${fan.username})` }</p>));
       }
     }
 
     return(
       <div className="userPanel" >
-        Following THIS subject:
-        <br/>
+        <div>
+        <h4>Following THIS subject:</h4>
         { followers }
+      </div>
 
-        Following YOUR subjects:
+      <div>
+        <h4>Following YOUR subjects:</h4>
         { fans }
+      </div>
 
       </div>
     );

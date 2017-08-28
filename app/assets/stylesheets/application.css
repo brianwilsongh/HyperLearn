@@ -40,18 +40,6 @@
  #appDiv {
  }
 
- .primaryComponent {
-   margin-top: 25px;
-   margin-bottom: 25px;
-   margin-left: 10px;
-   margin-right: 10px;
- }
-
- .primaryComponent > h1 {
-   position: absolute;
-   display: flex;
-   flex-direction: row;
- }
 
  .errorBlock {
    color: red;
@@ -68,11 +56,36 @@
    height: 50%;
  }
 
+ .primaryComponent {
+   margin-top: 25px;
+   margin-bottom: 25px;
+   margin-left: 10px;
+   margin-right: 10px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+ }
+
+ .primaryComponent > h1 {
+   position: absolute;
+ }
+
  .homepagePanels {
    display: flex;
    flex-direction: row;
    width: 62%;
    background: white;
+ }
+
+ .userPanel {
+   display: flex;
+   flex-direction: column;
+   width: 30%;
+   background: white;
+ }
+
+ .userPanel > div {
+   margin: 5%
  }
 
 .Navigation {

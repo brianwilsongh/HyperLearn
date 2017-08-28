@@ -1,0 +1,76 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
+import { getDecks } from '../../actions/deck_actions';
+import { wipeCardState } from '../../actions/card_actions';
+import SubjectPanelItem from './subject_panel_item';
+
+
+class UserPanel extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+
+  objEmpty(obj){
+    if (Object.keys(obj).length === 0
+    && obj.constructor === Object) {
+      return true;
+    }
+    return false;
+  }
+
+
+  render(){
+
+    var followers;
+    if (this.props.currentSubject.followers){
+      if (this.props.currentSubject.followers.length > 0){
+        followers = this.props.currentSubject.followers.map((follower, idx) =>
+        (<p> { follower.f_name + follower.l_name + `(${follower.username})` }</p>));
+      }
+    }
+
+    var fans;
+    if (this.props.currentUser.fans){
+      if (this.props.currentUser.fans.length > 0){
+        fans = this.props.currentUser.fans.map((fan, idx) =>
+        (<p> { fan.username }</p>));
+      }
+    }
+
+    return(
+      <div className="userPanel" >
+        Following THIS subject:
+        <br/>
+        { followers }
+
+        Following YOUR subjects:
+        { fans }
+
+      </div>
+    );
+  }
+
+}
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.current_user,
+    currentSubject: state.subjects.current,
+    fans: state.session.current_user.fans,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSubjects: () => dispatch(getSubjects()),
+    setCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject)),
+    retrieveDecksOfSubject: (subject) => dispatch(getDecks(subject)),
+    clearCardData: () => dispatch(wipeCardState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPanel);

@@ -10,7 +10,7 @@ User.destroy_all
 
 guest = User.create(username: "guest", password: "password",
 f_name: "John", l_name: "Doe")
-5.times do |iteration|
+125.times do |iteration|
   User.create(username: (Faker::GameOfThrones.house + iteration.to_s),
   password: (Faker::GameOfThrones.character + "password"),
   f_name: Faker::Name.first_name,
@@ -20,7 +20,7 @@ end
 Subject.destroy_all
 
 #at least 3 for guest
-3.times do
+2.times do
   Subject.create(title: Faker::GameOfThrones.city,
   user_id: guest.id)
 end
@@ -38,7 +38,7 @@ end
 
 Categorization.destroy_all
 
-30.times do
+50.times do
   Categorization.create(subject_id: Subject.all.sample.id, category_id: Category.all.sample.id)
 end
 
@@ -48,13 +48,13 @@ User.all.each do |user|
   Follow.create(user_id: user.id, subject_id: Subject.all.sample.id)
 end
 
-8.times do
+6.times do
   Follow.create(user_id: guest.id, subject_id: Subject.all.sample.id)
 end
 
 Deck.destroy_all
 
-100.times do
+150.times do
   random_subject = Subject.all.sample
   Deck.create(title: Faker::GameOfThrones.character,
     subject_id: random_subject.id,
@@ -63,7 +63,7 @@ end
 
 Card.destroy_all
 
-600.times do
+750.times do
   Card.create(question: Faker::Lovecraft.deity,
   answer: Faker::Lovecraft.word,
   deck_id: Deck.all.sample.id)

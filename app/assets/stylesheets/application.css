@@ -49,6 +49,8 @@
 
  .primaryComponent > h1 {
    position: absolute;
+   display: flex;
+   flex-direction: row;
  }
 
  .errorBlock {

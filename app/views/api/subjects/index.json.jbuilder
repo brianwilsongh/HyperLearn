@@ -8,6 +8,7 @@ json.set! :alphabetical do
     else
       json.mastery 0
     end
+    json.followers subject.followers
     json.made_by_current_user (current_user.id == subject.user_id)
     json.category subject.categories[0]
     json.card_count subject.cards.length

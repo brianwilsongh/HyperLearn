@@ -94,7 +94,7 @@ class SubjectModify extends React.Component {
           placeholder="Title"
           value={this.state.title} />
 
-        <select onChange={this.handleInputChange("category_id")} value={this.state.category_id}>
+          <select onChange={this.handleInputChange("category_id")} value={this.state.category_id}>
             {categories}
           </select>
           <input type="submit" value="Edit" />

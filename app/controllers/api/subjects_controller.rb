@@ -7,8 +7,13 @@ class Api::SubjectsController < ApplicationController
   end
 
   def create
+
+    fixed_params = subject_params.except(:category_id)
     @subject = Subject.new(fixed_params)
     if @subject.save
+      @categorization = Categorization.new(category_id: params[:subject][:category_id], subject_id: @subject.id)
+      @categorization.save
+      #error should not disrupt the whole thing
       @subjects = current_user.all_subjects
       render :index
     else

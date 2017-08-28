@@ -12,6 +12,7 @@ class SubjectNew extends React.Component {
     this.state = {
       title: "",
       user_id: this.props.current_user.id,
+      category_id: null,
     };
 
     this.handleCreateClick = this.handleCreateClick.bind(this);
@@ -38,6 +39,12 @@ class SubjectNew extends React.Component {
       errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
     }
 
+    let categories;
+    if (this.props.categories.length > 0){
+      categories = this.props.categories.map((category, idx) =>
+      (<option key={idx} value={category.id} >{category.name} </option>));
+    }
+
     return (
     <div id="overlay">
       <div className="sessionForm">
@@ -56,6 +63,10 @@ class SubjectNew extends React.Component {
           placeholder="Title"
           value={this.state.title} />
 
+          <select onChange={this.handleInputChange("category_id")}>
+            {categories}
+          </select>
+
           <input type="submit" value="Submit" />
 
         </form>
@@ -71,6 +82,7 @@ const mapStateToProps = (state) => {
     current_user: state.session.current_user,
     subjects: state.subjects.sorted,
     errors: state.session.errors,
+    categories: state.subjects.categories,
   };
 };
 

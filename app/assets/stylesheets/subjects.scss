@@ -13,3 +13,14 @@
 .subjectPanel {
   width: 38%;
 }
+
+.browsePanel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.browsePanel > div{
+  margin: 3%
+}

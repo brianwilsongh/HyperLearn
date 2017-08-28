@@ -7,7 +7,7 @@ import { wipeCardState } from '../../actions/card_actions';
 import SubjectPanelItem from './subject_panel_item';
 
 
-class UserPanel extends React.Component {
+class PeoplePanel extends React.Component {
 
   constructor(props){
     super(props);
@@ -29,7 +29,7 @@ class UserPanel extends React.Component {
     if (this.props.currentSubject.followers){
       if (this.props.currentSubject.followers.length > 0){
         followers = this.props.currentSubject.followers.map((follower, idx) =>
-        (<p> { follower.f_name + follower.l_name + `(${follower.username})` }</p>));
+        (<p key={idx}> { follower.f_name + follower.l_name + `(${follower.username})` }</p>));
       }
     }
 
@@ -37,7 +37,7 @@ class UserPanel extends React.Component {
     if (this.props.currentUser.fans){
       if (this.props.currentUser.fans.length > 0){
         fans = this.props.currentUser.fans.map((fan, idx) =>
-        (<p> { fan.f_name + fan.l_name + `(${fan.username})` }</p>));
+        (<p key={idx}> { fan.f_name + fan.l_name + `(${fan.username})` }</p>));
       }
     }
 
@@ -76,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(PeoplePanel);

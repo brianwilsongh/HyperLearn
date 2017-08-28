@@ -20,7 +20,7 @@ end
 Subject.destroy_all
 
 #at least 3 for guest
-2.times do
+5.times do
   Subject.create(title: Faker::GameOfThrones.city,
   user_id: guest.id)
 end

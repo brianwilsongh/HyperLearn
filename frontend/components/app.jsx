@@ -14,6 +14,7 @@ import CardNew from './card/card_new';
 import AuthRoute from '../utils/auth_route';
 import ProtectedRoute from '../utils/protected_route';
 import SplashRoute from '../utils/splash_route';
+import Browse from './browse/browse';
 
 import NavBar from './nav_bar';
 import Splash from './splash';
@@ -30,6 +31,8 @@ export const App = ({store}) => {
           <AuthRoute path="/login" component={LoginForm} />
           <AuthRoute path="/signup" component={SignupForm} />
           <ProtectedRoute path="/home" component={HomePage} />
+          
+          <Route path="/browse" component={Browse} />
 
           <ProtectedRoute path="/home/subject/new" component={SubjectNew} />
           <ProtectedRoute path="/home/subject/modify/:id" component={SubjectModify} />

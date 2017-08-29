@@ -1,12 +1,10 @@
 class Api::UsersController < ApplicationController
   def create
-    @file = File.open(params[:user][:image].path)
-    fixed_params = user_params.except(:image)
-    @user = User.new(fixed_params)
-    @user.image = @file
+    @user = User.new(user_params)
     if @user.save
       login(@user)
       @fans = @user.fans
+      debugger;
       render :show
     else
       render json: @user.errors.full_messages, status: 422

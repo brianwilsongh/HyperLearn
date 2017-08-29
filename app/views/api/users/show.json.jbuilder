@@ -1,5 +1,6 @@
 json.extract! @user, :username, :id
 json.avatar @user.image.url
+debugger;
 
 json.set! :fans do
   json.array! @user.fans do |fan|

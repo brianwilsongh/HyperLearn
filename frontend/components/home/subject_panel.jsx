@@ -69,9 +69,10 @@ class SubjectPanel extends React.Component {
 
     return(
       <div className="subjectPanel" >
-        Subjects:
-        <br />
-        <button onClick={this.handleNewRedirect}>New Subject</button>
+        <div className="subjectHeader">
+          <h2>Subjects</h2>
+          <button onClick={this.handleNewRedirect}>New Subject</button>
+        </div>
         <br />
         { subjectDisplay }
       </div>

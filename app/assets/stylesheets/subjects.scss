@@ -4,9 +4,9 @@
 
 .homeSubjectItem {
   width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
   background: #F3F2EE;
   border-bottom: 1px solid #FFFFFF;
   cursor: pointer;
@@ -21,6 +21,24 @@
   width: 38%;
   padding: 3%;
   background: #F3F2EE;
+  border: 1px solid #C6C0B8;
+}
+
+.subjectPanel > div{
+  margin: 0%;
+}
+
+
+.subjectHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.subjectHeader > h2 {
+  font-weight: normal;
+  color: #C6C0B8;
 }
 
 .browsePanel {

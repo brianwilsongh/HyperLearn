@@ -11,15 +11,7 @@ class DeckInterfacePanel extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      ratings: {1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0,
-      },
-    };
-    this.calculateRatingStats = this.calculateRatingStats.bind(this);
+    this.buildRatingStats = this.buildRatingStats.bind(this);
   }
 
   objEmpty(obj){
@@ -30,42 +22,61 @@ class DeckInterfacePanel extends React.Component {
     return false;
   }
 
-  calculateRatingStats(){
-    var newRatings = {1: 0,
+  buildRatingStats(){
+    var newRatings = {
+      1: 0,
       2: 0,
       3: 0,
       4: 0,
       5: 0,
+      "n": 0,
     };
 
-    var lines;
-    var cards = this.props.currentCards;
+    var cards = this.props.cards;
     if (!this.objEmpty(cards)){
-      lines = Object.keys(cards).map((key, idx) => {
-        debugger;
-        var rating = cards.key.rating;
+      Object.keys(cards).forEach((key, idx) => {
+        var rating = cards[key].rating.rating;
+        //not a typo, twice because card holds a rating OBJECT not prop!
         newRatings[rating] ++;
+        newRatings["n"] ++;
         return null;
       });
     }
-    debugger;
-
+    return newRatings;
   }
 
   render(){
 
-    this.calculateRatingStats();
+    var builtStats;
+    if (!this.objEmpty(this.props.cards)){
+      builtStats = this.buildRatingStats();
+    }
+
+    var lines = [];
+    //red to green
+    var colors = ["#A70D0D", "#D86206", "#C4A704", "#A3BF08", "#46B005"];
+    if (builtStats){
+      for (var itr = 1; itr < 6; itr ++){
+        lines.push(<Line
+          key={itr}
+          percent={parseInt(100 * builtStats[itr] / builtStats["n"])}
+          strokeColor={colors[(itr - 1)]}
+          trailColor="#C6C0B8"
+          strokeWidth="3"
+          strokeLinecap="square" />);
+      }
+    }
+    var components = lines.map((i, idx) => {
+      return i;
+    });
 
     return(
       <div className="deckInterfacePanel">
       <CircularProgressbar percentage={this.props.currentDeck.mastery}
         strokeWidth="5"/>
-      <Line percent="15" strokeWidth="3" trailWidth="3" trailColor="#C6C0B8"
-          strokeColor="#F6A90A" strokeLinecap="square" />
-        <Line percent="99" strokeWidth="3" trailWidth="3" trailColor="#C6C0B8"
-          strokeColor="#FFF666" strokeLinecap="square" />
-        <Line percent="62" strokeWidth="3" trailWidth="3" trailColor="#C6C0B8"
-          strokeColor="#F6A90A" strokeLinecap="square" />
+      <div className="deckInterfaceStats">
+        {components}
+      </div>
       </div>
     );
   }
@@ -75,7 +86,7 @@ class DeckInterfacePanel extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentDeck: state.decks.current,
-    currentCards: state.cards.store,
+    cards: state.cards.store,
   };
 };
 

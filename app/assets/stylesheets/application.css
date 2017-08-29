@@ -150,3 +150,7 @@
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.fullHeight {
+  min-height: 100%;
+}

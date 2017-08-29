@@ -57,7 +57,8 @@ class DeckInterfacePanel extends React.Component {
     var colors = ["#A70D0D", "#D86206", "#C4A704", "#A3BF08", "#46B005"];
     if (builtStats){
       for (var itr = 1; itr < 6; itr ++){
-        lines.push(<Line
+        lines.push(
+        <Line
           key={itr}
           percent={parseInt(100 * builtStats[itr] / builtStats["n"])}
           strokeColor={colors[(itr - 1)]}
@@ -67,7 +68,8 @@ class DeckInterfacePanel extends React.Component {
       }
     }
     var components = lines.map((i, idx) => {
-      return i;
+      return (<span key={idx} className="deckInterfaceDataLine">
+      {idx + 1}{i}</span>);
     });
 
     return(

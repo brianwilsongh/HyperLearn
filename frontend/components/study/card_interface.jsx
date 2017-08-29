@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getSubjects } from '../../actions/deck_actions';
+import CardViewer from './card_viewer';
 
 
 class CardInterface extends React.Component {
@@ -15,8 +16,9 @@ class CardInterface extends React.Component {
   render(){
 
     return(
-      <div>
-        Card Interface
+      <div className="cardContainer">
+        Card Container
+        <CardViewer />
       </div>
     );
   }

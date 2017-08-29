@@ -30,18 +30,23 @@ class DeckInterfacePanel extends React.Component {
       4: 0,
       5: 0,
       "n": 0,
+      "overall": 0,
     };
 
     var cards = this.props.cards;
+    var pointAccumulator = 0;
     if (!this.objEmpty(cards)){
       Object.keys(cards).forEach((key, idx) => {
         var rating = cards[key].rating.rating;
         //not a typo, twice because card holds a rating OBJECT not prop!
         newRatings[rating] ++;
         newRatings["n"] ++;
+        pointAccumulator += rating;
         return null;
       });
     }
+    newRatings["overall"] = (parseInt(100 * pointAccumulator / (newRatings["n"] * 5) ));
+    debugger;
     return newRatings;
   }
 
@@ -74,7 +79,7 @@ class DeckInterfacePanel extends React.Component {
 
     return(
       <div className="deckInterfacePanel">
-      <CircularProgressbar percentage={this.props.currentDeck.mastery}
+      <CircularProgressbar percentage={builtStats ? builtStats["overall"] : 0}
         strokeWidth="5"/>
       <div className="deckInterfaceStats">
         {components}

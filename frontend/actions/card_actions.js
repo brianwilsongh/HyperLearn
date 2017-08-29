@@ -43,8 +43,8 @@ export const deleteCard = (card) => dispatch => {
     );
 };
 
-export const sendRating = (rating) => dispatch => {
-  return APIUtils.sendRating(rating)
+export const sendRating = (state) => dispatch => {
+  return APIUtils.sendRating(state)
   .then(cards => dispatch(receiveCards(cards)),
   errors => dispatch(receiveCardErrors(errors)));
 };

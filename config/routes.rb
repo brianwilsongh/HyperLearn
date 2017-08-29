@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :subjects, only: [:index, :create, :update, :destroy]
     resources :decks, except: [:new]
     resources :cards, only: [:index, :create, :update, :destroy]
+    resources :ratings, only: [:create]
   end
 end

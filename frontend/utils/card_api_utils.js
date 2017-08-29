@@ -23,6 +23,17 @@ export const editCards = (editedCards) => {
   });
 };
 
+export const sendRating = (state) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/ratings`,
+    data: {
+      rating: {user_id: state.userId, card_id: state.cardId, rating: state.rating},
+      current_deck_id: state.currentDeckId,
+    }
+  });
+};
+
 export const deleteCard = (id) => {
   return $.ajax({
     method: "DELETE",

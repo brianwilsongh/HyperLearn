@@ -1,6 +1,9 @@
 class Api::UsersController < ApplicationController
   def create
-    @user = User.new(user_params)
+    @file = File.open(params[:user][:image].path)
+    fixed_params = user_params.except(:image)
+    @user = User.new(fixed_params)
+    @user.image = @file
     if @user.save
       login(@user)
       @fans = @user.fans
@@ -13,7 +16,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :image)
   end
 
 end

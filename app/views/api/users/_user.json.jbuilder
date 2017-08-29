@@ -1,4 +1,5 @@
 json.extract! user, :username, :id
+json.avatar user.image.url
 
 json.set! :fans do
   json.array! user.fans do |fan|

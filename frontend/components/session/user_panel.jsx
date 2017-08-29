@@ -13,7 +13,8 @@ class UserPanel extends React.Component {
   render(){
     return(
       <div className="Session">
-        Hello, {this.props.currentUser.username}!
+        <img src={this.props.currentUser.avatar}/>
+        Hi, {this.props.currentUser.username}!
         <Link to="/" onClick={this.props.logoutFromPanel}>Log Out</Link>
       </div>
     );

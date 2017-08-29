@@ -12,10 +12,15 @@
 #
 
 class User < ActiveRecord::Base
+  #user's paperclip attachment is called image
+
   validates :password_digest, :session_token, presence: true
   validates :username, presence: true, uniqueness: true
   validates :password, length: {minimum: 6, allow_nil: true}
   after_initialize(:ensure_session_token)
+
+  has_attached_file :image, default_url: "app/assets/images/hyperlearn_logo.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :subjects,
     primary_key: :id,

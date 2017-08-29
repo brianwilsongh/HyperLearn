@@ -42,12 +42,12 @@ class DeckPanel extends React.Component {
 
     return(
       <div className="deckPanel">
+        <br />
+        { createNewDeck }
         <div className="deckPanelDisplayDeck">
           { subjectDisplay }
         </div>
         Decks:
-        <br />
-          { createNewDeck }
         <br />
         { deckDisplay }
       </div>

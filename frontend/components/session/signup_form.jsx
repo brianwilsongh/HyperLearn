@@ -12,18 +12,23 @@ class SignupForm extends React.Component {
     this.state = {
       username: "",
       password: "",
-      avatar_url: "",
+      image: null,
+      imageUrl: null,
     };
     //initial state is blank
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     //bind the methods
+    this.updateFile = this.updateFile.bind(this);
 
   }
 
   handleFormSubmit(e){
-    e.preventDefault();
-    this.props.sendSignupRequest(this.state)
+    var formData = new FormData();
+    formData.append("user[username]", this.state.username);
+    formData.append("user[password]", this.state.password);
+    formData.append("user[image]", this.state.image);
+    this.props.sendSignupRequest(formData)
     .then(this.props.currentUser ? this.props.history.push("/home") :
    console.log("INVALID CREDENTIALS"));
 
@@ -35,6 +40,19 @@ class SignupForm extends React.Component {
         [key]: e.currentTarget.value
       });
     };
+  }
+
+  updateFile(e){
+    var file = e.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = function () {
+      this.setState({ image: file, imageUrl: fileReader.result });
+    }.bind(this);
+    this.setState({image: file});
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
 
 
@@ -50,16 +68,16 @@ class SignupForm extends React.Component {
             x
           </Link>
 
-          <p className="errorBlock">{ this.props.errors ? <p>
-              {errors}
-            </p> : null}</p>
+          <div className="errorBlock">{ this.props.errors ? <ul>{errors}</ul> : null}</div>
 
 
           <h4>Username:</h4>
           <input onChange={this.handleInputChange("username")} placeholder="Username" />
           <h4>Password:</h4>
           <input type="password" onChange={this.handleInputChange("password")} placeholder="Password" />
+          <input type="file" onChange={this.updateFile}></input>
           <input type="submit" value="Sign Up" />
+          <img src={this.state.imageUrl} height="20px"/>
         </form>
       </div>
     </div>

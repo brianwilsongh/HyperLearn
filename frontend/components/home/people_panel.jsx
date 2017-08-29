@@ -29,7 +29,7 @@ class PeoplePanel extends React.Component {
     if (this.props.currentSubject.followers){
       if (this.props.currentSubject.followers.length > 0){
         followers = this.props.currentSubject.followers.map((follower, idx) =>
-        (<p key={idx}> { follower.f_name + follower.l_name + `(${follower.username})` }</p>));
+        (<p key={idx}> { follower.f_name + " " + follower.l_name } <small>{` (${follower.username})`}</small></p>));
       }
     }
 
@@ -37,12 +37,12 @@ class PeoplePanel extends React.Component {
     if (this.props.currentUser.fans){
       if (this.props.currentUser.fans.length > 0){
         fans = this.props.currentUser.fans.map((fan, idx) =>
-        (<p key={idx}> { fan.f_name + fan.l_name + `(${fan.username})` }</p>));
+        (<p key={idx}> { fan.f_name + " " + fan.l_name } <small>{` (${fan.username})`}</small></p>));
       }
     }
 
     return(
-      <div className="userPanel" >
+      <div className="peoplePanel" >
         <div>
         <h4>Following THIS subject:</h4>
         { followers }

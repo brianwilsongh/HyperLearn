@@ -43,7 +43,7 @@ class DeckPanel extends React.Component {
     return(
       <div className="deckPanel">
         <div className="deckHeader">
-          <h4>Decks:</h4>
+          <h2>Decks</h2>
           <div>{ createNewDeck }</div>
         </div>
         <div className="deckPanelDisplaySubject">

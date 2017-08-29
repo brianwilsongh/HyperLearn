@@ -67,8 +67,8 @@ class CardForm extends React.Component {
     }
 
     return (
-      <div className="cardFormContainer">
-          <form className="cardForm" onSubmit={this.handleEditClick} >
+      <div className="cardForm">
+          <form onSubmit={this.handleEditClick} >
 
             <br />
             <div>{ errors ? <p className="errorBlock">{ errors }</p> : null}</div>

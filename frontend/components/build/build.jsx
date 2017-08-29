@@ -81,7 +81,6 @@ class Build extends React.Component {
 
     return(
       <div className="primaryComponent">
-        <div>
         <button onClick={this.triggerSubmissionEdit}>UPDATE</button>
         <div className="deckPanelDisplaySubject">
           { deckDisplay }
@@ -89,6 +88,7 @@ class Build extends React.Component {
         <Link to={`/build/new/${this.props.currentDeck.id}`}>
           <button>NEW CARD</button>
         </Link>
+        <div className="massEditForm">
           { forms }
         </div>
       </div>

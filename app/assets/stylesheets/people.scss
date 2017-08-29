@@ -1,0 +1,17 @@
+.peoplePanel {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.peoplePanel > div {
+  border-top: 1px solid #F6A90A;
+  border-bottom: 1px solid #F6A90A;
+  padding-bottom: 1.33em;
+  margin: 10%;
+  font-size: 90%
+}
+
+.peoplePanel > div > p{
+  margin: 1em;
+}

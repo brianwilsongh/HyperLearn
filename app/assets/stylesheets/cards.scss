@@ -6,7 +6,12 @@
 .cardForm {
   display: flex;
   flex-direction: row;
-  margin: 1%;
-  padding: 2%;
+  flex-wrap: wrap;
   border: 1px solid grey;
+}
+
+.massEditForm {
+  display: flex;
+  flex-direction: row;
+  width: 62%
 }

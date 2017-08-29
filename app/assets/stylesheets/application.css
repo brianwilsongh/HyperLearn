@@ -97,17 +97,6 @@
    background: white;
  }
 
- .userPanel {
-   display: flex;
-   flex-direction: column;
-   width: 30%;
-   background: white;
- }
-
- .userPanel > div {
-   margin: 5%
- }
-
 .navigation {
   color: #F3F2EE;
   background: #252422;
@@ -124,7 +113,7 @@
 #mainLogo {
   position: relative;
   top: 25px;
-  max-width: 70px;
+  max-width: 72px;
   height: auto;
 }
 

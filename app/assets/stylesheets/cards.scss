@@ -4,14 +4,25 @@
 
 
 .cardForm {
+  margin: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 2%;
+  width: 100%;
+  background: #F3F2EE;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   border: 1px solid grey;
 }
 
+.massEditDisplayDeck {
+  width: 38%;
+}
+
 .massEditForm {
   display: flex;
   flex-direction: row;
-  width: 62%
+  flex-wrap: wrap;
+  width: 62%;
 }

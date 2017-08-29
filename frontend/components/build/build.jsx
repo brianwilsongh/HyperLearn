@@ -58,7 +58,7 @@ class Build extends React.Component {
 
   render(){
     var deckDisplay = !this.props.currentDeck ? "unknown"
-    : <h1>{this.props.currentDeck.title}</h1>;
+    : <h2>{this.props.currentDeck.title}</h2>;
 
     var forms;
     var currentCards = this.props.cards;
@@ -81,13 +81,15 @@ class Build extends React.Component {
 
     return(
       <div className="primaryComponent">
-        <button onClick={this.triggerSubmissionEdit}>UPDATE</button>
-        <div className="deckPanelDisplaySubject">
-          { deckDisplay }
+        <div>
+          <div className="massEditDisplayDeck">
+            { deckDisplay }
+          </div>
+          <button onClick={this.triggerSubmissionEdit}>UPDATE</button>
+          <Link to={`/build/new/${this.props.currentDeck.id}`}>
+            <button>NEW CARD</button>
+          </Link>
         </div>
-        <Link to={`/build/new/${this.props.currentDeck.id}`}>
-          <button>NEW CARD</button>
-        </Link>
         <div className="massEditForm">
           { forms }
         </div>

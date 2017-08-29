@@ -22,7 +22,7 @@ class DeckPanel extends React.Component {
   render(){
 
     var subjectDisplay = !this.props.currentSubject ? "unknown"
-    : <h4>{this.props.currentSubject.title}</h4>;
+    : <h4>Selected: {this.props.currentSubject.title}</h4>;
 
     var retrievedDecks;
     if (this.props.decks.length > 0){
@@ -42,14 +42,16 @@ class DeckPanel extends React.Component {
 
     return(
       <div className="deckPanel">
-        <div className="deckHeader">
-          <h2>Decks</h2>
-          <div>{ createNewDeck }</div>
-        </div>
-        <div className="deckPanelDisplaySubject">
-          { subjectDisplay }
-        </div>
+        <div className="homeDeckItem">
+          <div className="deckPanelDisplaySubject">
+            { subjectDisplay }
+          </div>
+      </div>
         <br />
+          <div className="deckHeader">
+            <h2>Decks</h2>
+            <div>{ createNewDeck }</div>
+          </div>
         { deckDisplay }
       </div>
     );

@@ -51,6 +51,13 @@ export const receiveCards = (cards) => {
   };
 };
 
+export const receiveCurrentCard = (card) => {
+  return {
+    type: RECEIVE_CURRENT_CARD,
+    data: card,
+  };
+};
+
 export const receiveCardErrors = (errors) => {
   return {
     type: RECEIVE_CARD_ERRORS,

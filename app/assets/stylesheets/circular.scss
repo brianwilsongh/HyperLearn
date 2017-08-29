@@ -1,0 +1,32 @@
+/*
+ * react-circular-progressbar styles
+ *
+ * All of the styles in this file are optional and configurable!
+ */
+
+.CircularProgressbar {
+  /*
+   * This fixes an issue where the CircularProgressbar svg has
+   * 0 width inside a "display: flex" container, and thus not visible.
+   *
+   * If you're not using "display: flex", you can remove this style.
+   */
+  width: 62%;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #F6A90A;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #C6C0B8;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #F6A90A;
+  font-size: 20px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}

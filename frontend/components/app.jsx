@@ -19,6 +19,7 @@ import Browse from './browse/browse';
 import NavBar from './nav_bar';
 import Splash from './splash';
 import HomePage from './home/homepage';
+import Study from './study/study';
 
 export const App = ({store}) => {
 
@@ -26,12 +27,15 @@ export const App = ({store}) => {
     <Provider store={store}>
       <HashRouter>
         <div id="appDiv">
-          <Route path="/" component={NavBar} />
+          <Switch>
+            <Route path="/study/:id" component={Study} />
+            <Route path="/" component={NavBar} />
+          </Switch>
           <SplashRoute path="/" exact component={Splash} />
           <AuthRoute path="/login" component={LoginForm} />
           <AuthRoute path="/signup" component={SignupForm} />
           <ProtectedRoute path="/home" component={HomePage} />
-          
+
           <Route path="/browse" component={Browse} />
 
           <ProtectedRoute path="/home/subject/new" component={SubjectNew} />

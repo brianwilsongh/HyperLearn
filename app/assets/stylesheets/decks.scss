@@ -33,10 +33,34 @@
 
 .deckPanelDisplaySubject {
   margin: 10px;
-  width: 62%;
+  width: 100%;
   background: #F3F2EE;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #2E4668;
+}
+
+.deckInterface {
+  background: #252422;
+  color: #F3F2EE;
+  width: 24%;
+}
+
+.deckInterfacePanel {
+  min-height: 62%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deckInterfaceStats {
+}
+
+.studyInterface {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
 }

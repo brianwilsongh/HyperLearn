@@ -16,6 +16,14 @@
   border: 1px solid grey;
 }
 
+.cardForm > form {
+  width: 100%;
+}
+
+.cardForm > form > input {
+  width: 62%;
+}
+
 .massEditDisplayDeck {
   width: 38%;
 }

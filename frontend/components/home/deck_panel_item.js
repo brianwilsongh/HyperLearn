@@ -16,7 +16,7 @@ class DeckPanelItem extends React.Component {
 
   handleClick(e){
     e.preventDefault();
-    console.log("just clicked on deck, this should probably go to study iface");
+    this.props.history.push(`/study/${this.props.deck.id}`);
   }
 
   handleModifyRedirect(e){
@@ -50,12 +50,12 @@ class DeckPanelItem extends React.Component {
 
     return(
       <div className="homeDeckItem" onClick={this.handleClick}>
-        { this.props.deck.title }
+        <h3>{ this.props.deck.title }</h3>
         <br />
-        { buttons }
         cards: { this.props.deck.card_count }
         <br />
         mastery: { this.props.deck.mastery }%
+        { buttons }
       </div>
     );
   }

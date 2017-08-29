@@ -43,6 +43,12 @@ export const deleteCard = (card) => dispatch => {
     );
 };
 
+export const sendRating = (rating) => dispatch => {
+  return APIUtils.sendRating(rating)
+  .then(cards => dispatch(receiveCards(cards)),
+  errors => dispatch(receiveCardErrors(errors)));
+};
+
 
 export const receiveCards = (cards) => {
   return {

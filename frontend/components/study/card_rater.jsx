@@ -8,10 +8,10 @@ class CardRater extends React.Component {
   constructor(props){
     super(props);
 
-    debugger;
     this.state = {
       userId: this.props.currentUser.id,
       cardId: this.props.currentCard.id,
+      rating: this.props.currentCard.rating,
     };
 
     this.handleRatingClick = this.handleRatingClick.bind(this);
@@ -19,19 +19,21 @@ class CardRater extends React.Component {
 
   handleRatingClick(e){
     e.preventDefault();
+    var rating = parseInt(e.innerText);
     debugger;
   }
 
-  render(){
 
-    var colors = ["#A70D0D", "#D86206", "#C4A704", "#A3BF08", "#46B005"];
-    for (var itr = 1; itr < 6; itr++){
-      <div onClick={this.handleRatingClick} id={itr}>{itr}</div>;
-    }
+  render(){
 
     return(
       <div className="cardBottomSection">
         Answer is shown
+        <div onClick={this.handleRatingClick} style={{color: "#A70D0D"}}>1</div>
+        <div onClick={this.handleRatingClick} style={{color: "#D86206"}}>2</div>
+        <div onClick={this.handleRatingClick} style={{color: "#C4A704"}}>3</div>
+        <div onClick={this.handleRatingClick} style={{color: "#A3BF08"}}>4</div>
+        <div onClick={this.handleRatingClick} style={{color: "#46B005"}}>5</div>
       </div>
     );
   }

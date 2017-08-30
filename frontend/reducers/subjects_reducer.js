@@ -1,4 +1,5 @@
 import * as SActions from "../actions/subject_actions";
+import _ from 'lodash';
 
 const defaultState = {
   sorted: [],

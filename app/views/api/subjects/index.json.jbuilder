@@ -4,8 +4,7 @@ json.set! :alphabetical do
   json.array! subject_array do |subject|
     json.extract! subject, :title, :user_id, :id
     if (subject.ratings.length > 0)
-      json.mastery (100 * (subject.ratings.where(user_id: current_user.id).collect(&:rating).reduce(:+) / (subject.
-      ratings.where(user_id: current_user.id).length * 5).to_f)).to_i
+      json.mastery (100 * (subject.ratings.where(user_id: current_user.id).collect(&:rating).reduce(:+) / (subject.ratings.where(user_id: current_user.id).length * 5).to_f)).to_i
     else
       json.mastery 0
     end

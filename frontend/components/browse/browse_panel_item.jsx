@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { receiveCurrentSubject } from '../../actions/subject_actions';
+import { sendFollow } from '../../actions/subject_actions';
 
 
 class BrowsePanelItem extends React.Component {
@@ -11,8 +11,9 @@ class BrowsePanelItem extends React.Component {
     this.handleFollowClick = this.handleFollowClick.bind(this);
   }
 
-  handleFollowClick(e){
-
+  handleFollowClick(subjectId){
+    var arg = arguments[0];
+    this.props.sendFollow(arg);
   }
 
 
@@ -31,7 +32,7 @@ class BrowsePanelItem extends React.Component {
 
 
         var follow = followed ?
-        null : <button onClick={this.handleFollowClick}>Follow</button>;
+        null : <button onClick={this.handleFollowClick.bind(this, sub.id)}>Follow</button>;
         //follow is a boolean, if user NOT following we render a follow button
 
         return (
@@ -63,4 +64,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(BrowsePanelItem));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendFollow: (id) => dispatch(sendFollow(id)),
+
+  };
+};
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BrowsePanelItem));

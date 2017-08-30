@@ -27,3 +27,11 @@ export const deleteSubject = (id) => {
     url: `/api/subjects/${id}`,
   });
 };
+
+export const sendFollow = (subjectId) => {
+  return $.ajax({
+    method: "POST",
+    url: `/api/follows/`,
+    data: {subjectId}
+  });
+};

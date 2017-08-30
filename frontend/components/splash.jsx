@@ -9,9 +9,17 @@ class Splash extends React.Component {
 
   render(){
     return(
-      <div className="primaryComponent">
-        <h1>hello, welcome to the app. this is the H1</h1>
-        <img id="splash" src={window.splash}/>
+      <div className="splashContainer">
+        <div>
+          <img id="splash" src={window.splash}/>
+        </div>
+        <div className="textHolder">
+          <h2>Efficient, cost-free studying for the 21st Century</h2>
+        </div>
+
+        <div className="textHolderTwo">
+          <h2>Built with the latest in web technology</h2>
+        </div>
       </div>
     );
   }

@@ -37,16 +37,18 @@ class DeckInterfacePanel extends React.Component {
     var pointAccumulator = 0;
     if (!this.objEmpty(cards)){
       Object.keys(cards).forEach((key, idx) => {
-        var rating = cards[key].rating.rating;
-        //not a typo, twice because card holds a rating OBJECT not prop!
-        newRatings[rating] ++;
-        newRatings["n"] ++;
-        pointAccumulator += rating;
+        if (key !== "imperfects"){
+          //imperfects are stored in store, skip over it
+          var rating = cards[key].rating.rating;
+          //not a typo, twice because card holds a rating OBJECT not prop!
+          newRatings[rating] ++;
+          newRatings["n"] ++;
+          pointAccumulator += rating;
+        }
         return null;
       });
     }
     newRatings["overall"] = (parseInt(100 * pointAccumulator / (newRatings["n"] * 5) ));
-    debugger;
     return newRatings;
   }
 

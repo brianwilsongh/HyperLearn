@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { sendRating } from '../../actions/card_actions';
+import { sendRating, pushUsedCard, clearUsedCards, receiveCurrentCard } from '../../actions/card_actions';
 
 
 class CardRater extends React.Component {
@@ -17,12 +17,45 @@ class CardRater extends React.Component {
     };
 
     this.handleRatingClick = this.handleRatingClick.bind(this);
+    this.swapCard = this.swapCard.bind(this);
   }
 
   handleRatingClick(e){
     var rating = parseInt(e.currentTarget.innerText);
     this.state.rating = rating;
     this.props.sendStateAsRating(this.state);
+    this.swapCard();
+  }
+
+  swapCard(){
+    var thisCardRater = this;
+    var nextCard = this.props.currentCard;
+    //if this is true at end, deck should be reset and unstudyable
+    var cards = this.props.cards;
+    if (cards.imperfects === this.props.usedCards.length){
+      debugger;
+      this.props.clearUsedCards();
+    }
+
+    Object.keys(cards).forEach((id, idx) => {
+      var actualCard = cards[id];
+      if (typeof actualCard !== "number"){
+        if (actualCard !== thisCardRater.props.currentCard
+          && !thisCardRater.props.usedCards.includes(actualCard)
+          && actualCard.rating.rating < 5
+          && nextCard === thisCardRater.props.currentCard){
+            //if the actualCard meets all conditions for swapping...
+            //push current actualCard and perform the swap
+          nextCard = actualCard;
+        }
+      }
+    });
+    if (nextCard === this.props.currentCard){
+      console.log("DECK SHOULD READ 100%");
+    }
+
+    thisCardRater.props.pushUsedCard(thisCardRater.props.currentCard);
+    thisCardRater.props.setCurrentCard(nextCard);
   }
 
 
@@ -56,12 +89,17 @@ const mapStateToProps = (state) => {
     currentUser: state.session.current_user,
     currentDeck: state.decks.current,
     currentCard: state.cards.current,
+    cards: state.cards.store,
+    usedCards: state.cards.used,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     sendStateAsRating: (state) => dispatch(sendRating(state)),
+    pushUsedCard: (card) => dispatch(pushUsedCard(card)),
+    clearUsedCards: () => dispatch(clearUsedCards()),
+    setCurrentCard: (card) => dispatch(receiveCurrentCard(card)),
   };
 };
 

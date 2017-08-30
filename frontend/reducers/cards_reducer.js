@@ -5,7 +5,7 @@ const defaultState = {
   current: {},
   store: {},
   errors: [],
-  ratings: {},
+  used: [],
   editStore: {},
 };
 
@@ -20,12 +20,12 @@ export const cardsReducer = (state = defaultState, action) => {
       }
 
       return Object.assign({}, state,
-        {store: action.data.store, ratings: action.data.ratings, editStore: {}});
+        {store: action.data.store, editStore: {}});
 
     case CActions.RECEIVE_CARD_ERRORS:
       //this will have to receive an array which we'll nest/merge into store
       return Object.assign({}, state,
-        {errors: action.data.responseJSON, ratings: {}, editStore: {}});
+        {errors: action.data.responseJSON, editStore: {}});
 
     case CActions.ADD_CARD_EDIT:
       //editStore will hold all edits with id as key and obj as value
@@ -34,11 +34,17 @@ export const cardsReducer = (state = defaultState, action) => {
 
     case CActions.WIPE_CARD_STATE:
       //editStore will hold all edits with id as key and obj as value
-      return _.merge({}, defaultState);
+      return Object.assign({}, defaultState);
 
     case CActions.RECEIVE_CURRENT_CARD:
       return Object.assign({}, state,
         {current: action.data, editStore: {}});
+
+    case CActions.PUSH_USED_CARD:
+      return Object.assign({}, state, {used: state.used.concat(action.data)});
+
+    case CActions.CLEAR_USED_CARDS:
+      return Object.assign({}, state, {used: []});
 
     default:
       return state;

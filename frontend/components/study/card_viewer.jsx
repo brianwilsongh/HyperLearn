@@ -16,6 +16,10 @@ class CardViewer extends React.Component {
     this.flipCard = this.flipCard.bind(this);
   }
 
+  componentWillUpdate(){
+    this.state.side = "Q";
+  }
+
   flipCard(){
     var newState = (this.state.side === "Q") ? {side: "A"} : {side: "Q"};
     this.setState(newState);

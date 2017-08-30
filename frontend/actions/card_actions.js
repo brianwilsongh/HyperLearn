@@ -14,6 +14,10 @@ export const ADD_CARD_EDIT = 'ENQUEUE_CARD_EDIT';
 //called in subject panel after edit cards or study
 export const WIPE_CARD_STATE = 'WIPE_CARD_STATE';
 
+//used for card rate and reset
+export const PUSH_USED_CARD = 'PUSH_USED_CARD';
+export const CLEAR_USED_CARDS = 'CLEAR_USED_CARDS';
+
 
 export const getCards = (deck) => dispatch => {
   return APIUtils.getCards(deck)
@@ -81,5 +85,18 @@ export const addCardEdit = (editedCard) => {
 export const wipeCardState = () => {
   return {
     type: WIPE_CARD_STATE,
+  };
+};
+
+export const pushUsedCard = (card) => {
+  return {
+    type: PUSH_USED_CARD,
+    data: card,
+  };
+};
+
+export const clearUsedCards = () => {
+  return {
+    type: CLEAR_USED_CARDS,
   };
 };

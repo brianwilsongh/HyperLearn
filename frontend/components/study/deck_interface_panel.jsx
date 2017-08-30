@@ -36,14 +36,11 @@ class DeckInterfacePanel extends React.Component {
     var pointAccumulator = 0;
     if (!this.objEmpty(cards)){
       Object.keys(cards).forEach((key, idx) => {
-        if (key !== "imperfects"){
-          //imperfects are stored in store, skip over it
-          var rating = cards[key].rating.rating;
-          //not a typo, twice because card holds a rating OBJECT not prop!
-          newRatings[rating] ++;
-          newRatings["n"] ++;
-          pointAccumulator += rating;
-        }
+        var rating = cards[key].rating.rating;
+        //not a typo, twice because card holds a rating OBJECT not prop!
+        newRatings[rating] ++;
+        newRatings["n"] ++;
+        pointAccumulator += rating;
         return null;
       });
     }
@@ -82,13 +79,13 @@ class DeckInterfacePanel extends React.Component {
       <div className="deckInterfacePanel">
       <div className="circleStat">
         <div><Circle percent={builtStats ? builtStats["overall"] : 0}
-          strokeWidth="5"
+          strokeWidth="6"
           strokeColor="#F6A90A"
           trailWidth="0"
           strokeLinecap="square"/>
         </div>
         <div className="circleStatNumber">
-          {builtStats ? builtStats["overall"] : 0}
+          {builtStats ? builtStats["overall"] : 0}<small>%</small>
         </div>
       </div>
       <div className="deckInterfaceStats">

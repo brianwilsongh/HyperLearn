@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { sendRating, pushUsedCard, clearUsedCards, receiveCurrentCard } from '../../actions/card_actions';
+import { sendRating, pushUsedCard, clearUsedCards, receiveCurrentCard, swapToCard } from '../../actions/card_actions';
 
 
 class CardRater extends React.Component {
@@ -41,28 +41,41 @@ class CardRater extends React.Component {
     var nextCard = this.props.currentCard;
     //if this is true at end, deck should be reset and unstudyable
     var cards = this.props.cards;
-    if (cards.imperfects === this.props.usedCards.length){
+    var usedCards = this.props.usedCards;
+
+    var imperfects = 0;
+    Object.keys(cards).forEach((id, idx) => {
+      var actualCard = cards[id];
+      if (actualCard.rating.rating < 5){
+        imperfects++;
+      }
+    });
+
+    if (imperfects <= this.props.usedCards.length){
+      //clear usedCards in state if full
       this.props.clearUsedCards();
+      usedCards = [];
+    }
+
+    if (imperfects === 0){
+      console.log("Deck should be 100%!");
     }
 
     Object.keys(cards).forEach((id, idx) => {
       var actualCard = cards[id];
-      if (typeof actualCard !== "number"){
-        if (actualCard.id !== thisCardRater.props.currentCard.id
-          && !thisCardRater.cardInArray(actualCard, thisCardRater.props.usedCards)
-          && actualCard.rating.rating < 5
-          && nextCard === thisCardRater.props.currentCard){
-            //if the actualCard meets all conditions for swapping...
-            //push current actualCard and perform the swap
-          nextCard = actualCard;
-          thisCardRater.props.pushUsedCard(thisCardRater.props.currentCard);
-          thisCardRater.props.setCurrentCard(nextCard);
-        }
+      if (actualCard.id !== thisCardRater.props.currentCard.id
+        && !thisCardRater.cardInArray(actualCard, usedCards)
+        && actualCard.rating.rating < 5
+        && nextCard === thisCardRater.props.currentCard){
+          //if the actualCard meets all conditions for swapping...
+          //push current actualCard and perform the swap
+        nextCard = actualCard;
+        thisCardRater.props.swapToThisCard(nextCard);
       }
     });
+
     if (nextCard === this.props.currentCard){
-      thisCardRater.props.setCurrentCard(nextCard);
-      console.log("ON LAST CARD OR AT 100%");
+      console.log("THERE IS ONLY ONE CARD");
     }
 
   }
@@ -108,7 +121,7 @@ const mapDispatchToProps = (dispatch) => {
     sendStateAsRating: (state) => dispatch(sendRating(state)),
     pushUsedCard: (card) => dispatch(pushUsedCard(card)),
     clearUsedCards: () => dispatch(clearUsedCards()),
-    setCurrentCard: (card) => dispatch(receiveCurrentCard(card)),
+    swapToThisCard: (card) => dispatch(swapToCard(card)),
   };
 };
 

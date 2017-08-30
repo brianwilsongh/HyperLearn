@@ -17,6 +17,7 @@ export const WIPE_CARD_STATE = 'WIPE_CARD_STATE';
 //used for card rate and reset
 export const PUSH_USED_CARD = 'PUSH_USED_CARD';
 export const CLEAR_USED_CARDS = 'CLEAR_USED_CARDS';
+export const SWAP_TO_CARD = 'SWAP_TO_CARD';
 
 
 export const getCards = (deck) => dispatch => {
@@ -91,6 +92,13 @@ export const wipeCardState = () => {
 export const pushUsedCard = (card) => {
   return {
     type: PUSH_USED_CARD,
+    data: card,
+  };
+};
+
+export const swapToCard = (card) => {
+  return {
+    type: SWAP_TO_CARD,
     data: card,
   };
 };

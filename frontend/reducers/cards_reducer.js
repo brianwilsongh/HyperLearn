@@ -43,6 +43,10 @@ export const cardsReducer = (state = defaultState, action) => {
     case CActions.PUSH_USED_CARD:
       return Object.assign({}, state, {used: state.used.concat(action.data)});
 
+    case CActions.SWAP_TO_CARD:
+      return Object.assign({}, state,
+        {current: action.data, used: state.used.concat(action.data)});
+
     case CActions.CLEAR_USED_CARDS:
       return Object.assign({}, state, {used: []});
 

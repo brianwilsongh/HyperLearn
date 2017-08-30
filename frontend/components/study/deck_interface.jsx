@@ -9,7 +9,11 @@ class DeckInterface extends React.Component {
 
   constructor(props){
     super(props);
+    this.returnHome = this.returnHome.bind(this);
+  }
 
+  returnHome(){
+    this.props.history.push("/home");
   }
 
 

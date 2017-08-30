@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getCurrentDeck } from '../../actions/deck_actions';
-import { wipeCardState, getCards, receiveCurrentCard } from '../../actions/card_actions';
+import { wipeCardState, getCards, receiveCurrentCard, pushUsedCard } from '../../actions/card_actions';
 import DeckInterface from './deck_interface';
 import CardViewer from './card_viewer';
 
@@ -34,8 +34,9 @@ class Study extends React.Component {
     //Set current subject to first on initial load, then get its decks just this once
     if (!this.objEmpty(this.props.cards) && this.objEmpty(this.props.currentCard))
     {
-      //change this later to a method to find next card with an algo
+      //set initial card if there isn't one
       this.props.setCurrentCard(this.props.cards[Object.keys(this.props.cards)[0]]);
+      this.props.pushUsedCard(this.props.cards[Object.keys(this.props.cards)[0]]);
     }
 
     if (!this.objEmpty(this.props.currentDeck)
@@ -73,6 +74,7 @@ const mapDispatchToProps = (dispatch) => {
     clearCardData: () => dispatch(wipeCardState()),
     getCardsOfDeck: (deck) => dispatch(getCards(deck)),
     setCurrentCard: (card) => dispatch(receiveCurrentCard(card)),
+    pushUsedCard: (card) => dispatch(pushUsedCard(card)),
   };
 };
 

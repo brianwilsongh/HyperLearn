@@ -29,19 +29,21 @@ class CardViewer extends React.Component {
     var status = this.state.side === "Q" ? "Question:" : "Answer:";
     var display = this.state.side === "Q" ? this.props.currentCard.question : this.props.currentCard.answer;
     var bottomSection = (this.state.side === "Q" ?
-    <div className="cardBottomSection">Show Answer</div> :
+    <div>Show Answer</div> :
       <CardRater/>);
 
     return(
-      <div className="fullHeight">
-      <div className="cardViewer" onClick={this.flipCard}>
-        {status}
-        <div className="cardContent">
-        {display}
+      <div className="cardSection">
+        <div className="cardViewer" onClick={this.flipCard}>
+          {status}
+          <div className="cardContent">
+          {display}
+          </div>
+        </div>
+        <div className="cardBottomSection">
+          {bottomSection}
         </div>
       </div>
-      {bottomSection}
-    </div>
     );
   }
 

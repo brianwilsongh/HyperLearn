@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { getCurrentDeck } from '../../actions/deck_actions';
 import { wipeCardState, getCards, receiveCurrentCard } from '../../actions/card_actions';
 import DeckInterface from './deck_interface';
-import CardInterface from './card_interface';
+import CardViewer from './card_viewer';
 
 
 class Study extends React.Component {
@@ -51,7 +51,7 @@ class Study extends React.Component {
     return(
       <div className="studyInterface" >
         <DeckInterface />
-        <CardInterface />
+        <CardViewer />
       </div>
     );
   }

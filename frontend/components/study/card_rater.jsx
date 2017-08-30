@@ -27,57 +27,66 @@ class CardRater extends React.Component {
     this.swapCard();
   }
 
+  cardInArray(card, array){
+    for (var idx = 0; idx < array.length; idx++){
+      if (card.id === array[idx].id){
+        return true;
+      }
+    }
+    return false;
+  }
+
   swapCard(){
     var thisCardRater = this;
     var nextCard = this.props.currentCard;
     //if this is true at end, deck should be reset and unstudyable
     var cards = this.props.cards;
     if (cards.imperfects === this.props.usedCards.length){
-      debugger;
       this.props.clearUsedCards();
     }
 
     Object.keys(cards).forEach((id, idx) => {
       var actualCard = cards[id];
       if (typeof actualCard !== "number"){
-        if (actualCard !== thisCardRater.props.currentCard
-          && !thisCardRater.props.usedCards.includes(actualCard)
+        if (actualCard.id !== thisCardRater.props.currentCard.id
+          && !thisCardRater.cardInArray(actualCard, thisCardRater.props.usedCards)
           && actualCard.rating.rating < 5
           && nextCard === thisCardRater.props.currentCard){
             //if the actualCard meets all conditions for swapping...
             //push current actualCard and perform the swap
           nextCard = actualCard;
+          thisCardRater.props.pushUsedCard(thisCardRater.props.currentCard);
+          thisCardRater.props.setCurrentCard(nextCard);
         }
       }
     });
     if (nextCard === this.props.currentCard){
-      console.log("DECK SHOULD READ 100%");
+      thisCardRater.props.setCurrentCard(nextCard);
+      console.log("ON LAST CARD OR AT 100%");
     }
 
-    thisCardRater.props.pushUsedCard(thisCardRater.props.currentCard);
-    thisCardRater.props.setCurrentCard(nextCard);
   }
 
 
   render(){
 
     return(
-      <div className="cardBottomSection">
-        <p>How well did you know this?</p>
+      <div className="cardBottomRatings">
+        <div> How well did you know this?</div>
         <div onClick={this.handleRatingClick}
-          style={{background: "#A70D0D", padding: "15px", margin: "20px"}}>1</div>
+          style={{background: "#A70D0D"}}>1</div>
 
         <div onClick={this.handleRatingClick}
-          style={{background: "#D86206", padding: "15px", margin: "20px"}}>2</div>
+          style={{background: "#D86206"}}>2</div>
 
         <div onClick={this.handleRatingClick}
-          style={{background: "#C4A704", padding: "15px", margin: "20px"}}>3</div>
+          style={{background: "#C4A704"}}>3</div>
 
         <div onClick={this.handleRatingClick}
-          style={{background: "#A3BF08", padding: "15px", margin: "20px"}}>4</div>
+          style={{background: "#A3BF08"}}>4</div>
 
         <div onClick={this.handleRatingClick}
-          style={{background: "#46B005", padding: "15px", margin: "20px"}}>5</div>
+          style={{background: "#46B005"}}>5</div>
       </div>
     );
   }

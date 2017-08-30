@@ -8,10 +8,10 @@ class BrowsePanelItem extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFollowClick = this.handleFollowClick.bind(this);
   }
 
-  handleClick(e){
+  handleFollowClick(e){
 
   }
 
@@ -19,9 +19,27 @@ class BrowsePanelItem extends React.Component {
   render(){
 
     var subjects;
+    var subjectsOfUser = this.props.currentUser.subjects;
     if (this.props.category){
       subjects = this.props.category.subjects_of_category.map((sub, idx) => {
-        return (<p key={idx}>{sub.title}</p>);
+        var followed = false;
+        subjectsOfUser.forEach((obj) => {
+          if (sub.id === obj.id){
+            followed = true;
+          }
+        });
+
+
+        var follow = followed ?
+        null : <button onClick={this.handleFollowClick}>Follow</button>;
+        //follow is a boolean, if user NOT following we render a follow button
+
+        return (
+          <div className="browsePanelItem" key={idx}>
+            {sub.title}
+            {follow}
+          </div>
+        );
       });
     }
 
@@ -37,6 +55,12 @@ class BrowsePanelItem extends React.Component {
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.current_user,
+    followed_subjects: state.subjects.sorted,
+    categories: state.subjects.categories,
+  };
+};
 
-
-export default withRouter(connect(null, null)(BrowsePanelItem));
+export default withRouter(connect(mapStateToProps, null)(BrowsePanelItem));

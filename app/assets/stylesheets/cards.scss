@@ -66,3 +66,15 @@
   height: 26%;
   padding: 2%;
 }
+
+.circleStat {
+  width: 38%;
+  position: relative;
+}
+.circleStatNumber {
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

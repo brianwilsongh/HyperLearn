@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getSubjects } from '../../actions/deck_actions';
-import CircularProgressbar from 'react-circular-progressbar';
-import { Line } from 'rc-progress';
+import { Circle, Line } from 'rc-progress';
 
 
 class DeckInterfacePanel extends React.Component {
@@ -81,8 +80,17 @@ class DeckInterfacePanel extends React.Component {
 
     return(
       <div className="deckInterfacePanel">
-      <CircularProgressbar percentage={builtStats ? builtStats["overall"] : 0}
-        strokeWidth="5"/>
+      <div className="circleStat">
+        <div><Circle percent={builtStats ? builtStats["overall"] : 0}
+          strokeWidth="5"
+          strokeColor="#F6A90A"
+          trailWidth="0"
+          strokeLinecap="square"/>
+        </div>
+        <div className="circleStatNumber">
+          {builtStats ? builtStats["overall"] : 0}
+        </div>
+      </div>
       <div className="deckInterfaceStats">
         {components}
       </div>

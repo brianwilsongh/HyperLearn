@@ -52,16 +52,10 @@ class DeckPanelItem extends React.Component {
     return(
       <div className="homeDeckItem" onClick={this.handleClick}>
         <div className="horizContainer">
-          <div className="studyDisplay"
-            style={{ "max-height": "38%", "background": "#F6A90A",
-               "padding-top": "3%", "padding-bottom": "3%",
-               "padding-left": "1em", "padding-right": "1em",
-               "color": "white"}}>
-            <small>Use</small>
+          <div className="yellowUseButton">
+            <small>study</small>
           </div>
-          <div style={{"display": "flex", "flex-direction": "row",
-          "min-width": "62%", "align-items": "center",
-          "justify-content": "space-between"}}>
+          <div className="deckPanelItem">
             <div className="vertContainer">
               <h3 style={{"align-self": "left"}}>{ this.props.deck.title }</h3>
               cards: { this.props.deck.card_count }

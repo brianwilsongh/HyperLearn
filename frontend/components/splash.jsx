@@ -18,7 +18,7 @@ class Splash extends React.Component {
         </div>
 
         <div className="textHolderTwo">
-          <h2>Built with the Latest Web Technologies</h2>
+          <h2>Track Your Stats as you Go, Find Your Weak Areas</h2>
         </div>
       </div>
     );

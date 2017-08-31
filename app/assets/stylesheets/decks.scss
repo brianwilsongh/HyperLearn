@@ -14,6 +14,16 @@
   background: #F3F2EE;
 }
 
+.yellowUseButton {
+  max-height: 38%;
+  background: #F6A90A;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  color: white;
+}
+
 .deckPanel {
   display: inline-block;
   width: 62%;
@@ -48,6 +58,14 @@
 
 .deckPanelDisplaySubject > h2 {
   margin: 0.2em;
+}
+
+.deckPanelItem {
+  display: flex;
+  flex-direction: row;
+  min-width: 62%;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .deckInterface {

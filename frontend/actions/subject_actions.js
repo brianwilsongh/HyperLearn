@@ -36,6 +36,12 @@ export const sendFollow = (subjectId) => dispatch => {
     error => dispatch(receiveSubjectErrors(error)));
 };
 
+export const sendFollowDeletion = (subjectId) => dispatch => {
+  return APIUtils.sendFollowDeletion(subjectId)
+    .then(subjects => dispatch(receiveSubjects(subjects)),
+    error => dispatch(receiveSubjectErrors(error)));
+};
+
 export const receiveSubjects = (subjects) => {
   return {
     type: RECEIVE_SUBJECTS,

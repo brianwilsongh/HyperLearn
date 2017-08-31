@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     resources :decks, except: [:new]
     resources :cards, only: [:index, :create, :update, :destroy]
     resources :ratings, only: [:create]
-    resources :follows, only: [:create]
+    resources :follows, only: [:create, :destroy]
   end
 end

@@ -35,3 +35,10 @@ export const sendFollow = (subjectId) => {
     data: {subjectId}
   });
 };
+
+export const sendFollowDeletion = (subjectId) => {
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/follows/${subjectId}`,
+  });
+};

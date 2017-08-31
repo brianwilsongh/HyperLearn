@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { receiveCurrentSubject } from '../../actions/subject_actions';
+import { receiveCurrentSubject, sendFollowDeletion } from '../../actions/subject_actions';
 import { getDecks } from '../../actions/deck_actions';
 
 
@@ -11,6 +11,7 @@ class SubjectPanelItem extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleModifyRedirect = this.handleModifyRedirect.bind(this);
+    this.handleDeleteFollow = this.handleDeleteFollow.bind(this);
   }
 
   handleClick(e){
@@ -21,6 +22,16 @@ class SubjectPanelItem extends React.Component {
   handleModifyRedirect(e){
     e.stopPropagation();
     this.props.history.push(`/home/subject/modify/${this.props.subject.id}`);
+  }
+
+  handleModifyRedirect(e){
+    e.stopPropagation();
+    this.props.history.push(`/home/subject/modify/${this.props.subject.id}`);
+  }
+
+  handleDeleteFollow(e){
+    e.stopPropagation();
+    this.props.sendFollowDeletion(this.props.subject.id);
   }
 
 
@@ -37,7 +48,7 @@ class SubjectPanelItem extends React.Component {
     return(
       <div className="homeSubjectItem" onClick={this.handleClick}>
         <div className="horizContainer">
-          <div className="vertContainer" style={{"align-items": "flex-start", "padding-left": "1.5em"}}>
+          <div className="vertContainerListing">
             <big>{ this.props.subject.title }</big>
             <small>cards: { this.props.subject.card_count }</small>
             <small>mastery: { this.props.subject.mastery }%</small>
@@ -55,7 +66,8 @@ class SubjectPanelItem extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     sendCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject)),
-    retrieveDecksOfSubject: (subject) => dispatch(getDecks(subject))
+    retrieveDecksOfSubject: (subject) => dispatch(getDecks(subject)),
+    sendFollowDeletion: (subjectId) => dispatch(sendFollowDeletion(subjectId)),
   };
 };
 

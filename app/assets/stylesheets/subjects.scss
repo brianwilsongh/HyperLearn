@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 1em;
+  padding: 1em;
 }
 
 .browsePanel > div {
@@ -54,4 +54,12 @@
 
 .browsePanelItem {
   margin: 0.75em;
+}
+
+.searchResultsPanel {
+  background: #fde7ba;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1em;
 }

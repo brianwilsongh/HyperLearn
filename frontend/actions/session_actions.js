@@ -2,6 +2,7 @@ import * as APIUtils from "../utils/session_api_utils";
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+export const PURGE_STATE = 'PURGE_STATE';
 
 
 export const login = (user) => dispatch => {
@@ -24,7 +25,7 @@ export const signup = (user) => dispatch => {
 
 export const logout = () => dispatch => {
   return APIUtils.logout()
-    .then(emptyObj => dispatch(receiveCurrentUser(null)),
+    .then(emptyObj => dispatch(purgeState()),
   error => dispatch(receiveErrors(error)));
 };
 
@@ -48,5 +49,11 @@ export const clearErrors = (errors) => {
     data: {
       responseJSON: [],
     }
+  };
+};
+
+export const purgeState = () => {
+  return {
+    type: PURGE_STATE,
   };
 };

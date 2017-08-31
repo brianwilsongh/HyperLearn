@@ -1,4 +1,5 @@
 import * as DActions from "../actions/deck_actions";
+import * as SessionActions from '../actions/session_actions';
 
 const defaultState = {
   sorted: [],
@@ -26,6 +27,10 @@ export const decksReducer = (state = defaultState, action) => {
         }
       });
       return Object.assign({}, state, {sorted: newSorted}, {current: action.data});
+
+      case SessionActions.PURGE_STATE:
+        return Object.assign({}, defaultState);
+
     default:
       return state;
   }

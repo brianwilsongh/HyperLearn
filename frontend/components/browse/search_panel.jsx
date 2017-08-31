@@ -33,15 +33,14 @@ class SearchPanel extends React.Component {
   }
 
   handleQueryClick(){
-    //send it here
     this.props.sendQueryForSubjects(this.state.query);
   }
 
   render(){
 
     return(
-      <div>
-        <form onSubmit={this.handleEditClick} >
+      <div className="vertContainer">
+        <form onSubmit={this.handleEditClick} style={{"margin": "2em"}}>
 
           <br />
           <h4>Search:</h4>
@@ -49,7 +48,7 @@ class SearchPanel extends React.Component {
           placeholder="ex. 'Trivia'"
           value={this.state.query} />
 
-        <button onClick={this.handleQueryClick}>Go</button>
+        <button onClick={this.handleQueryClick} style={{"padding": "0.8em"}}>Go</button>
         </form>
 
         <SearchResultsPanel />

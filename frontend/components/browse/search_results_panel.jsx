@@ -12,7 +12,7 @@ class SearchResultsPanel extends React.Component {
   }
 
   render(){
-    var subjects;
+    var subjects = null;
     if (this.props.returnedSubjects.length > 0){
       subjects = this.props.returnedSubjects.map((sub, idx) => {
         return (
@@ -21,9 +21,14 @@ class SearchResultsPanel extends React.Component {
       });
     }
 
+    var announcer = subjects ? <h3>Results:</h3> : null;
+
     return(
-      <div className="horizContainer">
-        { subjects }
+      <div className="vertContainer">
+        {announcer}
+        <div className="searchResultsPanel">
+          { subjects }
+        </div>
       </div>
     );
   }

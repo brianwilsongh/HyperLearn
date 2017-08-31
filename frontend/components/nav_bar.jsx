@@ -26,7 +26,7 @@ class NavBar extends React.Component {
             HyperLearn
           </Link>
           <div className="browseLink">
-            <Link to="/browse">Browse Subjects</Link>
+            <Link to="/browse">Find Subjects</Link>
           </div>
 
           <UserPanel />

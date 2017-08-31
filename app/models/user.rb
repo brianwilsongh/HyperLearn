@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def karma
-    (self.subjects.count * 2) + (self.followed_subjects.count) + (self.fans.count)
+    (self.subjects.count * 2) + (self.followed_subjects.count) + (self.fans.count * 2)
   end
 
   def password=(password)

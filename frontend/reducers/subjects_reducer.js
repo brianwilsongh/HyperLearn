@@ -1,4 +1,5 @@
 import * as SActions from "../actions/subject_actions";
+import * as SessionActions from "../actions/session_actions";
 import _ from 'lodash';
 
 const defaultState = {
@@ -26,6 +27,9 @@ export const subjectsReducer = (state = defaultState, action) => {
 
     case SActions.RECEIVE_SEARCHED_SUBJECTS:
       return Object.assign({}, state, {queried: action.data});
+
+    case SessionActions.PURGE_STATE:
+      return Object.assign({}, defaultState);
 
     default:
       return state;

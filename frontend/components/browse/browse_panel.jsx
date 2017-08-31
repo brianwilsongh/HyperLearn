@@ -37,7 +37,8 @@ class BrowsePanel extends React.Component {
     }
 
     return(
-      <div>
+      <div className="vertContainer">
+        <h3>Subjects by Category:</h3>
         <div className="browsePanel">
           { categories }
         </div>

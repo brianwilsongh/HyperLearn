@@ -45,8 +45,13 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 1em;
 }
 
 .browsePanel > div {
   margin: 3%;
+}
+
+.browsePanelItem {
+  margin: 0.75em;
 }

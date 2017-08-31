@@ -11,8 +11,8 @@ pictureOfMe = File.open("app/assets/images/wilson.png")
 guest = User.create(username: "guest", password: "password", image: pictureOfMe,
 f_name: "John", l_name: "Doe")
 
-120.times do |iteration|
-  randPic = File.open("app/assets/images/seedavatar#{(rand * 9).to_i + 1}.jpeg")
+150.times do |iteration|
+  randPic = File.open("app/assets/images/seedavatar#{(rand * 26).to_i + 1}.jpeg")
   User.create(username: (Faker::StarWars.character.gsub(/\s+/, "").downcase + iteration.to_s),
   password: (Faker::GameOfThrones.character.strip.downcase + "password"),
   image: randPic,
@@ -22,7 +22,7 @@ end
 
 Category.destroy_all
 
-12.times do
+14.times do
   Category.create(name: Faker::Color.color_name)
 end
 
@@ -54,7 +54,7 @@ end
 
 Deck.destroy_all
 
-150.times do
+300.times do
   random_subject = Subject.all.sample
   Deck.create(title: Faker::GameOfThrones.character,
     subject_id: random_subject.id,
@@ -63,7 +63,7 @@ end
 
 Card.destroy_all
 
-700.times do
+1000.times do
   Card.create(question: Faker::Pokemon.name,
   answer: Faker::Pokemon.move,
   deck_id: Deck.all.sample.id)

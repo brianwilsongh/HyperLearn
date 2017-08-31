@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     self.subjects + self.followed_subjects
   end
 
+  def karma
+    (self.subjects.count * 2) + (self.followed_subjects.count) + (self.fans.count)
+  end
+
   def password=(password)
     #set password to ivar and store the hashed digest
     @password = password

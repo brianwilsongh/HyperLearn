@@ -37,8 +37,17 @@ class BrowsePanelItem extends React.Component {
 
         return (
           <div className="browsePanelItem" key={idx}>
-            {sub.title}
-            {follow}
+            <div className="vertContainerListing">
+              <div className="horizContainer">
+                {sub.title}
+                {follow}
+              </div>
+              <div className="vertContainerListing" style={{"padding": "0.5em"}}>
+                <small>last updated: {/\d+-\d+-\d+/.exec(sub.updated_at)[0]}</small>
+                <small>followers: {sub.follow_count}</small>
+                <small>cards: {sub.card_count}</small>
+              </div>
+            </div>
           </div>
         );
       });
@@ -46,7 +55,7 @@ class BrowsePanelItem extends React.Component {
 
     return(
       <div>
-        <h4>{this.props.category.name}</h4>
+        <h4 style={{"marginLeft": "1em"}}>{this.props.category.name}</h4>
         <br />
         { subjects }
       </div>

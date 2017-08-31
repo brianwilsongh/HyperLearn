@@ -16,6 +16,8 @@ json.set! :alphabetical do
         json.f_name follower.f_name
         json.l_name follower.l_name
         json.avatar follower.image.url
+        json.fans follower.fans.count
+        json.karma follower.karma
       end
     end
 
@@ -32,6 +34,8 @@ json.set! :categories do
     json.set! :subjects_of_category do
       json.array! category.subjects do |cat_sub|
         json.extract! cat_sub, :id, :title, :user_id, :updated_at
+        json.follow_count cat_sub.followers.count
+        json.card_count cat_sub.cards.count
         json.made_by_current_user (current_user.id) == cat_sub.user_id
       end
     end

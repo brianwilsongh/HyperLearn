@@ -8,6 +8,8 @@ json.set! :fans do
     json.f_name fan.f_name
     json.l_name fan.l_name
     json.avatar fan.image.url
+    json.fans fan.fans.count
+    json.karma fan.karma
   end
 end
 

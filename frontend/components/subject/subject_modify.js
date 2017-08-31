@@ -50,7 +50,8 @@ class SubjectModify extends React.Component {
 
   handleDeleteClick(e){
     e.preventDefault();
-    this.props.deleteSubject(this.state.id).then(this.props.history.push("/home"));
+    this.props.deleteSubject(this.state.id)
+      .then(this.props.history.push("/home"));
 
   }
 

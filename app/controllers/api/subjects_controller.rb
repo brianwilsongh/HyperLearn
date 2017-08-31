@@ -7,6 +7,7 @@ class Api::SubjectsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
 
     fixed_params = subject_params.except(:category_id)
     @subject = Subject.new(fixed_params)
@@ -22,8 +23,14 @@ class Api::SubjectsController < ApplicationController
   end
 
   def update
+    @categories = Category.all
+
     oldCategorization = Categorization.where(subject_id: params[:id], category_id: params[:subject][:category_id])[0]
-    oldCategorization.destroy
+    
+    if oldCategorization
+      oldCategorization.destroy
+    end
+
     @categorization = Categorization.new(category_id: params[:subject][:category_id], subject_id: params[:id])
     unless @categorization.save
       render json: ["Categorization failed"], status: 422

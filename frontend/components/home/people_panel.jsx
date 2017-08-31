@@ -35,11 +35,11 @@ class PeoplePanel extends React.Component {
             { follower.avatar ? <img src={follower.avatar} className="userAvatar" />
            : <img src={window.logoPath} className="userAvatar" />}
 
-            { follower.username }
+            { follower.username }{ follower.id === this.props.currentUser.id ? <small style={{"color": "red", "margin": "0.5em"}}> (you)</small> : ""}
           </div>
           <div className="vertContainerListing">
-            <small>followers: {0}</small>
-            <small>karma: 0</small>
+            <small>followers: {follower.fans}</small>
+            <small>karma: {follower.karma}</small>
           </div>
         </div>));
       }
@@ -58,8 +58,8 @@ class PeoplePanel extends React.Component {
             { fan.username }
           </div>
           <div className="vertContainerListing">
-            <small>followers: {0}</small>
-            <small>karma: 0</small>
+            <small>followers: {fan.fans}</small>
+            <small>karma: {fan.karma}</small>
           </div>
         </div>));
       }

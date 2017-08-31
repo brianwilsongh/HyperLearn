@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+.homeDeckItem:hover {
+  background: #F3F2EE;
+}
+
 .deckPanel {
   display: inline-block;
   width: 62%;

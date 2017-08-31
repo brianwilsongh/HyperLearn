@@ -40,7 +40,8 @@ class DeckPanelItem extends React.Component {
     var buttons;
     if (this.props.deck.user_id === this.props.currentUser.id){
       buttons = (
-        <div>
+        <div className="vertButtonRack"
+          style={{"position": "relative", "left": "10%"}}>
         <button onClick={this.handleModifyRedirect}>Modify</button>
         <button onClick={this.handleBuildRedirect}>Build</button>
         <button onClick={this.handleResetDeck}>Reset</button>
@@ -50,12 +51,26 @@ class DeckPanelItem extends React.Component {
 
     return(
       <div className="homeDeckItem" onClick={this.handleClick}>
-        <h3>{ this.props.deck.title }</h3>
-        <br />
-        cards: { this.props.deck.card_count }
-        <br />
-        mastery: { this.props.deck.mastery }%
-        { buttons }
+        <div className="horizContainer">
+          <div className="studyDisplay"
+            style={{ "max-height": "38%", "background": "#F6A90A",
+               "padding-top": "5%", "padding-bottom": "5%",
+               "padding-left": "1em", "padding-right": "1em",
+               "color": "white"}}>
+            <small>Use</small>
+          </div>
+          <div style={{"display": "flex", "flex-direction": "row",
+          "min-width": "62%", "align-items": "center",
+          "justify-content": "space-between"}}>
+            <div className="vertContainer">
+              <h3 style={{"align-self": "left"}}>{ this.props.deck.title }</h3>
+              cards: { this.props.deck.card_count }
+              <br />
+              mastery: { this.props.deck.mastery }%
+            </div>
+            { buttons }
+          </div>
+        </div>
       </div>
     );
   }

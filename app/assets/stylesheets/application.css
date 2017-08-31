@@ -28,6 +28,34 @@
    margin: 3px;
  }
 
+ .vertButtonRack {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   align-content: center;
+   justify-content: space-around;
+ }
+
+ .vertButtonRack > button {
+   width: 100%;
+ }
+
+ .vertContainer {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   align-content: center;
+   justify-content: space-between;
+ }
+
+ .horizContainer {
+   display: flex;
+   flex-flow: row;
+   align-items: center;
+   align-content: center;
+   justify-content: space-between;
+ }
+
  button:hover {
    background: #485f7e;
  }

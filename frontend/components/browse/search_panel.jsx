@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sendQueryForSubjects } from '../../actions/subject_actions';
+import SearchResultsPanel from './search_results_panel';
 
 
 class SearchPanel extends React.Component {
@@ -50,6 +51,8 @@ class SearchPanel extends React.Component {
 
         <button onClick={this.handleQueryClick}>Go</button>
         </form>
+
+        <SearchResultsPanel />
       </div>
     );
   }

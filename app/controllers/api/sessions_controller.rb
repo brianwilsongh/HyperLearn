@@ -11,6 +11,13 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def update
+    #This is being used for a user's queries!
+    @categories = Category.all
+    @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%")
+    render 'api/subjects/queries'
+  end
+
   def destroy
     @user = current_user
     if @user

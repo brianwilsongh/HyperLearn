@@ -37,9 +37,10 @@ class BrowsePanel extends React.Component {
     }
 
     return(
-      <div className="browsePanel">
-        <br />
-        { categories }
+      <div>
+        <div className="browsePanel">
+          { categories }
+        </div>
       </div>
     );
   }

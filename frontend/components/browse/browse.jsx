@@ -1,5 +1,6 @@
 import React from 'react';
 import BrowsePanel from './browse_panel';
+import SearchPanel from './search_panel';
 
 
 class Browse extends React.Component {
@@ -10,7 +11,8 @@ class Browse extends React.Component {
 
   render(){
     return(
-      <div className="primaryComponent">
+      <div className="vertContainer">
+          <SearchPanel />
           <BrowsePanel />
       </div>
     );

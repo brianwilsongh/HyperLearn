@@ -39,11 +39,12 @@ class SubjectNew extends React.Component {
       errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
     }
 
-    let categories;
+    let categories = [];
     if (this.props.categories.length > 0){
       categories = this.props.categories.map((category, idx) =>
       (<option key={idx} value={category.id} >{category.name} </option>));
     }
+    categories.unshift(<option value={null}> -- </option>);
 
     return (
     <div id="overlay">
@@ -63,7 +64,7 @@ class SubjectNew extends React.Component {
           placeholder="Title"
           value={this.state.title} />
 
-          <select onChange={this.handleInputChange("category_id")}>
+        <select onChange={this.handleInputChange("category_id")} value={null}>
             {categories}
           </select>
 

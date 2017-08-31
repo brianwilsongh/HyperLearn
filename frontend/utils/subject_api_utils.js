@@ -42,3 +42,11 @@ export const sendFollowDeletion = (subjectId) => {
     url: `/api/follows/${subjectId}`,
   });
 };
+
+export const sendQueryForSubjects = (term) => {
+  return $.ajax({
+    method: "PUT",
+    url: "/api/sessions",
+    data: {term}
+  });
+};

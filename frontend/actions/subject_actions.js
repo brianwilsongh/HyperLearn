@@ -4,6 +4,7 @@ export const RECEIVE_SUBJECTS = 'RECEIVE_SUBJECTS';
 export const RECEIVE_CURRENT_SUBJECT = 'RECEIVE_CURRENT_SUBJECT';
 export const RECEIVE_SUBJECT_ERRORS = 'RECEIVE_SUBJECT_ERRORS';
 export const RECEIVE_FOLLOWED_SUBJECT = 'RECEIVE_FOLLOWED_SUBJECT';
+export const RECEIVE_SEARCHED_SUBJECTS = 'RECEIVE_SEARCHED_SUBJECTS';
 
 
 export const getSubjects = () => dispatch => {
@@ -42,6 +43,12 @@ export const sendFollowDeletion = (subjectId) => dispatch => {
     error => dispatch(receiveSubjectErrors(error)));
 };
 
+export const sendQueryForSubjects = (term) => dispatch => {
+  return APIUtils.sendQueryForSubjects(term)
+    .then(subjects => dispatch(receiveSearchedSubjects(subjects)),
+    error => dispatch(receiveSubjectErrors(error)));
+};
+
 export const receiveSubjects = (subjects) => {
   return {
     type: RECEIVE_SUBJECTS,
@@ -56,6 +63,12 @@ export const receiveFollowedSubject = (subject) => {
   };
 };
 
+export const receiveSearchedSubjects = (subjects) => {
+  return {
+    type: RECEIVE_SEARCHED_SUBJECTS,
+    data: subjects,
+  };
+};
 
 export const receiveSubjectErrors = (errors) => {
   return {

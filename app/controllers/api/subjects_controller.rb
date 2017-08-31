@@ -26,7 +26,7 @@ class Api::SubjectsController < ApplicationController
     @categories = Category.all
 
     oldCategorization = Categorization.where(subject_id: params[:id], category_id: params[:subject][:category_id])[0]
-    
+
     if oldCategorization
       oldCategorization.destroy
     end

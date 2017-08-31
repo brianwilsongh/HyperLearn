@@ -12,6 +12,10 @@ class Api::CardsController < ApplicationController
     @card = Card.new(create_params)
     @all_errors = {}
     if @card.save
+      new_rating = Rating.new(user_id: current_user.id, card_id: @card.id, rating: 0)
+      unless new_rating.save
+        render json: new_rating.errors.full_messages, status: 422
+      end
       @deck = Deck.find(@card.deck_id)
       @cards = @deck.cards
       render :index

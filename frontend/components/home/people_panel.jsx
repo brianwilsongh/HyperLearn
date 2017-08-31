@@ -29,7 +29,16 @@ class PeoplePanel extends React.Component {
     if (this.props.currentSubject.followers){
       if (this.props.currentSubject.followers.length > 0){
         followers = this.props.currentSubject.followers.map((follower, idx) =>
-        (<p key={idx}> { follower.f_name + " " + follower.l_name } <small>{` (${follower.username})`}</small></p>));
+        (<div key={idx} className="horizContainer" style={{"padding": "1.2em"}}>
+          <div className="horizContainer">
+
+            { follower.avatar ? <img src={follower.avatar} className="userAvatar" />
+           : <img src={window.logoPath} className="userAvatar" />}
+
+            { follower.f_name + " " + follower.l_name }
+          </div>
+           <small>{` (${follower.username})`}</small>
+        </div>));
       }
     }
 
@@ -37,19 +46,28 @@ class PeoplePanel extends React.Component {
     if (this.props.currentUser.fans){
       if (this.props.currentUser.fans.length > 0){
         fans = this.props.currentUser.fans.map((fan, idx) =>
-        (<p key={idx}> { fan.f_name + " " + fan.l_name } <small>{` (${fan.username})`}</small></p>));
+        (<div key={idx} className="horizContainer" style={{"padding": "1.2em"}}>
+          <div className="horizContainer">
+
+            { fan.avatar ? <img src={fan.avatar} className="userAvatar" />
+          : <img src={window.logoPath} className="userAvatar" />}
+
+            { fan.f_name + " " + fan.l_name }
+          </div>
+          <small>{` (${fan.username})`}</small>
+        </div>));
       }
     }
 
     return(
       <div className="peoplePanel" >
         <div>
-        <h4>Following THIS subject:</h4>
+        <h4>Following This Subject:</h4>
         { followers }
       </div>
 
       <div>
-        <h4>Following YOUR subjects:</h4>
+        <h4>Following Your subjects:</h4>
         { fans }
       </div>
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getSubjects } from '../../actions/deck_actions';
 import DeckPanelItem from './deck_panel_item';
+import { Line } from 'rc-progress';
 
 
 class DeckPanel extends React.Component {
@@ -21,8 +22,16 @@ class DeckPanel extends React.Component {
 
   render(){
 
-    var subjectDisplay = !this.props.currentSubject ? "unknown"
-    : <h4>Selected: {this.props.currentSubject.title}</h4>;
+    var subjectDisplay = !this.props.currentSubject ? "No Subject"
+    : <div className="deckPanelDisplaySubject">
+        <h2>{this.props.currentSubject.title}</h2>
+          <Line
+            percent={this.props.currentSubject.mastery}
+            strokeColor="#F6A90A"
+            trailColor="#C6C0B8"
+            strokeWidth="3"
+            strokeLinecap="square" />
+      </div>;
 
     var retrievedDecks;
     if (this.props.decks.length > 0){
@@ -42,11 +51,7 @@ class DeckPanel extends React.Component {
 
     return(
       <div className="deckPanel">
-        <div className="homeDeckItem">
-          <div className="deckPanelDisplaySubject">
-            { subjectDisplay }
-          </div>
-      </div>
+          { subjectDisplay }
         <br />
           <div className="deckHeader">
             <h2>Decks</h2>

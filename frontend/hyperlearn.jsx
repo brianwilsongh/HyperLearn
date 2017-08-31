@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const preloadedState = { session: {current_user: window.current_user}};
     store = generateStore(preloadedState);
     delete window.current_user;
-    // debugger
   } else {
     store = generateStore();
   }

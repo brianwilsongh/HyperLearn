@@ -14,7 +14,6 @@ class Api::FollowsController < ApplicationController
           badRating.destroy
         end
         @follow.destroy
-        debugger
         render json: ["Critical Failure!"], status: 422
         puts "FAILED TO CREATE RATINGS FOR NEW FOLLOW IN FOLLOWS CONTROLLER"
         break;

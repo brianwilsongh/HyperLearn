@@ -4,7 +4,7 @@
 
 .homeDeckItem {
   width: 68%;
-  margin: 30px;
+  margin: 4%;
   border-top: 2px solid #F3F2EE;
   border-bottom: 2px solid #F3F2EE;
   cursor: pointer;
@@ -32,13 +32,18 @@
 }
 
 .deckPanelDisplaySubject {
-  margin: 10px;
-  width: 100%;
+  padding: 3%;
+  width: 62%;
   background: #F3F2EE;
+  border: 1px solid #C6C0B8;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #2E4668;
+}
+
+.deckPanelDisplaySubject > h2 {
+  margin: 0.2em;
 }
 
 .deckInterface {

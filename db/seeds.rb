@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
-
-guest = User.create(username: "guest", password: "password",
+pictureOfMe = File.open("app/assets/images/wilson.png")
+guest = User.create(username: "guest", password: "password", image: pictureOfMe, 
 f_name: "John", l_name: "Doe")
 125.times do |iteration|
   User.create(username: (Faker::GameOfThrones.house + iteration.to_s),

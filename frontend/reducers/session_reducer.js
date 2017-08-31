@@ -23,19 +23,6 @@ export const sessionReducer = (state = defaultState, action) => {
       return _.merge({}, state,
         {current_user: {subjects: [action.data].concat(oldSubjectsArray)} });
 
-    case SubjectActions.RECEIVE_UNFOLLOWED_SUBJECT:
-      var unfollowedSubject = action.data;
-      var oldSubjectsArray = state.current_user.subjects;
-      for (var idx = oldSubjectsArray.length - 1; idx >= 0; idx-- ){
-        if (oldSubjectsArray[idx].id === unfollowedSubject.id){
-          debugger;
-          oldSubjectsArray.splice(idx, 1);
-        }
-      }
-      debugger;
-
-      return _.merge({}, state,
-        {current_user: {subjects: oldSubjectsArray} });
     default:
       return state;
   }

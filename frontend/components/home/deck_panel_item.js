@@ -57,7 +57,7 @@ class DeckPanelItem extends React.Component {
           </div>
           <div className="deckPanelItem">
             <div className="vertContainer">
-              <h3 style={{"align-self": "left"}}>{ this.props.deck.title }</h3>
+              <h3>{ this.props.deck.title }</h3>
               cards: { this.props.deck.card_count }
               <br />
               mastery: { this.props.deck.mastery }%

@@ -21,8 +21,16 @@ class DeckInterface extends React.Component {
 
     return(
       <div className="deckInterface">
-        <div>
-          <button onClick={this.returnHome}>Finished</button>
+        <div className="horizContainer">
+          <div className="vertContainerListing" style={{"padding": "1.5em"}}>
+            <big>{this.props.currentDeck.title}</big>
+            <small>cards: {this.props.currentDeck.card_count}</small>
+            <small>mastered: {this.props.currentDeck.cards_mastered}</small>
+          </div>
+          <div>
+            <button style={{"padding": "1em", "margin": "1em"}}
+              onClick={this.returnHome}><big>Done</big></button>
+          </div>
         </div>
         <DeckInterfacePanel />
       </div>
@@ -34,6 +42,7 @@ class DeckInterface extends React.Component {
 const mapStateToProps = (state) => {
   return {
     currentSubject: state.subjects.current,
+    currentDeck: state.decks.current,
     decks: state.decks.sorted,
   };
 };

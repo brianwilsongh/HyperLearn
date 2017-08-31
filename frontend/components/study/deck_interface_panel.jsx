@@ -71,8 +71,10 @@ class DeckInterfacePanel extends React.Component {
       }
     }
     var components = lines.map((i, idx) => {
-      return (<span key={idx} className="deckInterfaceDataLine">
-      {idx + 1}{i}</span>);
+      return (<div key={idx} className="horizContainer" style={{"margin": "0.7em"}}>
+      <div style={{"width": "10%"}}>{idx + 1}</div>
+      <div style={{"height": "100%", "width": "100%"}}>{i}</div>
+    </div>);
     });
 
     return(
@@ -85,7 +87,11 @@ class DeckInterfacePanel extends React.Component {
           strokeLinecap="square"/>
         </div>
         <div className="circleStatNumber">
-          {builtStats ? builtStats["overall"] : 0}<small>%</small>
+          <div>
+            <big>{builtStats ? builtStats["overall"] : 0}</big>
+            <small style={{"fontSize": "0.7em"}}>%</small>
+          </div>
+          <small style={{"fontSize": "0.4em"}}>mastery</small>
         </div>
       </div>
       <div className="deckInterfaceStats">

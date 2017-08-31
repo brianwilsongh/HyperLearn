@@ -53,8 +53,10 @@ class SubjectPanelItem extends React.Component {
             <small>cards: { this.props.subject.card_count }</small>
             <small>mastery: { this.props.subject.mastery }%</small>
           </div>
-          <div className="vertButtonRack">
-            {editButton}
+          <div style={{"width": "20%"}}>
+            <div className="vertButtonRack">
+              {editButton}
+            </div>
           </div>
         </div>
       </div>

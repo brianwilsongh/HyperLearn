@@ -38,7 +38,11 @@ class LoginForm extends React.Component {
 
   render(){
 
-    let errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
+
+    var errors;
+    if (this.props.errors){
+      errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
+    }
 
     return (
     <div id="overlay">
@@ -48,9 +52,9 @@ class LoginForm extends React.Component {
             x
           </Link>
 
-          <p className="errorBlock">{ this.props.errors ? <p>
+          <div className="errorBlock">{ this.props.errors ? <p>
               {errors}
-            </p> : null}</p>
+            </p> : null}</div>
 
           <h4>Username:</h4>
           <input onChange={this.handleInputChange("username")} placeholder="Username" />

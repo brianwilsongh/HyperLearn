@@ -2,13 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  avatar_url      :string
+#  id                 :integer          not null, primary key
+#  username           :string           not null
+#  password_digest    :string           not null
+#  session_token      :string           not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  avatar             :string
+#  f_name             :string
+#  l_name             :string
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
@@ -19,7 +25,8 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6, allow_nil: true}
   after_initialize(:ensure_session_token)
 
-  has_attached_file :image, default_url: "app/assets/images/wilson.png"
+  has_attached_file :image,
+  default_url: ActionController::Base.helpers.image_path("hyperlearn_logo.png")
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :subjects,

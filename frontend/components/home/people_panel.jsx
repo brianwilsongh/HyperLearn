@@ -35,9 +35,12 @@ class PeoplePanel extends React.Component {
             { follower.avatar ? <img src={follower.avatar} className="userAvatar" />
            : <img src={window.logoPath} className="userAvatar" />}
 
-            { follower.f_name + " " + follower.l_name }
+            { follower.username }
           </div>
-           <small>{` (${follower.username})`}</small>
+          <div className="vertContainerListing">
+            <small>followers: {0}</small>
+            <small>karma: 0</small>
+          </div>
         </div>));
       }
     }
@@ -52,9 +55,12 @@ class PeoplePanel extends React.Component {
             { fan.avatar ? <img src={fan.avatar} className="userAvatar" />
           : <img src={window.logoPath} className="userAvatar" />}
 
-            { fan.f_name + " " + fan.l_name }
+            { fan.username }
           </div>
-          <small>{` (${fan.username})`}</small>
+          <div className="vertContainerListing">
+            <small>followers: {0}</small>
+            <small>karma: 0</small>
+          </div>
         </div>));
       }
     }

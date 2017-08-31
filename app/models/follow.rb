@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: follows
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  subject_id :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Follow < ActiveRecord::Base
   validates :user_id, uniqueness: {scope: :subject}, presence: true
   validate :check_user_against_author

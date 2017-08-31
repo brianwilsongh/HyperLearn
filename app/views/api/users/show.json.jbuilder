@@ -7,6 +7,7 @@ json.set! :fans do
     json.username fan.username
     json.f_name fan.f_name
     json.l_name fan.l_name
+    json.avatar fan.image.url
   end
 end
 

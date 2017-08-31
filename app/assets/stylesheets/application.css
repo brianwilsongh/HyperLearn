@@ -40,6 +40,16 @@
    width: 100%;
  }
 
+ input {
+   padding: 0.75em;
+   background: #F3F2EE;
+ }
+
+ input[type=file] {
+   padding: 0.75em;
+   background: #2E4668;
+ }
+
  .vertContainer {
    display: flex;
    flex-flow: column;

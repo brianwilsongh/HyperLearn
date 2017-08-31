@@ -1,8 +1,18 @@
 class Api::UsersController < ApplicationController
   def create
-    @user = User.new(user_params)
-    if @user.save
+    if params[:user][:image] != "null"
+      #if user uploaded an avatar, use that or use default
+      @user = User.new(user_params)
       @user.image = params[:user][:image]
+    else
+      default_image = File.open("app/assets/images/wilson.png")
+      @user = User.new(
+        username: params[:user][:username],
+        password: params[:user][:password],
+        image: default_image
+      )
+    end
+    if @user.save
       login(@user)
       @fans = @user.fans
       render :show

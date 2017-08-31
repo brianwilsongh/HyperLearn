@@ -8,47 +8,47 @@
 
 User.destroy_all
 pictureOfMe = File.open("app/assets/images/wilson.png")
-guest = User.create(username: "guest", password: "password", image: pictureOfMe, 
+guest = User.create(username: "guest", password: "password", image: pictureOfMe,
 f_name: "John", l_name: "Doe")
-125.times do |iteration|
-  User.create(username: (Faker::GameOfThrones.house + iteration.to_s),
-  password: (Faker::GameOfThrones.character + "password"),
+
+120.times do |iteration|
+  randPic = File.open("app/assets/images/seedavatar#{(rand * 9).to_i + 1}.jpeg")
+  User.create(username: (Faker::StarWars.character.gsub(/\s+/, "").downcase + iteration.to_s),
+  password: (Faker::GameOfThrones.character.strip.downcase + "password"),
+  image: randPic,
   f_name: Faker::Name.first_name,
   l_name: Faker::Name.last_name )
 end
 
-Subject.destroy_all
-
-#at least 3 for guest
-5.times do
-  Subject.create(title: Faker::GameOfThrones.city,
-  user_id: guest.id)
-end
-
-60.times do
-  Subject.create(title: Faker::GameOfThrones.city,
-  user_id: User.all.sample.id)
-end
-
 Category.destroy_all
 
-15.times do
+12.times do
   Category.create(name: Faker::Color.color_name)
 end
 
-Categorization.destroy_all
 
-100.times do
-  Categorization.create(subject_id: Subject.all.sample.id, category_id: Category.all.sample.id)
+Categorization.destroy_all
+Subject.destroy_all
+#at least 3 for guest
+5.times do
+  this_subject = Subject.create(title: Faker::GameOfThrones.city,
+  user_id: guest.id)
+  Categorization.create(subject_id: this_subject.id, category_id: Category.all.sample.id)
 end
 
-Follow.destroy_all
+50.times do
+  this_subject = Subject.create(title: Faker::GameOfThrones.city,
+  user_id: User.all.sample.id)
+  Categorization.create(subject_id: this_subject.id, category_id: Category.all.sample.id)
+end
 
+
+Follow.destroy_all
 User.all.each do |user|
   Follow.create(user_id: user.id, subject_id: Subject.all.sample.id)
 end
 
-7.times do
+5.times do
   Follow.create(user_id: guest.id, subject_id: Subject.all.sample.id)
 end
 
@@ -64,8 +64,8 @@ end
 Card.destroy_all
 
 700.times do
-  Card.create(question: Faker::Lovecraft.deity,
-  answer: Faker::Lovecraft.word,
+  Card.create(question: Faker::Pokemon.name,
+  answer: Faker::Pokemon.move,
   deck_id: Deck.all.sample.id)
 end
 

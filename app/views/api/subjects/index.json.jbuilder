@@ -8,7 +8,17 @@ json.set! :alphabetical do
     else
       json.mastery 0
     end
-    json.followers subject.followers
+
+    json.set! :followers do
+      json.array! subject.followers do |follower|
+        json.id follower.id
+        json.username follower.username
+        json.f_name follower.f_name
+        json.l_name follower.l_name
+        json.avatar follower.image.url
+      end
+    end
+
     json.made_by_current_user (current_user.id == subject.user_id)
     json.category subject.categories[0]
     json.card_count subject.cards.length

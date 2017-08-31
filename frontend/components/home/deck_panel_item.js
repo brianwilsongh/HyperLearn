@@ -54,7 +54,7 @@ class DeckPanelItem extends React.Component {
         <div className="horizContainer">
           <div className="studyDisplay"
             style={{ "max-height": "38%", "background": "#F6A90A",
-               "padding-top": "5%", "padding-bottom": "5%",
+               "padding-top": "3%", "padding-bottom": "3%",
                "padding-left": "1em", "padding-right": "1em",
                "color": "white"}}>
             <small>Use</small>

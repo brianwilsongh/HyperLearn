@@ -28,7 +28,7 @@ class BrowsePanel extends React.Component {
 
     return(
       <div className="vertContainer">
-        <h3>Subjects by Category:</h3>
+        <h3>Top Subjects by Category:</h3>
         <div className="browsePanel">
           { categories }
         </div>

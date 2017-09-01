@@ -77,7 +77,6 @@ class DeckModify extends React.Component {
           <p className="errorBlock">{ errors }</p>
 
           <h3>Modify {this.originalTitle}</h3>
-          <h3>The ID is {this.state.id}</h3>
           <br />
           <h4>Title:</h4>
           <input onChange={this.handleInputChange("title")}

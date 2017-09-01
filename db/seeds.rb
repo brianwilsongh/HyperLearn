@@ -22,7 +22,7 @@ end
 
 Category.destroy_all
 
-14.times do
+16.times do
   Category.create(name: Faker::Color.color_name)
 end
 

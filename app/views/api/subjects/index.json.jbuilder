@@ -32,7 +32,8 @@ json.set! :categories do
   json.array! @categories do |category|
     json.extract! category, :id, :name
     json.set! :subjects_of_category do
-      json.array! category.subjects do |cat_sub|
+      cat_subs_by_popularity = category.subjects.sort_by{|cs| cs.followers.count}.reverse.take(5)
+      json.array! cat_subs_by_popularity do |cat_sub|
         json.extract! cat_sub, :id, :title, :user_id, :updated_at
         json.follow_count cat_sub.followers.count
         json.card_count cat_sub.cards.count

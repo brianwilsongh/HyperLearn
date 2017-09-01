@@ -14,7 +14,6 @@ class Api::UsersController < ApplicationController
       @fans = @user.fans
       render :show
     else
-      debugger
       render json: @user.errors.full_messages, status: 422
     end
   end

@@ -2,8 +2,8 @@ json.extract! @user, :username, :id
 if @user.image.url
   json.avatar @user.image.url
 else
-  json.avatar null
-end 
+  json.avatar "null"
+end
 
 json.set! :fans do
   json.array! @user.fans do |fan|

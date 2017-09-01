@@ -19,17 +19,15 @@ export const sessionReducer = (state = defaultState, action) => {
       var newErrors = action.data.responseJSON;
       if (action.data.responseJSON === undefined){
         //catch weird non-errors that show up here, shouldn't need this tho
-        newErrors = [];
+        newErrors = ["Error, please try again"];
       }
-      return Object.assign({}, { errors: newErrors });
+      return Object.assign({}, {currentUser: null, errors: newErrors });
 
     case SubjectActions.RECEIVE_FOLLOWED_SUBJECT:
       var oldSubjectsArray = state.current_user.subjects;
       return _.merge({}, state,
         {current_user: {subjects: [action.data].concat(oldSubjectsArray)} });
 
-    case SessionActions.PURGE_STATE:
-      return Object.assign({}, defaultState);
 
     default:
       return state;

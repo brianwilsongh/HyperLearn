@@ -14,7 +14,7 @@ class Api::SessionsController < ApplicationController
   def update
     #This is being used for a user's queries!
     @categories = Category.all
-    @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%").limit(25)
+    @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%").limit(12)
     render 'api/subjects/queries'
   end
 

@@ -16,7 +16,12 @@ export const sessionReducer = (state = defaultState, action) => {
       return { current_user: action.user, errors: []};
 
     case SessionActions.RECEIVE_ERRORS:
-      return { current_user: null, errors: action.data.responseJSON };
+      var newErrors = action.data.responseJSON;
+      if (action.data.responseJSON === undefined){
+        //catch weird non-errors that show up here, shouldn't need this tho
+        newErrors = [];
+      }
+      return Object.assign({}, { errors: newErrors });
 
     case SubjectActions.RECEIVE_FOLLOWED_SUBJECT:
       var oldSubjectsArray = state.current_user.subjects;

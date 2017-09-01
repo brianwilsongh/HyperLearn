@@ -19,8 +19,8 @@ export const loginDemo = () => dispatch => {
 
 export const signup = (user) => dispatch => {
   return APIUtils.signup(user)
-    .then(theUser => dispatch(receiveCurrentUser(theUser)),
-  error => dispatch(receiveErrors(error)));
+    .then(theUser => dispatch(receiveCurrentUser(theUser)))
+    .fail(error => dispatch(receiveErrors(error)));
 };
 
 export const logout = () => dispatch => {

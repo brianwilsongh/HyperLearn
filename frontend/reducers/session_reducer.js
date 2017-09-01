@@ -28,6 +28,8 @@ export const sessionReducer = (state = defaultState, action) => {
       return _.merge({}, state,
         {current_user: {subjects: [action.data].concat(oldSubjectsArray)} });
 
+    case SessionActions.PURGE_STATE:
+      return Object.assign({}, defaultState);
 
     default:
       return state;

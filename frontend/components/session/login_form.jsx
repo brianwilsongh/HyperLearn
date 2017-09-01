@@ -22,9 +22,7 @@ class LoginForm extends React.Component {
 
   handleFormSubmit(e){
     e.preventDefault();
-    this.props.sendLoginRequest(this.state)
-    .then(this.props.currentUser ? this.props.history.push("/home") :
-    console.log("INVALID LOGIN"));
+    this.props.sendLoginRequest(this.state);
   }
 
   handleInputChange(key){

@@ -12,7 +12,7 @@ guest = User.create(username: "guest", password: "password", image: pictureOfMe,
 f_name: "John", l_name: "Doe")
 
 175.times do |iteration|
-  randPic = File.open("app/assets/images/seedavatar#{(rand * 30).to_i + 1}.jpeg")
+  randPic = File.open("app/assets/images/seedavatar#{(rand * 40).to_i + 1}.jpeg")
   User.create(username: (Faker::StarWars.character.gsub(/\s+/, "").downcase + iteration.to_s),
   password: (Faker::GameOfThrones.character.strip.downcase + "password"),
   image: randPic,

@@ -28,9 +28,7 @@ class SignupForm extends React.Component {
     formData.append("user[username]", this.state.username);
     formData.append("user[password]", this.state.password);
     formData.append("user[image]", this.state.image);
-    this.props.sendSignupRequest(formData)
-    .then(this.props.currentUser ? this.props.history.push("/home") :
-   console.log("INVALID CREDENTIALS"));
+    this.props.sendSignupRequest(formData);
 
   }
 
@@ -57,7 +55,11 @@ class SignupForm extends React.Component {
 
 
   render(){
-    let errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
+
+    var errors;
+    if (this.props.errors){
+      errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
+    }
 
     return (
     <div id="overlay">

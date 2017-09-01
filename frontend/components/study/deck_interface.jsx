@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { getSubjects } from '../../actions/deck_actions';
+import { getSubjects, receiveCurrentDeck } from '../../actions/deck_actions';
 import DeckInterfacePanel from './deck_interface_panel';
 
 
@@ -13,6 +13,7 @@ class DeckInterface extends React.Component {
   }
 
   returnHome(){
+    this.props.setCurrentDeck({});
     this.props.history.push("/home");
   }
 
@@ -47,5 +48,11 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentDeck: (deck) => dispatch(receiveCurrentDeck(deck)),
+  };
+};
 
-export default withRouter(connect(mapStateToProps)(DeckInterface));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DeckInterface));

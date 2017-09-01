@@ -45,6 +45,7 @@ class Api::SubjectsController < ApplicationController
   end
 
   def destroy
+    @categories = Category.all
     @subject = Subject.find(params[:id])
     @subject.destroy
     @subjects = current_user.all_subjects

@@ -76,7 +76,7 @@ class SignupForm extends React.Component {
           <input type="password" onChange={this.handleInputChange("password")} placeholder="Password" />
           <input type="file" onChange={this.updateFile}></input>
           <input type="submit" value="Sign Up" />
-          <img src={this.state.imageUrl} height="20px"/>
+          <img src={this.state.imageUrl} height="50px"/>
         </form>
       </div>
     </div>

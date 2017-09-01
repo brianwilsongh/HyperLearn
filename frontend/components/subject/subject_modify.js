@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editSubject, deleteSubject, receiveSubjectErrors } from '../../actions/subject_actions';
+import { editSubject, deleteSubject, receiveSubjectErrors, receiveCurrentSubject } from '../../actions/subject_actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class SubjectModify extends React.Component {
@@ -48,10 +48,21 @@ class SubjectModify extends React.Component {
     );
   }
 
+  removeCurrentIfDeleted(){
+    if (parseInt(this.state.id) === this.props.currentSubject.id){
+      if (this.props.subjects.length > 1){
+        this.props.sendCurrentSubject(this.props.subjects[1]);
+        //if the first subject in the subjects array was deleted, set to 2nd
+        //if current exists, it will prevent empty subject auto-set-to-first condition on subj panel
+      }
+    }
+  }
+
   handleDeleteClick(e){
     e.preventDefault();
     this.props.deleteSubject(this.state.id)
-      .then(this.props.history.push("/home"));
+      .then(this.props.history.push("/home"))
+      .then(this.removeCurrentIfDeleted());
 
   }
 
@@ -71,7 +82,7 @@ class SubjectModify extends React.Component {
       errors = this.props.errors.map((err, idx) => (<li key={idx}> { err } </li>));
     }
 
-    let categories;
+    let categories = [];
     if (this.props.categories.length > 0){
       categories = this.props.categories.map((category, idx) =>
       (<option key={idx} value={category.id} >{category.name} </option>));
@@ -115,6 +126,7 @@ const mapStateToProps = (state) => {
     subjects: state.subjects.sorted,
     errors: state.subjects.errors,
     categories: state.subjects.categories,
+    currentSubject: state.subjects.current,
   };
 };
 
@@ -122,6 +134,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     editSubject: (subject) => dispatch(editSubject(subject)),
     deleteSubject: (subject) => dispatch(deleteSubject(subject)),
+    sendCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject)),
     clearErrors: (subject) => dispatch(receiveSubjectErrors({responseJSON: []}))
   };
 };

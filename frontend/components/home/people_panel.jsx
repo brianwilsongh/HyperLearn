@@ -73,7 +73,7 @@ class PeoplePanel extends React.Component {
       </div>
 
       <div>
-        <h4>Following Your subjects:</h4>
+        <h4>Your Followers:</h4>
         { fans }
       </div>
 

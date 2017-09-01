@@ -16,14 +16,6 @@ class SearchPanel extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  objEmpty(obj){
-    if (Object.keys(obj).length === 0
-    && obj.constructor === Object) {
-      return true;
-    }
-    return false;
-  }
-
   handleInputChange(key){
     return (e) => {
       this.setState({

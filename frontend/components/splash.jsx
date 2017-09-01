@@ -14,11 +14,12 @@ class Splash extends React.Component {
           <img id="splash" src={window.splash}/>
         </div>
         <div className="textHolder">
-          <h2>Efficient, cost-free studying for the 21st Century</h2>
+          <h1>Super-Efficient studying</h1>
+          <h1> for the 21st Century</h1>
         </div>
 
         <div className="textHolderTwo">
-          <h2>Track your stats as you go, find your weak spots!</h2>
+          <h2>Tracks your stats as you learn.</h2>
         </div>
       </div>
     );

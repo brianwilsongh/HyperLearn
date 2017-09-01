@@ -76,6 +76,7 @@ class SubjectModify extends React.Component {
       categories = this.props.categories.map((category, idx) =>
       (<option key={idx} value={category.id} >{category.name} </option>));
     }
+    categories.unshift(<option key="default" value={""}> -- </option>);
 
     return (
     <div id="overlay">

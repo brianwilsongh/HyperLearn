@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
 import BrowsePanelItem from './browse_panel_item';
 
@@ -9,20 +8,11 @@ class BrowsePanel extends React.Component {
 
   constructor(props){
     super(props);
-
   }
 
   componentDidMount(){
     //fetch subjects so that we have categories
     this.props.fetchSubjects();
-  }
-
-  objEmpty(obj){
-    if (Object.keys(obj).length === 0
-    && obj.constructor === Object) {
-      return true;
-    }
-    return false;
   }
 
   render(){

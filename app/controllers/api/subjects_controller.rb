@@ -14,7 +14,7 @@ class Api::SubjectsController < ApplicationController
     if @subject.save
       @categorization = Categorization.new(category_id: params[:subject][:category_id], subject_id: @subject.id)
       @categorization.save
-      #error should not disrupt the whole thing
+      #error should not disrupt the whole thing, just not categorize it
       @subjects = current_user.all_subjects
       render :index
     else
@@ -25,17 +25,14 @@ class Api::SubjectsController < ApplicationController
   def update
     @categories = Category.all
 
-    oldCategorization = Categorization.where(subject_id: params[:id], category_id: params[:subject][:category_id])[0]
+    oldCategorization = Categorization.where(subject_id: params[:id])[0]
 
     if oldCategorization
       oldCategorization.destroy
     end
 
-    @categorization = Categorization.new(category_id: params[:subject][:category_id], subject_id: params[:id])
-    unless @categorization.save
-      render json: ["Categorization failed"], status: 422
-      return;
-    end
+    @categorization = Categorization.create(category_id: params[:subject][:category_id], subject_id: params[:id])
+    #if it doesn't save, object will just be uncategorized
 
     @subject = Subject.find(params[:id])
     fixed_params = subject_params.except(:category_id)

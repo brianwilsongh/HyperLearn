@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getSubjects, receiveCurrentSubject } from '../../actions/subject_actions';
 import SearchResultsPanelItem from './search_results_panel_item';
 
 
@@ -41,12 +39,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSubjects: () => dispatch(getSubjects()),
-    setCurrentSubject: (subject) => dispatch(receiveCurrentSubject(subject)),
-
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsPanel);
+export default connect(mapStateToProps, null)(SearchResultsPanel);

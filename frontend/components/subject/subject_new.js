@@ -44,7 +44,7 @@ class SubjectNew extends React.Component {
       categories = this.props.categories.map((category, idx) =>
       (<option key={idx} value={category.id} >{category.name} </option>));
     }
-    categories.unshift(<option value={null}> -- </option>);
+    categories.unshift(<option key="default" value={""}> -- </option>);
 
     return (
     <div id="overlay">
@@ -64,7 +64,7 @@ class SubjectNew extends React.Component {
           placeholder="Title"
           value={this.state.title} />
 
-        <select onChange={this.handleInputChange("category_id")} value={null}>
+        <select onChange={this.handleInputChange("category_id")}>
             {categories}
           </select>
 

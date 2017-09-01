@@ -43,7 +43,6 @@
 
  input {
    padding: 0.75em;
-   background: #F3F2EE;
  }
 
  input[type=file] {
@@ -153,13 +152,13 @@
  .textHolder {
    position: absolute;
    top: 24%;
-   left: 38%;
+   left: 62%;
    width: 100%;
    background: rgba(0, 0, 0, 0.7);
    padding: 0.5%;
  }
 
- .textHolder > h2 {
+ .textHolder > h1 {
    margin-left: 3%;
    color: white;
  }
@@ -170,7 +169,7 @@
    justify-content: flex-end;
    position: absolute;
    top: 62%;
-   right: 38%;
+   right: 62%;
    width: 100%;
    background: rgba(72, 95, 126, 0.6);
    padding: 0.5%;

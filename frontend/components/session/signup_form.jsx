@@ -24,12 +24,12 @@ class SignupForm extends React.Component {
   }
 
   handleFormSubmit(e){
+    e.preventDefault();
     var formData = new FormData();
     formData.append("user[username]", this.state.username);
     formData.append("user[password]", this.state.password);
     formData.append("user[image]", this.state.image);
-    this.props.sendSignupRequest(formData)
-      .then(this.props.history.push("/home"));
+    this.props.sendSignupRequest(formData);
   }
 
   handleInputChange(key){
@@ -55,6 +55,11 @@ class SignupForm extends React.Component {
 
 
   render(){
+    if (this.props.currentUser){
+      if (this.props.currentUser.id){
+        this.props.history.push("/home");
+      }
+    }
 
     var errors;
     if (this.props.errors){
@@ -88,7 +93,7 @@ class SignupForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    current_user: state.session.current_user,
+    currentUser: state.session.current_user,
     errors: state.session.errors,
   };
 };

@@ -17,7 +17,7 @@ export const subjectsReducer = (state = defaultState, action) => {
       // sorted store the idx array, alphabetical while current is obj
       //also receives all categories into an array
       return Object.assign({}, state,
-        {sorted: action.data.alphabetical, categories: action.data.categories, queried: {}});
+        {sorted: action.data.alphabetical, categories: action.data.categories, queried: []});
 
     case SActions.RECEIVE_SUBJECT_ERRORS:
       return Object.assign({}, state, {errors: action.data.responseJSON});

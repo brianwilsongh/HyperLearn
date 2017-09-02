@@ -12,7 +12,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def update
-    #This is being used for a user's queries!
+    #This is being used for a user's queries! nothing todo with auth
     @categories = Category.all
     @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%").limit(12)
     render 'api/subjects/queries'

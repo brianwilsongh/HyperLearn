@@ -57,9 +57,6 @@ class CardRater extends React.Component {
       usedCards = [];
     }
 
-    if (imperfects === 0){
-      console.log("Deck should be 100%!");
-    }
 
     Object.keys(cards).forEach((id, idx) => {
       var actualCard = cards[id];
@@ -75,7 +72,7 @@ class CardRater extends React.Component {
     });
 
     if (nextCard === this.props.currentCard){
-      console.log("THERE IS ONLY ONE CARD");
+      console.log("Only one card!");
     }
 
   }

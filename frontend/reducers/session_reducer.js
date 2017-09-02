@@ -3,8 +3,7 @@ import _ from 'lodash';
 import * as SubjectActions from '../actions/subject_actions';
 
 const defaultState = {
-  //should this be currentUser or current_user?
-  currentUser: null,
+  current_user: null,
   errors: [],
 };
 
@@ -21,7 +20,7 @@ export const sessionReducer = (state = defaultState, action) => {
         //catch weird non-errors that show up here, shouldn't need this tho
         newErrors = ["Error, please try again"];
       }
-      return Object.assign({}, {currentUser: null, errors: newErrors });
+      return Object.assign({}, {current_user: null, errors: newErrors });
 
     case SubjectActions.RECEIVE_FOLLOWED_SUBJECT:
       var oldSubjectsArray = state.current_user.subjects;

@@ -1,6 +1,13 @@
 class Api::FollowsController < ApplicationController
   def create
     @follow = Follow.new(user_id: current_user.id, subject_id: params["subjectId"].to_i)
+
+    unless @follow.valid?
+      @follow.destroy
+      render json: ["Invalid follow!"], status: 422
+      return
+    end
+
     @follow.save
     @subject = Subject.find(@follow.subject_id)
 

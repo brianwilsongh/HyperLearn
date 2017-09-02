@@ -36,7 +36,7 @@ export const App = ({store}) => {
           <AuthRoute path="/signup" component={SignupForm} />
           <ProtectedRoute path="/home" component={HomePage} />
 
-          <Route path="/browse" component={Browse} />
+          <ProtectedRoute path="/browse" component={Browse} />
 
           <ProtectedRoute path="/home/subject/new" component={SubjectNew} />
           <ProtectedRoute path="/home/subject/modify/:id" component={SubjectModify} />

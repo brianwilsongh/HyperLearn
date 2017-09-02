@@ -47,6 +47,6 @@ export const sendQueryForSubjects = (term) => {
   return $.ajax({
     method: "PUT",
     url: "/api/sessions",
-    data: {term}
+    data: {term},
   });
 };

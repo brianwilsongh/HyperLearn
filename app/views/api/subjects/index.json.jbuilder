@@ -37,7 +37,12 @@ json.set! :categories do
         json.extract! cat_sub, :id, :title, :user_id, :updated_at
         json.follow_count cat_sub.followers.count
         json.card_count cat_sub.cards.count
-        json.made_by_current_user (current_user.id) == cat_sub.user_id
+        if (current_user.id)
+          #insurance for a strange bug that popped up
+          json.made_by_current_user (current_user.id) == cat_sub.user_id
+        else
+          json.made_by_current_user false
+        end
       end
     end
   end

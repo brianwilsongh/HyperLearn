@@ -30,6 +30,14 @@ class SignupForm extends React.Component {
     formData.append("user[password]", this.state.password);
     formData.append("user[image]", this.state.image);
     this.props.sendSignupRequest(formData);
+
+    setTimeout(() => {
+      console.log("hit");
+      if (this.props.errors.length === 0){
+        window.location.reload();
+      }
+    }, 1000).bind(this);
+
   }
 
   handleInputChange(key){

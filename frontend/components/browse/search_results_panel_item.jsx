@@ -18,12 +18,14 @@ class SearchResultsPanelItem extends React.Component {
 
     var button = <button onClick={this.handleFollowClick.bind(this)}>Follow</button>;
     var thisSubject = this.props.subject;
-    this.props.subjectsOfUser.forEach((el) => {
-      if (el.id === thisSubject.id){
-        //if you find this subject in the user's subjects, kill the button
-        button = null;
-      }
-    });
+    if (this.props.subjectsOfUser){
+      this.props.subjectsOfUser.forEach((el) => {
+        if (el.id === thisSubject.id){
+          //if you find this subject in the user's subjects, kill the button
+          button = null;
+        }
+      });
+    }
 
     return (
       <div className="browsePanelItem">

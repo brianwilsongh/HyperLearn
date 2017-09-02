@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createCard } from '../../actions/card_actions';
+import { createCard, receiveCardErrors } from '../../actions/card_actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class CardNew extends React.Component {
@@ -17,12 +17,26 @@ class CardNew extends React.Component {
       answer_img_url: "",
     };
 
+    this.storeLength;
+
     this.handleCreateClick = this.handleCreateClick.bind(this);
   }
 
   handleCreateClick(e){
     e.preventDefault(); //needed?
-    this.props.createCard(this.state).then(this.props.history.push("/build"));
+    this.props.createCard(this.state);
+    this.props.wipeCardErrors({responseJSON: []});
+    //wipe out card errors when submit
+    this.storeLength = Object.keys(this.props.cards).length;
+  }
+
+  componentDidUpdate(){
+    if (Object.keys(this.props.cards).length > this.storeLength){
+      //if card was added
+      if (this.props.errors.length === 0){
+        this.props.history.push(`/build/${this.props.currentDeck.id}`);
+      }
+    }
   }
 
   handleInputChange(key){
@@ -45,7 +59,7 @@ class CardNew extends React.Component {
     <div id="overlay">
       <div className="sessionForm">
         <form onSubmit={this.handleCreateClick} >
-          <Link to="/home" className="boxclose">
+          <Link to={`/build/${this.props.currentDeck.id}`} className="boxclose">
             x
           </Link>
 
@@ -79,6 +93,7 @@ const mapStateToProps = (state) => {
   return {
     current_user: state.session.current_user,
     currentDeck: state.decks.current,
+    cards: state.cards.store,
     errors: state.cards.errors,
   };
 };
@@ -86,6 +101,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createCard: (newCard) => dispatch(createCard(newCard)),
+    wipeCardErrors: (error) => dispatch(receiveCardErrors(error))
   };
 };
 

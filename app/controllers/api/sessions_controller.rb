@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
     if @user
       login(@user)
       @fans = @user.fans
-      render 'api/users/show.json'
+      render '/api/users/show'
     else
       render json: ["Invalid username/password combination"], status: 401
     end
@@ -15,7 +15,10 @@ class Api::SessionsController < ApplicationController
     #This is being used for a user's queries! nothing todo with auth
     @categories = Category.all
     @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%").limit(12)
-    render 'api/subjects/queries'
+    unless current_user
+      render json: [], status: 200
+    end
+    render '/api/subjects/queries'
   end
 
   def destroy

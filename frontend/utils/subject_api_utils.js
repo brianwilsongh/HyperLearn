@@ -45,8 +45,8 @@ export const sendFollowDeletion = (subjectId) => {
 
 export const sendQueryForSubjects = (term) => {
   return $.ajax({
-    method: "PUT",
-    url: "/api/sessions",
-    data: {term},
+    method: "GET",
+    url: `/api/subjects/1?term=${term}`,
+    cache: false,
   });
 };

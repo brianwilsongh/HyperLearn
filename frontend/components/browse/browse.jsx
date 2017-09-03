@@ -12,8 +12,8 @@ class Browse extends React.Component {
   render(){
     return(
       <div className="vertContainer">
-          <BrowsePanel />
-          <SearchPanel />
+        <SearchPanel />
+        <BrowsePanel />
       </div>
     );
   }

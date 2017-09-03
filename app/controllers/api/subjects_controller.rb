@@ -6,6 +6,14 @@ class Api::SubjectsController < ApplicationController
     render :index
   end
 
+  def show
+    #hopefuly this will prevent a 304
+    headers['Last-Modified'] = Time.now.httpdate
+    @categories = Category.all
+    @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%").limit(12)
+    render '/api/subjects/queries'
+  end
+
   def create
     @categories = Category.all
 

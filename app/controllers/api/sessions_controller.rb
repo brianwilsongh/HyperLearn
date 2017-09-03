@@ -11,16 +11,6 @@ class Api::SessionsController < ApplicationController
     end
   end
 
-  def update
-    #This is being used for a user's queries! nothing todo with auth
-    @categories = Category.all
-    @subjects = Subject.where('LOWER(title) like ?', "%" + params[:term].downcase + "%").limit(12)
-    unless current_user
-      render json: [], status: 200
-    end
-    render '/api/subjects/queries'
-  end
-
   def destroy
     @user = current_user
     if @user

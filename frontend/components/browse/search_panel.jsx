@@ -24,7 +24,8 @@ class SearchPanel extends React.Component {
     };
   }
 
-  handleQueryClick(){
+  handleQueryClick(e){
+    e.preventDefault();
     this.props.sendQueryForSubjects(this.state.query);
   }
 

@@ -10,7 +10,7 @@ These ratings are used for percentage-based 'mastery' calculations for decks and
 
 HyperLearn is built on a Ruby on Rails backend with a PostgreSQL database storing all the information regarding subjects, cards, decks, and users. Amazon S3 is used to store images, currently just for users' avatars. The frontend is built with a React/Redux framework, which utilizes AJAX to communicate with the server.
 
-###Features
+### Features
 
 * User signup and login
 * Create, user, follow, delete, or categorize Subjects
@@ -18,7 +18,7 @@ HyperLearn is built on a Ruby on Rails backend with a PostgreSQL database storin
 * Search/Browse for subjects
 * See other users who are studying the same subject as you, or users who follow your subjects
 
-###Walkthrough
+### Walkthrough
 
 Users have the option to create a new account, log into an existing account, or use the one-click demonstration account. Users who try to access other pages will be redirected to the front.
 
@@ -42,7 +42,7 @@ Users can visit the /browse page to find additional subjects to study by either 
 
 
 
-###Implementing Mass-Edit
+### Implementing Mass-Edit
 
 The mass edit form is found on the /build page, which allows users to add/edit/delete cards from a deck. In React, a parent component determines how many child components to render based on how many cards are in a deck. The child components contain forms that are populated with each individual card's information, received as properties from the parent component.
 

@@ -11,7 +11,7 @@ pictureOfMe = File.open("app/assets/images/wilson.png")
 guest = User.create(username: "guest", password: "password", image: pictureOfMe,
 f_name: "John", l_name: "Doe")
 
-175.times do |iteration|
+150.times do |iteration|
   randPic = File.open("app/assets/images/seed_avatars/seedavatar#{(rand * 45).to_i + 1}.jpeg")
   User.create(username: (Faker::StarWars.character.gsub(/\s+/, "").downcase + iteration.to_s),
   password: (Faker::GameOfThrones.character.strip.downcase + "password"),
@@ -43,7 +43,7 @@ end
 real_sub_1 = Subject.create(title: "All About Brian", user_id: guest.id)
 Categorization.create(subject_id: real_sub_1.id, category_id: fun_cat.id)
 
-75.times do
+50.times do
   this_subject = Subject.create(title: Faker::GameOfThrones.city,
   user_id: User.all.sample.id)
   Categorization.create(subject_id: this_subject.id, category_id: Category.all.sample.id)
@@ -63,7 +63,7 @@ Deck.destroy_all
 
 real_deck_1 = Deck.create(title: "Knowing the Basics", subject_id: real_sub_1.id, user_id: guest.id)
 
-400.times do
+200.times do
   random_subject = Subject.all.sample
   Deck.create(title: Faker::GameOfThrones.character,
     subject_id: random_subject.id,
@@ -84,7 +84,7 @@ Card.create(question: "Countries visited", answer: "7", deck_id: real_deck_1.id)
 Card.create(question: "Favorite movie", answer: "The Good, the Bad, and the Ugly", deck_id: real_deck_1.id)
 Card.create(question: "Favorite game", answer: "Starcraft", deck_id: real_deck_1.id)
 
-1400.times do
+1000.times do
   Card.create(question: Faker::Pokemon.name,
   answer: Faker::Pokemon.move,
   deck_id: Deck.all.sample.id)

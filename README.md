@@ -11,35 +11,34 @@ These ratings are used for percentage-based 'mastery' calculations for decks and
 HyperLearn is built on a Ruby on Rails backend with a PostgreSQL database storing all the information regarding subjects, cards, decks, and users. Amazon S3 is used to store images, currently just for users' avatars. The frontend is built with a React/Redux framework, which utilizes AJAX to communicate with the server.
 
 ###Features
-<ul>
-<li>User signup and login</li>
-<li>Create, user, follow, delete, or categorize Subjects</li>
-<li>Create, use, and delete Decks, & Cards</li>
-<li>Search/Browse for subjects</li>
-<li>See other users who are studying the same subject as you, or users who follow your subjects</li>
-</ul>
+
+⋅⋅* User signup and login
+⋅⋅* Create, user, follow, delete, or categorize Subjects
+⋅⋅* Create, use, and delete Decks, & Cards
+⋅⋅* Search/Browse for subjects
+⋅⋅* See other users who are studying the same subject as you, or users who follow your subjects
 
 ###Walkthrough
 
 Users have the option to create a new account, log into an existing account, or use the one-click demonstration account. Users who try to access other pages will be redirected to the front.
 
-![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss1.png)
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss1.png?raw=true)
 
 Once logged in, users will be brought to the main interface. Subjects are displayed on the left side of the page, decks of that subject appear in the center. Other users appear on the right side.
 
-![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss2.png)
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss2.png?raw=true)
 
 Users can begin studying cards once they are following a subject that contains at least one deck with at least one card. Stats are tracked on the panel on the left side of the screen, and users must rate their own performance on each card once the answer is revealed.
 
-![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss3.png)
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss3.png?raw=true)
 
 The mass edit form makes it easy to edit and add cards
 
-![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss4.png)
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss4.png?raw=true)
 
 Users can visit the /browse page to find additional subjects to study by either searching or browsing the 'Top Subjects by Category' section. Follow buttons will appear next to any subjects that aren't already being followed by that user.
 
-![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss5.png)
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss5.png?raw=true)
 
 
 

@@ -1,63 +1,116 @@
 # HyperLearn
 
-HyperLearn is a card and deck-based learning platform inspired by BrainScape.
-It's built on a Ruby on Rails backend utilizing a PostgreSQL database with a React/Redux framework on the frontend.
+[Link to live site](https://hyper-learn.herokuapp.com/#/)
 
-<h2>Features</h2>
+### Summary
+
+HyperLearn is a card and deck-based learning platform inspired by BrainScape. Users can follow or create subjects which contain decks, which contain cards that can be studied through an interface. The study interface allows users to flip cards (they first appear on the 'question' side) and rate their own performance on that card.
+
+These ratings are used for percentage-based 'mastery' calculations for decks and subjects, which provide a quick way for the user to track how well they know certain subjects/decks. As users study decks through the interface, cards that have been 'mastered' (rated as a 5) are ignored by the card-sorting algorithm in favor of cards that have yet to be mastered.
+
+HyperLearn is built on a Ruby on Rails backend with a PostgreSQL database storing all the information regarding subjects, cards, decks, and users. Amazon S3 is used to store images, currently just for users' avatars. The frontend is built with a React/Redux framework, which utilizes AJAX to communicate with the server.
+
+###Features
 <ul>
 <li>User signup and login</li>
-<li>Create, use, and delete decks</li>
-<li>Add tags to subjects and decks</li>
-<li>Search for subjects/decks by their tags</li>
+<li>Create, user, follow, delete, or categorize Subjects</li>
+<li>Create, use, and delete Decks, & Cards</li>
+<li>Search/Browse for subjects</li>
+<li>See other users who are studying the same subject as you, or users who follow your subjects</li>
 </ul>
 
-<h2>Implementation</h2>
+###Walkthrough
 
-<h3> Authorization </h3>
+Users have the option to create a new account, log into an existing account, or use the one-click demonstration account. Users who try to access other pages will be redirected to the front.
 
-The user will begin on the landing page, which will restrict the user from accessing any of the study materials until the user has logged in. Login/Signup inputs will appear to the user through a modal, overlaying the main page. The forms in the model will trigger an AJAX request that will trigger an action updating the store with current_user after finishing.
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss1.png)
 
-![Front Page](https://github.com/wilsontheory/HyperLearn/blob/master/docs/wireframes/FrontPage.png)
+Once logged in, users will be brought to the main interface. Subjects are displayed on the left side of the page, decks of that subject appear in the center. Other users appear on the right side.
 
-<h3> Subjects/Decks </h3>
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss2.png)
 
-Once the session cookie matches a user in the database, the user will be redirected to '/interface', where they will see all the subjects that were either authored by them or followed by them. These subjects will be retrieved through an AJAX request that will search for subjects authored by the user and subjects followed by the user, accumulating both responses into a slice of state "user_subjects" to populate the subjects components.
+Users can begin studying cards once they are following a subject that contains at least one deck with at least one card. Stats are tracked on the panel on the left side of the screen, and users must rate their own performance on each card once the answer is revealed.
 
-Clicking on a subject will trigger an AJAX call that will fetch the decks that belong to that subject. DeckItemComponent will be rendered after the call is returned. Subjects can be deleted/edited through a modal that will appear if the user clicks on an edit button for the subject.
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss3.png)
 
-![Logged In Interface](https://github.com/wilsontheory/HyperLearn/blob/master/docs/wireframes/LoggedInInterface.png)
+The mass edit form makes it easy to edit and add cards
 
-<h3> Using Decks </h3>
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss4.png)
 
-Users that click the study button next to any given deck will be redirected to '/learn/:deck_id' which will render the following page.
+Users can visit the /browse page to find additional subjects to study by either searching or browsing the 'Top Subjects by Category' section. Follow buttons will appear next to any subjects that aren't already being followed by that user.
 
-![Deck Study Interface](https://github.com/wilsontheory/HyperLearn/blob/master/docs/wireframes/DeckStudyInterface.png)
+![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/ss5.png)
 
-Statistics are generating through a relational database table of scores, which store both a user_id and a card_id. The card itself will show question/answer through a boolean switch that will live in the CardInterfaceComponent's state.
 
-Clicking on an icon next to decks back on the main interface will brings users to '/edit/:deck_id' which will render the following components to easily edit a deck and add tags.
 
-![Edit Deck](https://github.com/wilsontheory/HyperLearn/blob/master/docs/wireframes/EditDeck.png)
+###Implementing Mass-Edit
 
-<h3> Database </h3>
+The mass edit form is found on the /build page, which allows users to add/edit/delete cards from a deck. In React, a parent component determines how many child components to render based on how many cards are in a deck. The child components contain forms that are populated with each individual card's information, received as properties from the parent component.
 
-In the relational database, Subjects will be stored in a table with columns for name, and one for the user_id to link them to their author. This will set up a belongs_to relationship between the Subject and its author, respectively.
+A user can edit all the cards at once with a single click, ultimately sending a single patch request to the server rather than many. This was achieved by creating a new slice of state exclusively for card edits, and by storing an array of references to child components within the parent components by passing onRef to the child with a callback that pushes itself (the React component) into an array stored in the state of the parent.
 
-Decks will be stored in a table with columns for name, and subject_id to link them to their parent subject.
+```javascript
+if (!this.objEmpty(currentCards)){
+  forms = Object.keys(currentCards).map((key, idx) => {
+    return (
+      <CardForm key={idx} card={currentCards[key]}
+        onRef={ref => {
+            if (ref){
+              this.childComponentsEdit.push(ref);
+            }
+          }
+        } />
+    );
+  });
+} else {
+  forms = <p>Deck is empty...</p>;
+}
+```
 
-Cards will have columns storing a deck_id to reference their parent deck, and will be linked to users through Scores which store an integer for the actual score and ids of both users and cards.
+When a user triggers a "mass edit", this allows the parent to execute a method on each of the children since references to these children are stored. In this case, the method triggered adds the state of the children (the contents of the form) into a reserved area of state which is then used for the actual AJAX request before being emptied out.
 
-Tags will be associated with various subjects and decks by a 'Taggings' join table. Tags themselves will only contain a string for the actual Tag name, and will have a has_many relationship with Taggings to link them to their associated components.
+```javascript
+triggerSubmissionEdit(){
+  this.childComponentsEdit.forEach((child, idx) => {
+    if (child){
+      if (this.props.cards[child.state.id]){
+        child.addEditedCard();
+      }
+    }
+  }, this);
+}
+```
 
-Search will be implemented with a search feature that will send AJAX requests for each change undergone by the search bar, searching for tags that match the term. Upon submission of the search form, subjects and decks matching the tag will be returned.
+So in the end, one large PATCH request is sent that can modify a large number of cards with one AJAX request. This results in a single response that includes all the updated information on cards that the deck being built.
 
-<h3> Timeline </h3>
-<li>Phase I: Build models/controllers and their API responses (jBuilder), seed DB and handle frontend auth input (2 days)</li>
+I determined that success/error messages returned from the server also have to be individualized for each card in the mass-edit form for the user to fully understand what happened on the server side. This was achieved by adding an error-holding array inside the JSON objects representing each card, and a multi-line conditional in the render method for the card-form components (which rendered one form representing each card).
 
-<li>Phase II: Create landing page, along with AJAX actions that update store with appropriate info (2 days)</li>
+```javascript
+let errors;
+if (this.props.cardStore[this.state.id]){
+  let thisCard = this.props.cardStore[this.state.id];
+   if (thisCard.errors[0]){
+     errors = thisCard.errors[0]
+      .map((err, idx) => {
+        if (err === "None"){
+          return (<li className="cardNonErrorItem" key={idx}> Saved! </li>);
+        } else {
+          return (<li key={idx}> { err } </li>);
+        }
+      });
+  }
+}
+```
+This allows the React component to have one of three outcomes when it is rendered. One is blank, where the user hasn't performed any actions and no works appear with the form. The second is the success message, which is triggered when the server sends a successfully edited card with an explicit string "None" in the error-holding array which is displayed in a friendly green color. The third outcome occurs when there were errors in editing the card server-side, and these are displayed in a list.
 
-<li>Phase III: Build study interface, allowing user to submit scores on cards, updating the statistical display (2 days)</li>
+### Future Directions for HyperLearn
 
-<li>Phase IV: Make pages/modals to create, edit subjects and decks (2 days)</li>
+<li>Reduce load on server by determining ways to send fewer/smaller requests without hindering functionality</li>
 
-<li>Phase V: Create search functionality to search for subjects/decks by keyword/tag, work on CSS styling (1 day)</li>
+<li>Improve card-sorting algorithm to better favor unmastered, low-rated cards over unmastered, high-rated cards</li>
+
+<li>Add ability to upload images for question/answer sides of a card</li>
+
+<li>Build out social networking, add profile pages for users along with ability to add friends and send private messages</li>
+
+<li>Add achievements to be displayed on profile pages, such as 'get 100 cards right in a row'</li>

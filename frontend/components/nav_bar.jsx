@@ -16,7 +16,7 @@ class NavBar extends React.Component {
 
   handleDemoLogin(e){
     e.preventDefault();
-    this.props.loginDemo().then(this.props.history.push("/home"));
+    this.props.loginDemo().then(this.props.history.push("/"));
   }
 
   wipeCurrentDeck(){

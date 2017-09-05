@@ -9,7 +9,7 @@ class Api::FollowsController < ApplicationController
     end
 
     @follow.save
-    @subject = Subject.find(@follow.subject_id)
+    @subject = Subject.find(params["subjectId"].to_i)
 
     ratings = []
     @subject.cards.each do |card|

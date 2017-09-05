@@ -27,7 +27,13 @@ class CardViewer extends React.Component {
 
   render(){
     var status = this.state.side === "Q" ? "Question:" : "Answer:";
-    var display = this.state.side === "Q" ? this.props.currentCard.question : this.props.currentCard.answer;
+    var textString = this.state.side === "Q" ? this.props.currentCard.question : this.props.currentCard.answer;
+    var display;
+    if (textString){
+      display = textString.split("\n").map(i => {
+        return <div>{i}</div>;
+        });
+    }
     var bottomSection = (this.state.side === "Q" ?
     <div>Show Answer</div> :
       <CardRater/>);

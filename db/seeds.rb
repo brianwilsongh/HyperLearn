@@ -74,9 +74,11 @@ real_deck_1 = Deck.create(title: "Knowing the Basics", subject_id: real_sub_1.id
 #seed data for the java subject
 java_deck_history = Deck.create(title: "History", subject_id: java_sub.id, user_id: guest.id)
 java_deck_basics = Deck.create(title: "Basic Knowledge", subject_id: java_sub.id, user_id: guest.id)
-java_deck_one = Deck.create(title: "Level 1", subject_id: java_sub.id, user_id: guest.id)
+java_jdbc = Deck.create(title: "Java DB Connectivity", subject_id: java_sub.id, user_id: guest.id)
+java_concurrency = Deck.create(title: "Concurrency", subject_id: java_sub.id, user_id: guest.id)
+java_collections = Deck.create(title: "Collections", subject_id: java_sub.id, user_id: guest.id)
 
-150.times do |itr|
+100.times do |itr|
   random_subject = Subject.all.sample
   Deck.create(title: "DeckTitle #{itr.to_s}",
     subject_id: random_subject.id,
@@ -103,14 +105,90 @@ Card.create(question: "Favorite biome", answer: "Taiga", deck_id: real_deck_1.id
 Card.create(question: "Bones broken since birth", answer: "1", deck_id: real_deck_1.id)
 
 # Java History
-Card.create(question: "What year was Java created?", answer: "?", deck_id: java_deck_history.id)
+Card.create(question: "What year was Java created?", answer: "1995", deck_id: java_deck_history.id)
+Card.create(question: "What was the original name of Java?", answer: "Oak", deck_id: java_deck_history.id)
+Card.create(question: "There are four Java platforms with their own JVMs, what are they?",
+answer: "Java Standard Edition \n Java Enterprise Edition \n Java Micro Edition \n Java FX", deck_id: java_deck_history.id)
+Card.create(question: "Who invented Java?", answer: "James Gosling", deck_id: java_deck_history.id)
+Card.create(question: "Who invented Java?", answer: "James Gosling", deck_id: java_deck_history.id)
+
 
 # Java Basics
-Card.create(question: "How many bytes...", answer: "?", deck_id: java_deck_basics.id)
+Card.create(question: "Which of the following is an invalid use of the 'final' keyword?
+ \n final class (class cannot be extended)
+ \n final field (field is a constant)
+ \n final method (method can't be overwritten)
+ \n final countdown (time before a process starts)
+ \n final variable (variable value cannot be changed)",
+answer: "final countdown", deck_id: java_deck_basics.id)
 
-# Java Level One
-Card.create(question: "What is....", answer: "?", deck_id: java_deck_one.id)
+Card.create(question: "Does Java support multithreading?", answer: "Yes", deck_id: java_deck_basics.id)
+Card.create(question: "Does Java allow for dynamic programming?", answer: "Yes, through reflections and instrumentations", deck_id: java_deck_basics.id)
+Card.create(question: "Does Java allow for dynamic programming?", answer: "Yes, through reflections and instrumentations", deck_id: java_deck_basics.id)
 
+# JDBC
+Card.create(question: "Name the methods in the java.sql.Statement class that are used to:
+\na) execute SQL select statements
+\nb) execute SQL insert, update and delete statements
+\nc) execute arbitrary SQL statements
+\nd) execute more than one SQL statement specified in Java code, not in a stored procedure",
+answer: "a: executeQuery
+\nb: executeUpdate
+\nc: execute
+\nd: executeBatch", deck_id: java_jdbc.id)
+
+Card.create(question: "By default, JDBC commits changes made by executing SQL statements immediately after they execute.
+What line of code disables that so the code can decide when to commit or rollback changes in a transaction?",
+ answer: "setAutoCommmit(false);", deck_id: java_jdbc.id)
+
+Card.create(question: "What class is used to efficiently execute the same statement repeatedly with different 'parameter' values?",
+ answer: "java.sql.PreparedStatement (PreparedStatement is crucial)", deck_id: java_jdbc.id)
+
+Card.create(question: "What class is used to invoke SQL stored procedures?",
+ answer: "java.sql.CallableStatement (CallableStatement is crucial)", deck_id: java_jdbc.id)
+
+Card.create(question: "In JDBC, what class is responsible for selecting the driver that will be used to communicate with a specified
+database?",
+ answer: "java.sql.DriverManager (DriverManager is crucial)", deck_id: java_jdbc.id)
+
+
+# Java Concurrency
+Card.create(question: "What is the class in java.util.concurrent that provides an Integer that may be atomically updated?",
+ answer: "AtomicInteger", deck_id: java_concurrency.id)
+Card.create(question: "Two java.util.concurrent Interfaces extend the java.util.concurrent.Executor Interface. Name one.",
+ answer: "Either ExecutorService or ScheduledExecutorService", deck_id: java_concurrency.id)
+Card.create(question: "What reusable synchronization aid allows a set of threads to wait for each other to reach a common barrier
+point?",
+ answer: "CyclicBarrier", deck_id: java_concurrency.id)
+
+Card.create(question: "CopyOnWriteArraySet is a thread-safe Set in which all mutative operations are implemented by making a
+fresh copy.   What is the java.util.concurent class used to implement CopyOnWriteArraySet?",
+ answer: "CopyOnWriteArrayList", deck_id: java_concurrency.id)
+
+Card.create(question: "What java.util.concurrent Interface does a concurrent programmer keep going back to when needing to
+represent the result of an asynchronous computation?",
+ answer: "Future", deck_id: java_concurrency.id)
+
+ # Java Collections
+ Card.create(question: "Name one non-optional method java.util.ListIterator has that java.util.Iterator does not.",
+  answer: "One of:
+  hasPrevious(),
+  previous(),
+  previousIndex(),
+  nextIndex()", deck_id: java_collections.id)
+
+ Card.create(question: "Can a single-threaded Java program throw a java.util.ConcurrentModificationException?",
+  answer: "Yes", deck_id: java_collections.id)
+
+ Card.create(question: "Does Map<K, V> extend Collection<E> for some E?",
+  answer: "No", deck_id: java_collections.id)
+
+ Card.create(question: "True/False: A HashSet is internally implemented using a HashMap.",
+  answer: "True", deck_id: java_collections.id)
+
+ Card.create(question: "Name three methods of the java.util.Arrays utility class.",
+  answer: "three of:
+asList, binarySearch, copyOf, copyOfRange, deepEquals, deepHashCode, deepToString, fill, hashCode, sort", deck_id: java_collections.id)
 
 
 500.times do

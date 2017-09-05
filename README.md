@@ -1,6 +1,6 @@
 # HyperLearn
 
-[Link to live site](https://hyper-learn.herokuapp.com/#/)
+[Link to live site](http://hyper-learn.herokuapp.com/#/)
 
 ### Summary
 

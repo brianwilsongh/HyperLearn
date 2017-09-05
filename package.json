@@ -13,10 +13,12 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.1.2",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "thunk": "0.0.1",
     "webpack": "^3.5.5"
+  },
+  "devDependencies": {
+  "redux-logger": "^3.0.6"
   },
   "description": "Build, share, and study decks while tracking how much you know",
   "version": "1.0.0",

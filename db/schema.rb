@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828220550) do
+ActiveRecord::Schema.define(version: 20170905000817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170828220550) do
     t.integer "subject_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "subject_id"], name: "index_follows_on_user_id_and_subject_id", unique: true
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170828220550) do
     t.integer "rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "card_id"], name: "index_ratings_on_user_id_and_card_id", unique: true
   end
 
   create_table "subjects", force: :cascade do |t|

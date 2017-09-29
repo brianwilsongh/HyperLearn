@@ -3,15 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .homeDeckItem {
+  padding-bottom: 0.75em;
+  padding-top: 0.75em;
   width: 68%;
   margin: 4%;
   border-top: 2px solid #F3F2EE;
   border-bottom: 2px solid #F3F2EE;
   cursor: pointer;
-}
-
-.homeDeckItem:hover {
-  background: #F3F2EE;
 }
 
 .yellowUseButton {

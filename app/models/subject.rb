@@ -18,7 +18,7 @@ class Subject < ActiveRecord::Base
     foreign_key: :user_id,
     class_name: :User
 
-  has_many :decks,
+  has_many :decks, dependent: :destroy,
     primary_key: :id,
     foreign_key: :subject_id,
     class_name: :Deck

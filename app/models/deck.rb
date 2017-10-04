@@ -24,7 +24,7 @@ class Deck < ActiveRecord::Base
     foreign_key: :subject_id,
     class_name: :Subject
 
-  has_many :cards,
+  has_many :cards, dependent: :destroy,
     primary_key: :id,
     foreign_key: :deck_id,
     class_name: :Card

@@ -40,9 +40,7 @@ class Subject < ActiveRecord::Base
     through: :categorizations,
     source: :category
 
-  #TODO: put the scoring here
-
-  has_many :follows,
+  has_many :follows, dependent: :destroy,
     primary_key: :id,
     foreign_key: :subject_id,
     class_name: :Follow

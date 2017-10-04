@@ -20,7 +20,7 @@ class Card < ApplicationRecord
     foreign_key: :deck_id,
     class_name: :Deck
 
-  has_many :ratings,
+  has_many :ratings, dependent: :destroy,
     primary_key: :id,
     foreign_key: :card_id,
     class_name: :Rating

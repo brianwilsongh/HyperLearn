@@ -13,7 +13,7 @@
 class Deck < ActiveRecord::Base
   validates :user_id, :subject_id, presence: true
   validates :title, presence: true, uniqueness: {scope: :subject_id}, length: {minimum: 1, maximum:18}
-#max18
+
   belongs_to :author,
     primary_key: :id,
     foreign_key: :user_id,

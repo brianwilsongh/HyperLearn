@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     through: :subjects,
     source: :followers
 
-  has_many :follows,
+  has_many :follows, dependent: :destroy,
     primary_key: :id,
     foreign_key: :user_id,
     class_name: :Follow

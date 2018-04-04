@@ -40,68 +40,6 @@ Users can visit the /browse page to find additional subjects to study by either 
 
 ![FrontPage](https://github.com/wilsontheory/HyperLearn/blob/master/docs/screens/ss5.png)
 
-
-
-### Implementing Mass-Edit
-
-The mass edit form is found on the /build page, which allows users to add/edit/delete cards from a deck. In React, a parent component determines how many child components to render based on how many cards are in a deck. The child components contain forms that are populated with each individual card's information, received as properties from the parent component.
-
-A user can edit all the cards at once with a single click, ultimately sending a single patch request to the server rather than many. This was achieved by creating a new slice of state exclusively for card edits, and by storing an array of references to child components within the parent components by passing onRef to the child with a callback that pushes itself (the React component) into an array stored in the state of the parent.
-
-```javascript
-if (!this.objEmpty(currentCards)){
-  forms = Object.keys(currentCards).map((key, idx) => {
-    return (
-      <CardForm key={idx} card={currentCards[key]}
-        onRef={ref => {
-            if (ref){
-              this.childComponentsEdit.push(ref);
-            }
-          }
-        } />
-    );
-  });
-} else {
-  forms = <p>Deck is empty...</p>;
-}
-```
-
-When a user triggers a "mass edit", this allows the parent to execute a method on each of the children since references to these children are stored. In this case, the method triggered adds the state of the children (the contents of the form) into a reserved area of state which is then used for the actual AJAX request before being emptied out.
-
-```javascript
-triggerSubmissionEdit(){
-  this.childComponentsEdit.forEach((child, idx) => {
-    if (child){
-      if (this.props.cards[child.state.id]){
-        child.addEditedCard();
-      }
-    }
-  }, this);
-}
-```
-
-So in the end, one large PATCH request is sent that can modify a large number of cards with one AJAX request. This results in a single response that includes all the updated information on cards that the deck being built.
-
-I determined that success/error messages returned from the server also have to be individualized for each card in the mass-edit form for the user to fully understand what happened on the server side. This was achieved by adding an error-holding array inside the JSON objects representing each card, and a multi-line conditional in the render method for the card-form components (which rendered one form representing each card).
-
-```javascript
-let errors;
-if (this.props.cardStore[this.state.id]){
-  let thisCard = this.props.cardStore[this.state.id];
-   if (thisCard.errors[0]){
-     errors = thisCard.errors[0]
-      .map((err, idx) => {
-        if (err === "None"){
-          return (<li className="cardNonErrorItem" key={idx}> Saved! </li>);
-        } else {
-          return (<li key={idx}> { err } </li>);
-        }
-      });
-  }
-}
-```
-This allows the React component to have one of three outcomes when it is rendered. One is blank, where the user hasn't performed any actions and no works appear with the form. The second is the success message, which is triggered when the server sends a successfully edited card with an explicit string "None" in the error-holding array which is displayed in a friendly green color. The third outcome occurs when there were errors in editing the card server-side, and these are displayed in a list.
-
 ### Future Directions for HyperLearn
 
 <li>Reduce load on server by determining ways to send fewer/smaller requests without hindering functionality</li>
